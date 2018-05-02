@@ -18,18 +18,17 @@
     <meta name="description" content="Modern open-source e-commerce framework for free">
     <meta name="tags" content="modern, opensource, open-source, e-commerce, framework, free, laravel, php, php7, symfony, shop, shopping, responsive, fast, software, blade, cart, test driven, adminlte, storefront">
     <meta name="author" content="Jeff Simons Decena">
-    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
+    <meta name="author" content="Jeff Simons Decena">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="{{ asset('https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
     <script src="{{ asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}"></script>
     <![endif]-->
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
-    @yield('css')
-    <meta property="og:url" content="{{ request()->url() }}"/>
-    @yield('og')
+
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js') }}"></script>
 </head>
@@ -86,9 +85,7 @@
 @yield('content')
 
 @include('layouts.front.footer')
-
-<script src="{{ asset('js/front.min.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 @yield('js')
 </body>
 </html>
