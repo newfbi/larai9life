@@ -17,7 +17,16 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Inicio</li>
-            <li><a href="{{ route('admin.dashboard') }}"> <i class="fa fa-home"></i> Dashboard</a></li>
+            <li>
+                <li class="treeview @if(request()->segment(2) == 'products') active @endif">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fa fa-home"></i> <span>Dashboard</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                </li>
+            </li>
             @if($admin)
                 <li class="header">SELL</li>
                 <li class="treeview @if(request()->segment(2) == 'products') active @endif">

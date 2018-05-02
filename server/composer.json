@@ -16,6 +16,7 @@
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.6",
         "paypal/rest-api-sdk-php": "*",
         "santigarcor/laratrust": "5.0.*",
         "sofa/eloquence": "^5.5"
