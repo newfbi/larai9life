@@ -74,7 +74,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('home') }}"><img src="/img/logo.png" style="width: 200px;height: 200px;margin-top: -81px;"></a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img class="logo" src="/img/logo.png"></a>
                 </div>
                 <div class="col-md-10">
                     @include('layouts.front.header-cart')
