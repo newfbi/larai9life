@@ -13,6 +13,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('favicons/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/131f48c694af49ccc2f807837/fef062caf706ade7e0d51b605.js");</script>
 </head>
 <body class="hold-transition skin-purple sidebar-mini">
 <noscript>
@@ -34,8 +35,6 @@
     <!-- /.content-wrapper -->
 
     @include('layouts.admin.footer')
-
-    @include('layouts.admin.control-sidebar')
 </div>
 <!-- ./wrapper -->
 

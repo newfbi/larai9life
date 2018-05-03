@@ -11,7 +11,7 @@
             </div>
             <div class="pull-left info">
                 <p>{{ $user->name }}</p>
-                <a href="{{ route('admin.employee.profile', $user->id) }}"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="{{ route('admin.employee.profile', $user->id) }}"><span>Administrador</span> <i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -28,7 +28,7 @@
                 </li>
             </li>
             @if($admin)
-                <li class="header">SELL</li>
+                <li class="header">Produtos</li>
                 <li class="treeview @if(request()->segment(2) == 'products') active @endif">
                     <a href="#">
                         <i class="fa fa-gift"></i> <span>Produtos</span>
@@ -73,21 +73,21 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.order-statuses.index') }}"><i class="fa fa-circle-o"></i> Lista de Estatus</a></li>
+                        <li><a href="{{ route('admin.order-statuses.index') }}"><i class="fa fa-circle-o"></i> Lista de estatus</a></li>
                         <li><a href="{{ route('admin.order-statuses.create') }}"><i class="fa fa-plus"></i> Criar novo estatus</a></li>
                     </ul>
                 </li>
                 <li class="header">Entregas</li>
                 <li class="treeview @if(request()->segment(2) == 'couriers') active @endif">
                     <a href="#">
-                        <i class="fa fa-truck"></i> <span>Couriers</span>
+                        <i class="fa fa-truck"></i> <span>Entregas</span>
                         <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.couriers.index') }}"><i class="fa fa-circle-o"></i> List couriers</a></li>
-                        <li><a href="{{ route('admin.couriers.create') }}"><i class="fa fa-plus"></i> Create courier</a></li>
+                        <li><a href="{{ route('admin.couriers.index') }}"><i class="fa fa-circle-o"></i> Lista de entregas</a></li>
+                        <li><a href="{{ route('admin.couriers.create') }}"><i class="fa fa-plus"></i> Criar entrega</a></li>
                     </ul>
                 </li>
                 <li class="header">CONFIG</li>

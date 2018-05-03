@@ -5,7 +5,7 @@
     <section class="container content">
         <div class="row">
             <div class="col-md-12">
-                <h2> <i class="fa fa-home"></i> My Account</h2>
+                <h2> <i class="fa fa-home"></i>Minha Conta</h2>
                 <hr>
             </div>
         </div>
@@ -14,9 +14,9 @@
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Orders</a></li>
-                        <li role="presentation"><a href="#address" aria-controls="address" role="tab" data-toggle="tab">Addresses</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a></li>
+                        <li role="presentation"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Pedidos</a></li>
+                        <li role="presentation"><a href="#address" aria-controls="address" role="tab" data-toggle="tab">Endereços</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -28,8 +28,8 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="col-md-3">Date</td>
-                                    <td class="col-md-2">Courier</td>
+                                    <td class="col-md-3">Data</td>
+                                    <td class="col-md-2">Correio</td>
                                     <td class="col-md-2">Total</td>
                                     <td class="col-md-2">Status</td>
                                 </tr>
@@ -46,13 +46,13 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Reference #{{$order['reference']}}</h4>
+                                                            <h4 class="modal-title" id="myModalLabel">Referencia #{{$order['reference']}}</h4>
                                                         </div>
                                                         <div class="modal-body">
                                                             <table class="table">
                                                                 <thead>
-                                                                    <th>Address</th>
-                                                                    <th>Payment Method</th>
+                                                                    <th>Endereço</th>
+                                                                    <th>Forma de Pagamento</th>
                                                                     <th>Total</th>
                                                                     <th>Status</th>
                                                                 </thead>
@@ -89,18 +89,18 @@
                         <div role="tabpanel" class="tab-pane" id="address">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="{{route('customer.address.create', auth()->user()->id)}}" class="btn btn-primary">Create your address</a>
+                                    <a href="{{route('customer.address.create', auth()->user()->id)}}" class="btn btn-primary">Criar novo Endereço</a>
                                 </div>
                             </div>
                             <table class="table">
                                 <thead>
-                                    <th>Alias</th>
-                                    <th>Address 1</th>
-                                    <th>Address 2</th>
-                                    <th>City</th>
-                                    <th>Province</th>
-                                    <th>Country</th>
-                                    <th>Zip</th>
+                                    <th>Rua</th>
+                                    <th>Endereço 1</th>
+                                    <th>Endereço 2</th>
+                                    <th>Cidade</th>
+                                    <th>Estado</th>
+                                    <th>Pais</th>
+                                    <th>CEP</th>
                                 </thead>
                                 <tbody>
                                     @foreach($addresses as $address)

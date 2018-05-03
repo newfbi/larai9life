@@ -57,8 +57,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
                 $slug = str_slug($params['name']);
             }
 
-            if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-                $cover = $this->uploadOne($params['cover'], 'categories');
+            if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {                
+                $file = $params['cover'];
+                $filename = $this->uploadOne($params['cover'], 'categories');
+                $file->move('storage/products/', $filename);
+                $cover = $filename;
             }
 
             $merge = $collection->merge(compact('slug', 'cover'));
@@ -89,8 +92,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         $collection = collect($params)->except('_token');
         $slug = str_slug($collection->get('name'));
 
-        if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover = $this->uploadOne($params['cover'], 'categories');
+        if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {                
+                $file = $params['cover'];
+                $filename = $this->uploadOne($params['cover']);
+                $file->move('storage/', $filename);
+                $cover = $filename;
         }
 
         $merge = $collection->merge(compact('slug', 'cover'));

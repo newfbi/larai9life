@@ -44,7 +44,7 @@
                                 <!-- end message -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
+                        <li class="footer"><a href="#">Ver todas as Mensagens</a></li>
                     </ul>
                 </li>
                 <!-- Notifications: style can be found in dropdown.less -->
@@ -65,7 +65,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
+                        <li class="footer"><a href="#">Ver todos Avisos</a></li>
                     </ul>
                 </li>
                 <!-- Tasks: style can be found in dropdown.less -->
@@ -96,7 +96,7 @@
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="#">View all tasks</a>
+                            <a href="#">Ver todos Lembretes</a>
                         </li>
                     </ul>
                 </li>
@@ -113,20 +113,20 @@
 
                             <p>
                                 {{ $user->name }}
-                                <small>Member since {{ date('m Y', strtotime($user->created_at)) }}</small>
+                                <small>Administrador</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
+                                    <a href="#">Clientes</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
+                                    <a href="#">Vendas</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
+                                    <a href="#">Parceiros</a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -134,17 +134,13 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ route('admin.employee.profile', $user->id) }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('admin.employee.profile', $user->id) }}" class="btn btn-default btn-flat">Perfil</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">Sair</a>
                             </div>
                         </li>
                     </ul>
-                </li>
-                <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

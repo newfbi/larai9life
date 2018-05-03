@@ -97,4 +97,6 @@
             });
         });
     </script>
+<script src="{{ asset('js/front.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 @endsection

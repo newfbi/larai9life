@@ -7,7 +7,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Title</h3>
+                <h3 class="box-title">Painel de controle</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -17,11 +17,11 @@
                 </div>
             </div>
             <div class="box-body">
-                Start creating your amazing application!
+                Nesta Area Ficara os paineis adiministrativos de pedidos e entregas!
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                Footer
+                Rodapé
             </div>
             <!-- /.box-footer-->
         </div>
