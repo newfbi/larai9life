@@ -1,8 +1,8 @@
 git init // iniciar o gitapp
-git add // adicionar os repositorios
+git add . // adicionar os repositorios
 git commit - m "descrição da att" // envia uma alteração para o gith
 git status // mostra os arquivos novos e alterados que não foram enviados ainda
 git remote add origin https://github.com/newfbi/larai9life.git //link do repositorio
-git pull origin master --allow-unrelated-histories // caso tenha algum garlalo de commit e atualizar o que foi feito em outro local
 git push -u origin master // subir toda a tualização
+git pull origin master --allow-unrelated-histories // caso tenha algum garlalo de commit e atualizar o que foi feito em outro local
 em caso de erro de index exclua o index.lok

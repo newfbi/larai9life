@@ -205,6 +205,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 'src' => $filename
             ]);
             $product->images()->save($productImage);
+            $file->move('storage/products/', $filename);
         });
     }
 

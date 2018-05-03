@@ -198,7 +198,10 @@ class ProductController extends Controller
         $data['slug'] = str_slug($request->input('name'));
 
         if ($request->hasFile('cover') && $request->file('cover') instanceof UploadedFile) {
-            $data['cover'] = $this->productRepo->saveCoverImage($request->file('cover'));
+            $file = $request->file('cover');
+            $filename = $this->productRepo->saveCoverImage($request->file('cover'));
+            $file->move('storage/products/', $filename);
+            $data['cover'] = $filename;
         }
 
         $this->saveProductImages($request, $product);

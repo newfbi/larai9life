@@ -86,8 +86,6 @@
 
 @include('layouts.front.footer')
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/front.min.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
 @yield('js')
 </body>
 </html>
