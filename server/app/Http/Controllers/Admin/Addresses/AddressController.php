@@ -57,7 +57,9 @@ class AddressController extends Controller
             return $this->transformAddress($address);
         })->all();
 
-        return view('admin.addresses.list', ['addresses' => $this->addressRepo->paginateArrayResults($addresses)]);
+        $addresses = $this->addressRepo->paginateArrayResults($addresses);
+
+        return view('admin.addresses.list', compact('addresses'));
     }
 
     /**

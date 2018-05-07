@@ -8,6 +8,7 @@ use App\Shop\Customers\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Shop\Orders\Order;
 use App\Shop\Orders\Transformers\OrderTransformable;
+use DB;
 
 class AccountsController extends Controller
 {
@@ -37,10 +38,14 @@ class AccountsController extends Controller
 
         $addresses = $customerRepo->findAddresses();
 
-        return view('front.accounts', [
-            'customer' => $customer,
-            'orders' => $this->customerRepo->paginateArrayResults($orders->toArray(), 3),
-            'addresses' => $addresses
-        ]);
+        foreach ($addresses as $addres) {
+            $province = DB::table('cities')->where('province_id', $addres->province_id)->select('name')->first();
+            $city = DB::table('provinces')->where('country_id', $addres->country_id)->select('name')->first();
+        }
+        $province = $province->name;
+        $city = $city->name;
+        $orders = $this->customerRepo->paginateArrayResults($orders->toArray(), 3);
+
+        return view('front.accounts', compact('customer', 'orders', 'addresses', 'city', 'province'));
     }
 }

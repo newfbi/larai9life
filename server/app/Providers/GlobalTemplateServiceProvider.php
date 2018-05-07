@@ -10,6 +10,7 @@ use App\Shop\Employees\Employee;
 use App\Shop\Employees\Repositories\EmployeeRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 /**
  * Class GlobalTemplateServiceProvider
@@ -27,7 +28,9 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.admin.app', function ($view) {
             $view->with('user', Auth::guard('admin')->user());
-            $view->with('admin', $this->isAdmin(Auth::guard('admin')->user()));
+            $id =  $this->isAdmin(Auth::guard('admin')->user());
+            $adm = DB::table('employees')->where('id', $id)->first();
+            $view->with('admin', $adm->admin);
         });
 
         view()->composer(['layouts.front.app', 'front.categories.sidebar-category'], function ($view) {

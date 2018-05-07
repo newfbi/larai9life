@@ -27,30 +27,18 @@
                     </a>
                 </li>
             </li>
-            @if($admin)
-                <li class="header">Produtos</li>
-                <li class="treeview @if(request()->segment(2) == 'products') active @endif">
+            @if($admin == 1 || $admin == 2)                
+                <li class="header">Entregas</li>
+                <li class="treeview @if(request()->segment(2) == 'couriers') active @endif">
                     <a href="#">
-                        <i class="fa fa-gift"></i> <span>Produtos</span>
+                        <i class="fa fa-truck"></i> <span>Entregas</span>
                         <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.products.index') }}"><i class="fa fa-circle-o"></i> Lista produtos</a></li>
-                        <li><a href="{{ route('admin.products.create') }}"><i class="fa fa-plus"></i> Criar produto</a></li>
-                    </ul>
-                </li>
-                <li class="treeview @if(request()->segment(2) == 'categories') active @endif">
-                    <a href="#">
-                        <i class="fa fa-folder"></i> <span>Categorias</span>
-                        <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.categories.index') }}"><i class="fa fa-circle-o"></i> Lista de categorias</a></li>
-                        <li><a href="{{ route('admin.categories.create') }}"><i class="fa fa-plus"></i> Criar categoria</a></li>
+                        <li><a href="{{ route('admin.couriers.index') }}"><i class="fa fa-circle-o"></i> Lista de entregas</a></li>
+                        <li><a href="{{ route('admin.couriers.create') }}"><i class="fa fa-plus"></i> Criar entrega</a></li>
                     </ul>
                 </li>
                 <li class="header">Pedidos</li>
@@ -77,43 +65,34 @@
                         <li><a href="{{ route('admin.order-statuses.create') }}"><i class="fa fa-plus"></i> Criar novo estatus</a></li>
                     </ul>
                 </li>
-                <li class="header">Entregas</li>
-                <li class="treeview @if(request()->segment(2) == 'couriers') active @endif">
+            @endif
+            @if($admin == 1)
+                <li class="header">Produtos</li>
+                <li class="treeview @if(request()->segment(2) == 'products') active @endif">
                     <a href="#">
-                        <i class="fa fa-truck"></i> <span>Entregas</span>
+                        <i class="fa fa-gift"></i> <span>Produtos</span>
                         <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.couriers.index') }}"><i class="fa fa-circle-o"></i> Lista de entregas</a></li>
-                        <li><a href="{{ route('admin.couriers.create') }}"><i class="fa fa-plus"></i> Criar entrega</a></li>
+                        <li><a href="{{ route('admin.products.index') }}"><i class="fa fa-circle-o"></i> Lista produtos</a></li>
+                        <li><a href="{{ route('admin.products.create') }}"><i class="fa fa-plus"></i> Criar produto</a></li>
+                    </ul>
+                </li>
+                <li class="treeview @if(request()->segment(2) == 'categories') active @endif">
+                    <a href="#">
+                        <i class="fa fa-folder"></i> <span>Categorias</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('admin.categories.index') }}"><i class="fa fa-circle-o"></i> Lista de categorias</a></li>
+                        <li><a href="{{ route('admin.categories.create') }}"><i class="fa fa-plus"></i> Criar categoria</a></li>
                     </ul>
                 </li>
                 <li class="header">CONFIG</li>
-                <li class="treeview @if(request()->segment(2) == 'customers' || request()->segment(2) == 'addresses') @endif">
-                    <a href="#">
-                        <i class="fa fa-user"></i> <span>Clientes</span>
-                        <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.customers.index') }}"><i class="fa fa-circle-o"></i> Lista de clientes</a></li>
-                        <li><a href="{{ route('admin.customers.create') }}"><i class="fa fa-plus"></i> Criar cliente</a></li>
-                        <li class="@if(request()->segment(2) == 'addresses') active @endif">
-                            <a href="#"><i class="fa fa-map-marker"></i> Endereços
-                                <span class="pull-right-container">
-                                  <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="{{ route('admin.addresses.index') }}"><i class="fa fa-circle-o"></i> Lista de endereços</a></li>
-                                <li><a href="{{ route('admin.addresses.create') }}"><i class="fa fa-plus"></i> Criar endereço</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
                 <li class="treeview @if(request()->segment(2) == 'employees') active @endif">
                     <a href="#">
                         <i class="fa fa-star"></i> <span>Administradores</span>
@@ -126,16 +105,27 @@
                         <li><a href="{{ route('admin.employees.create') }}"><i class="fa fa-plus"></i> Criar ADM</a></li>
                     </ul>
                 </li>
-                <li class="treeview @if(request()->segment(2) == 'attributes') active @endif">
+                <li class="treeview @if(request()->segment(2) == 'customers' || request()->segment(2) == 'addresses') @endif">
                     <a href="#">
-                        <i class="fa fa-gear"></i> <span>Atributos</span>
+                        <i class="fa fa-user"></i> <span>Clientes</span>
                         <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.attributes.index') }}"><i class="fa fa-circle-o"></i> Lista de atributos</a></li>
-                        <li><a href="{{ route('admin.attributes.create') }}"><i class="fa fa-plus"></i> Criar atributo</a></li>
+                        <li><a href="{{ route('admin.customers.index') }}"><i class="fa fa-circle-o"></i> Lista de clientes</a></li>
+                        <li><a href="{{ route('admin.customers.create') }}"><i class="fa fa-plus"></i> Criar cliente</a></li>
+                    </ul>
+                </li>
+                <li class="@if(request()->segment(2) == 'addresses') active @endif">
+                    <a href="#"><i class="fa fa-map-marker"></i> Endereços
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('admin.addresses.index') }}"><i class="fa fa-circle-o"></i> Lista de endereços</a></li>
+                        <li><a href="{{ route('admin.addresses.create') }}"><i class="fa fa-plus"></i> Criar endereço</a></li>
                     </ul>
                 </li>
                 <li class="treeview @if(request()->segment(2) == 'countries' || request()->segment(2) == 'provinces') active @endif">
@@ -147,6 +137,18 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('admin.countries.index') }}"><i class="fa fa-circle-o"></i> Lista</a></li>
+                    </ul>
+                </li>
+                <li class="treeview @if(request()->segment(2) == 'attributes') active @endif">
+                    <a href="#">
+                        <i class="fa fa-gear"></i> <span>Atributos</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('admin.attributes.index') }}"><i class="fa fa-circle-o"></i> Lista de atributos</a></li>
+                        <li><a href="{{ route('admin.attributes.create') }}"><i class="fa fa-plus"></i> Criar atributo</a></li>
                     </ul>
                 </li>
             @endif

@@ -108,8 +108,8 @@
                                             <td>{{$address->alias}}</td>
                                             <td>{{$address->address_1}}</td>
                                             <td>{{$address->address_1}}</td>
-                                            <td>{{$address->city_id}}</td>
-                                            <td>{{$address->province_id}}</td>
+                                            <td>{{$city}}</td>
+                                            <td>{{$province}}</td>
                                             <td>{{$address->country_id}}</td>
                                             <td>{{$address->zip}}</td>
                                         </tr>
