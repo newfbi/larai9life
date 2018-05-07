@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Addresses;
-
+ 
 use App\Shop\Addresses\Address;
 use App\Shop\Addresses\Repositories\AddressRepository;
 use App\Shop\Addresses\Repositories\Interfaces\AddressRepositoryInterface;

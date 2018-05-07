@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Admin routes
+ * Admin routes 
  */
 Route::namespace('Admin')->group(function () {
     Route::get('admin/login', 'LoginController@showLoginForm')->name('admin.login');
@@ -78,7 +78,7 @@ Route::namespace('Front')->group(function () {
         Route::post('checkout/execute', 'CheckoutController@charge')->name('checkout.execute');
         Route::get('checkout/cancel', 'CheckoutController@cancel')->name('checkout.cancel');
         Route::get('checkout/success', 'CheckoutController@success')->name('checkout.success');
-        Route::resource('customer.address', 'CustomerAddressController');
+        Route::resource('address', 'CustomerAddressController');
     });
     Route::resource('cart', 'CartController');
     Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.category.slug');

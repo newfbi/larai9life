@@ -89,18 +89,18 @@
                         <div role="tabpanel" class="tab-pane" id="address">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="{{route('customer.address.create', auth()->user()->id)}}" class="btn btn-primary">Criar novo Endereço</a>
+                                    <a href="{{route('address.create')}}" class="btn btn-primary">Criar novo Endereço</a>
                                 </div>
                             </div>
                             <table class="table">
                                 <thead>
                                     <th>Rua</th>
-                                    <th>Endereço 1</th>
-                                    <th>Endereço 2</th>
+                                    <th>Numero</th>
+                                    <th>Complemento</th>
                                     <th>Cidade</th>
-                                    <th>Estado</th>
                                     <th>Pais</th>
                                     <th>CEP</th>
+                                    <th>Status</th>
                                 </thead>
                                 <tbody>
                                     @foreach($addresses as $address)
@@ -109,11 +109,20 @@
                                             <td>{{$address->address_1}}</td>
                                             <td>{{$address->address_1}}</td>
                                             <td>{{$city}}</td>
-                                            <td>{{$province}}</td>
                                             <td>{{$address->country_id}}</td>
                                             <td>{{$address->zip}}</td>
                                         </tr>
                                     @endforeach
+                                    <td>
+                                        <form action="{{ route('admin.addresses.destroy', $address->id) }}" method="post" class="form-horizontal">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="_method" value="delete">
+                                            <div class="btn-group">
+                                                <a href="{{ route('address.edit', $address->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tbody>
                             </table>
                         </div>
