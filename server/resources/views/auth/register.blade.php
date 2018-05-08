@@ -68,6 +68,10 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <hr>
+                        <a href="{{route('login')}}" class="text-center">Já tem uma conta? Efetuar login.</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,15 +15,15 @@
                         <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" autofocus>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Senha</label>
                         <input type="password" name="password" id="password" value="" class="form-control" placeholder="xxxxx">
                     </div>
                     <div class="row">
-                        <button class="btn btn-primary btn-block" type="submit">Login now</button>
+                        <button class="btn btn-primary btn-block" type="submit">Logar</button>
                     </div>
                 </form>
                 <div class="row"><hr>
-                    <a href="#">I forgot my password</a><br>
+                    <a href="#">Esqueceu a senha</a><br>
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-1">

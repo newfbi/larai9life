@@ -116,8 +116,8 @@
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="delete">
                                                 <div class="btn-group">
-                                                    <a href="{{ route('address.edit', $address->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
+                                                    <a href="{{ route('address.edit', $address->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Deletar</button>
                                                 </div>
                                             </form>
                                         </td>

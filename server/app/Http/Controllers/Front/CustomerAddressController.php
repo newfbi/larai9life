@@ -136,7 +136,7 @@ class CustomerAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAddressRequest $request, $id)
+    public function update(int $id, UpdateAddressRequest $request)
     {
         $address = $this->addressRepo->findAddressById($id);
 

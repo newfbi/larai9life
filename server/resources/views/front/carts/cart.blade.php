@@ -7,7 +7,7 @@
                     <div class="col-md-12">
                         <ol class="breadcrumb">
                             <li><a href="{{ route('home') }}"> <i class="fa fa-home"></i> Home</a></li>
-                            <li class="active">Cart</li>
+                            <li class="active">Carrinho</li>
                         </ol>
                     </div>
                     <div class="col-md-12 content">
@@ -17,11 +17,11 @@
                         <h3><i class="fa fa-cart-plus"></i> Shopping Cart</h3>
                         <table class="table table-striped">
                             <thead>
-                                <th class="col-md-2 col-lg-2">Cover</th>
-                                <th class="col-md-2 col-lg-5">Name</th>
-                                <th class="col-md-2 col-lg-2">Quantity</th>
+                                <th class="col-md-2 col-lg-2">Produto</th>
+                                <th class="col-md-2 col-lg-5">Nome</th>
+                                <th class="col-md-2 col-lg-2">Quantidade</th>
                                 <th class="col-md-2 col-lg-1"></th>
-                                <th class="col-md-2 col-lg-2">Price</th>
+                                <th class="col-md-2 col-lg-2">Preço</th>
                             </thead>
                             <tfoot>
                             <tr>
@@ -33,7 +33,7 @@
                             </tr>
                             @if(isset($shippingFee) && $shippingFee != 0)
                             <tr>
-                                <td class="bg-warning">Shipping</td>
+                                <td class="bg-warning">Entrega</td>
                                 <td class="bg-warning"></td>
                                 <td class="bg-warning"></td>
                                 <td class="bg-warning"></td>
@@ -41,7 +41,7 @@
                             </tr>
                             @endif
                             <tr>
-                                <td class="bg-warning">Tax</td>
+                                <td class="bg-warning">Taxa</td>
                                 <td class="bg-warning"></td>
                                 <td class="bg-warning"></td>
                                 <td class="bg-warning"></td>
@@ -104,8 +104,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right">
-                                    <a href="{{ route('home') }}" class="btn btn-default">Continue shopping</a>
-                                    <a href="{{ route('checkout.index') }}" class="btn btn-primary">Go to checkout</a>
+                                    <a href="{{ route('home') }}" class="btn btn-default">Continar Comprando</a>
+                                    <a href="{{ route('checkout.index') }}" class="btn btn-primary">Finalizar pagamento</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
             @else
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="alert alert-warning">No products in cart yet. <a href="{{ route('home') }}">Shop now!</a></p>
+                        <p class="alert alert-warning">Nenhum produto no carrinho ainda. <a href="{{ route('home') }}">Compre agora!</a></p>
                     </div>
                 </div>
             @endif
