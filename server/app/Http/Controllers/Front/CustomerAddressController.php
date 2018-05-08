@@ -119,13 +119,14 @@ class CustomerAddressController extends Controller
      * @param int $customerId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateAddressRequest $request, int $customerId)
+    public function store(CreateAddressRequest $request)
     {
+        $customerId = Auth::user()->id;
         $request['customer'] = $customerId;
         $this->addressRepo->createAddress($request->except('_token', '_method'));
 
         $request->session()->flash('message', 'Address creation successful');
-        return redirect()->route('checkout.index');
+        return redirect()->route('accounts');
     }
 
     /**
