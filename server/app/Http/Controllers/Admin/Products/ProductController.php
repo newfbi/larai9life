@@ -132,7 +132,7 @@ class ProductController extends Controller
         }
 
         $request->session()->flash('message', 'Create successful');
-        return redirect()->route('admin.products.edit', $product->id);
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -219,7 +219,7 @@ class ProductController extends Controller
 
         $request->session()->flash('message', 'Update successful');
 
-        return redirect()->route('admin.products.edit', $id);
+        return redirect()->route('admin.products.index');
     }
 
     /**

@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $newArrivals = $this->categoryRepo->findCategoryBySlug(['slug' => 'novidades']);
-        $featured = $this->categoryRepo->findCategoryBySlug(['slug' => 'perfumes']);
+        $featured = $this->categoryRepo->findCategoryBySlug(['slug' => 'destaques']);
 
         return view('front.index', compact('newArrivals', 'featured'));
     }

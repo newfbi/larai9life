@@ -5069,14 +5069,14 @@
  	}
  .modal-header{
  	padding:15px;
- 	border-bottom:1px solid #e5e5e5
+ 	border-bottom:1px solid #e5e5e5;
+ 	background-color: #8be6e1;
  	}
  .modal-header .close{
  	margin-top:-2px
  	}
  .modal-title{
- 	margin:0;
- 	line-height:1.42857143
+ 	margin-left: 35%;
  	}
  .modal-body{
  	position:relative;

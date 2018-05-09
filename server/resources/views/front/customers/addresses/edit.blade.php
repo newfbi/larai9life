@@ -52,21 +52,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#province_id').change(function () {
-
                 var provinceId = $(this).val();
-
                 $.ajax({
                     url: '/api/v1/country/169/province/' + provinceId + '/city',
                     contentType: 'json',
                     success: function (data) {
-
                         var html = '<label for="city_id">City </label>';
                             html += '<select name="city_id" id="city_id" class="form-control">';
                             $(data.data).each(function (idx, v) {
                                 html += '<option value="'+ v.id+'">'+ v.name +'</option>';
                             });
                             html += '</select>';
-
                         $('#cities').html(html).show();
                     },
                     errors: function (data) {

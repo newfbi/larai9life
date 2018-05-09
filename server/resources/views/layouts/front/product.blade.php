@@ -85,18 +85,3 @@
         </div>
     </div>
 </div>
-@section('js')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var productPane = document.querySelector('.product-cover');
-            var paneContainer = document.querySelector('.product-cover-wrap');
-
-            new Drift(productPane, {
-                paneContainer: paneContainer,
-                inlinePane: false
-            });
-        });
-    </script>
-<script src="{{ asset('js/front.min.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
-@endsection

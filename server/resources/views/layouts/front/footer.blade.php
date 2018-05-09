@@ -15,8 +15,8 @@
                     <li> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i>  </a> </li>
                     <li> <a href=""> <i class="fa fa-pinterest-p" aria-hidden="true"></i>  </a> </li>
                 </ul>
-
                 <p>&copy; <a href="{{ config('app.url') }}">{{ config('app.name') }}</a> | Todos os direitos reservados</p>
+                <p>Todas as imagens disponivel neste site e as descrições pertencem ao site:<a href="http://i9life.global" target="blanck"> I9Life</a></p>
 
             </div>
         </div>
