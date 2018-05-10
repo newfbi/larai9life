@@ -1,6 +1,6 @@
 @if(!empty($products) && !collect($products)->isEmpty())
     <ul class="row text-center list-unstyled">
-        @foreach($products as $product)
+        @foreach($products as $product) 
             <li class="col-md-3 col-sm-6 col-xs-12 product-list">
                 <div class="single-product">
                     <div class="product">
@@ -52,5 +52,5 @@
         @endif
     </ul>
 @else
-    <p class="alert alert-warning">No products yet.</p>
+    <p class="alert alert-warning"></p>
 @endif

@@ -84,7 +84,7 @@
                                             <input type="hidden" name="_method" value="put">
                                             <div class="input-group">
                                                 <input type="text" name="quantity" value="{{ $cartItem->qty }}" class="form-control" />
-                                                <span class="input-group-btn"><button class="btn btn-default">Update</button></span>
+                                                <span class="input-group-btn"><button class="btn btn-default">Atualizar</button></span>
                                             </div>
                                         </form>
                                     </td>
@@ -104,8 +104,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right">
-                                    <a href="{{ route('home') }}" class="btn btn-default">Continar Comprando</a>
-                                    <a href="{{ route('checkout.index') }}" class="btn btn-primary">Finalizar pagamento</a>
+                                    <a href="{{ route('home') }}" class="btn btn-default">Continar Escolhendo</a>
+                                    <a href="{{ route('checkout.index') }}" class="btn btn-primary">Finalizar Pedido</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
             @else
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="alert alert-warning">Nenhum produto no carrinho ainda. <a href="{{ route('home') }}">Compre agora!</a></p>
+                        <p class="alert alert-warning">Nenhum produto no carrinho ainda. <a href="{{ route('home') }}">Escolha agora!</a></p>
                     </div>
                 </div>
             @endif

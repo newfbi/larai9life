@@ -50,7 +50,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     private function getCategories()
     {
         $categoryRepo = new CategoryRepository(new Category);
-        return $categoryRepo->listCategories('name', 'asc', 1)->whereIn('parent_id', [1]);
+        return $categoryRepo->listCategories('id', 'asc', 1)->whereIn('parent_id', [1]);
     }
 
     /**
