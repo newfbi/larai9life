@@ -69,12 +69,7 @@
                             </div><hr>
                         @endif
                         <div class="form-group">
-                            <input type="text"
-                                   class="form-control"
-                                   name="quantity"
-                                   id="quantity"
-                                   placeholder="Quantity"
-                                   value="{{ old('quantity') }}" />
+                            <input  onkeydown="return false" required type="number" name="quantity" value="1" min="1" max="99" class="form-control"/>
                             <input type="hidden" name="product" value="{{ $product->id }}" />
                         </div>
                         <button type="submit" class="btn btn-warning"><i class="fa fa-cart-plus"></i> Por no carrinho

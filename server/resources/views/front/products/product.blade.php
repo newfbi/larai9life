@@ -18,7 +18,7 @@
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           </div>
           <div class="modal-body">
-            <p> Sejam bem vindos.</br>
+            <p> Sejam bem vindos.<br>
                 Não efetuamos vendas online, temos apenas um catalogo de produtos, que podem ser selecionados e reservados para serem
                 retirados direto com um representante ou vendedor da empresa I9life.
             </p>

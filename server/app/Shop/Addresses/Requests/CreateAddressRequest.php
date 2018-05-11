@@ -15,7 +15,8 @@ class CreateAddressRequest extends BaseFormRequest
     {
         return [
             'alias' => ['required'],
-            'address_1' => ['required']
+            'address_1' => ['required'],
+            'phone' => ['required', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/', 'min:9', 'max:12']
         ];
     }
 }

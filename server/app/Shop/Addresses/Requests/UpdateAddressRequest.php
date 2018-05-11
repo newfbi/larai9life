@@ -15,7 +15,8 @@ class UpdateAddressRequest extends BaseFormRequest
     {
         return [
             'alias' => ['required'],
-            'address_1' => ['required']
+            'address_1' => ['required'],
+            'phone' => ['required', 'min:9', 'max:12', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/']
         ];
     }
 }

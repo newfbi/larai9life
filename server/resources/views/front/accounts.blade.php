@@ -14,17 +14,17 @@
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a></li>
                         <li role="presentation"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Pedidos</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a></li>
                         <li role="presentation"><a href="#address" aria-controls="address" role="tab" data-toggle="tab">Endereços</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content customer-order-list">
-                        <div role="tabpanel" class="tab-pane active" id="profile">
+                        <div role="tabpanel" class="tab-pane" id="profile">
                             {{$customer->name}} <br /><small>{{$customer->email}}</small>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="orders">
+                        <div role="tabpanel" class="tab-pane  active" id="orders">
                             <table class="table">
                                 <tbody>
                                 <tr>
@@ -38,45 +38,8 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>
-                                            <a data-toggle="modal" data-target="#order_modal_{{$order['id']}}" title="Show order" href="javascript: void(0)">{{ date('M d, Y h:i a', strtotime($order['created_at'])) }}</a>
+                                            <a href="{{route('orders.show', $order['id'])}}">{{ date('M d, Y h:i a', strtotime($order['created_at'])) }}</a>
                                             <!-- Button trigger modal -->
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="order_modal_{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="MyOrders">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Referencia #{{$order['reference']}}</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <th>Endereço</th>
-                                                                    <th>Forma de Pagamento</th>
-                                                                    <th>Total</th>
-                                                                    <th>Status</th>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <address>
-                                                                                <strong>{{$order['address']->alias}}</strong><br />
-                                                                                {{$order['address']->address_1}} {{$order['address']->address_2}}<br>
-                                                                            </address>
-                                                                        </td>
-                                                                        <td>{{$order['payment']}}</td>
-                                                                        <td>{{$order['total']}}</td>
-                                                                        <td>{{$order['status']->name}}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </td>
                                         <td>{{ $order['courier']->name }}</td>
                                         <td><span class="label @if($order['total'] != $order['total_paid']) label-danger @else label-success @endif">{{ config('cart.currency') }} {{ $order['total'] }}</span></td>
@@ -85,6 +48,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                        {{ $orders->links() }}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="address">
                             <div class="row">
@@ -99,6 +63,7 @@
                                     <th>Complemento</th>
                                     <th>Cidade</th>
                                     <th>CEP</th>
+                                    <th>Telefone</th>
                                     <th>Status</th>
                                 </thead>
                                 <tbody>                                
@@ -111,6 +76,7 @@
                                         <td>{{$address->address_2}}</td>
                                         <td>{{$city}}</td>
                                         <td>{{$address->zip}}</td>
+                                        <td>{{$address->phone}}</td>
                                         <td>
                                             <form action="{{ route('address.destroy', $address->id) }}" method="post" class="form-horizontal">
                                                 {{ csrf_field() }}

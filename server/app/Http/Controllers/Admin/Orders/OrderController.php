@@ -81,6 +81,29 @@ class OrderController extends Controller
         ]);
     }
 
+    public function OrderUpdateIndex($id)
+    {
+        $order = $this->orderRepo->findOrderById($id);
+        $order->courier = $this->courierRepo->findCourierById($order->courier_id);
+        $order->address = $this->addressRepo->findAddressById($order->address_id);
+
+        return view('admin.orders.update', [
+            'order' => $order,
+            'items' => $this->orderRepo->findProducts($order),
+            'customer' => $this->customerRepo->findCustomerById($order->customer_id),
+            'currentStatus' => $this->orderStatusRepo->findOrderStatusById($order->order_status_id),
+            'payment' => $order->payment
+        ]);
+    }
+
+    public function OrderUpdate(Request $request, $id)
+    {
+        $this->cartRepo->updateQuantityInCart($id, $request->input('quantity'));
+
+        request()->session()->flash('message', 'Update cart successful');
+        return redirect()->route('cart.index');
+    }
+
     /**
      * Generate order invoice
      *

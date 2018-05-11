@@ -35,7 +35,7 @@ class AccountsController extends Controller
         $orders->transform(function (Order $order) {
             return $this->transformOrder($order);
         });
-        $orders = $this->customerRepo->paginateArrayResults($orders->toArray(), 3);
+        $orders = $this->customerRepo->paginateArrayResults($orders->toArray(), 5);
 
         $addresses = $customerRepo->findAddresses();
 

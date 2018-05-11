@@ -62,6 +62,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'as' => 'admin.' ]
  * Frontend routes
  */
 Auth::routes();
+$this->group(['middleware' => 'auth'], function() {
+    Route::get('/admin/orders/update/{id}', 'Admin\Orders\OrderController@OrderUpdateIndex')->name('orders.orderupdate');
+    Route::resource('orders', 'front\Orders\FrontOrderController');
+});
 Route::namespace('Auth')->group(function () {
     Route::get('cart/login', 'CartLoginController@showLoginForm')->name('cart.login');
     Route::post('cart/login', 'CartLoginController@login')->name('cart.login');

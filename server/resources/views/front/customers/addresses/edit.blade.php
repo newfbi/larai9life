@@ -32,6 +32,10 @@
                         <input type="text" name="zip" id="zip" placeholder="Zip code" class="form-control" value="{{ $address->zip ?: old('zip') }}">
                     </div>
                     <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" name="phone" id="phone" placeholder="Numero de Telefone" class="form-control" value="{{ old('phone') }}">
+                    </div>
+                    <div class="form-group">
                         <input type="hidden" name="status" value="1">
                     </div>
                 </div>

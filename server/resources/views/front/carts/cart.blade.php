@@ -83,7 +83,7 @@
                                             {{ csrf_field() }}
                                             <input type="hidden" name="_method" value="put">
                                             <div class="input-group">
-                                                <input type="text" name="quantity" value="{{ $cartItem->qty }}" class="form-control" />
+                                                <input  onkeydown="return false" required type="number" name="quantity" value="{{ $cartItem->qty }}" min="1" max="99" class="form-control"/>
                                                 <span class="input-group-btn"><button class="btn btn-default">Atualizar</button></span>
                                             </div>
                                         </form>

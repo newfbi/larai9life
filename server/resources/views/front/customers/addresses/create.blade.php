@@ -37,12 +37,16 @@
                         <label for="zip">CEP </label>
                         <input type="text" name="zip" id="zip" placeholder="Seu CEP" class="form-control" value="{{ old('zip') }}">
                     </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" name="phone" id="phone" placeholder="Numero de Telefone" class="form-control" value="{{ old('phone') }}">
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('address.index', $customer->id) }}" class="btn btn-default">Back</a>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="{{ route('address.index', $customer->id) }}" class="btn btn-default">Voltar</a>
+                        <button type="submit" class="btn btn-primary">Criar</button>
                     </div>
                 </div>
             </form>

@@ -1,32 +1,27 @@
-@extends('layouts.admin.app')
+@extends('layouts.front.app')
 
 @section('content')
     <!-- Main content -->
-    <section class="content">
+    <section class="container content">
     @include('layouts.errors-and-messages')
     <!-- Default box -->
         <div class="box">
             <div class="box-header">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
+                        <hr>
                         <h2>
-                            <a href="{{ route('admin.customers.show', $customer->id) }}">Nome: {{$customer->name}}</a> <br />
                             <small>Email: {{$customer->email}}</small> <br />
-                            <small>Referencia do pedido: <strong>{{$order->reference}}</strong></small>
+                            <small>Referencia do Pedido: <strong>{{$order->reference}}</strong></small>
                         </h2>
                     </div>
-                    <div class="col-md-3 col-md-offset-3">
-                        <a href="{{route('admin.orders.invoice.generate', $order['id'])}}" class="btn btn-primary btn-block">Download de Pedido</a>
-                    </div>
-                </div>                
-                <div class="col-md-2">
-                    <h2><a href="{{url('/admin/orders/update', $order['id'])}}" class="btn btn-primary btn-block">Editar pedido</a></h2>
                 </div>
             </div>
         </div>
         <div class="box">
             <div class="box-body">
-                <h3> <i class="fa fa-shopping-bag"></i> Informações do Pedido</h3>
+                <hr>
+                <h3> <i class="fa fa-shopping-bag"></i> Informações do pedido</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -39,7 +34,7 @@
                     <tbody>
                     <tr>
                         <td>{{ date('M d, Y h:i a', strtotime($order['created_at'])) }}</td>
-                        <td><a href="{{ route('admin.customers.show', $customer->id) }}">{{ $customer->name }}</a></td>
+                        <td><a>{{ $customer->name }}</a></td>
                         <td><strong>{{ $order['payment'] }}</strong></td>
                         @if($order->order_status_id == 1)
                         <td><button type="button" class="btn btn-primary btn-block">{{ $currentStatus->name }}</button></td>
@@ -84,7 +79,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <td class="bg-danger text-bold">Total paid</td>
+                            <td class="bg-danger text-bold">Total pago</td>
                             <td class="bg-danger text-bold">{{ $order['total_paid'] }}</td>
                         </tr>
                     @endif
@@ -96,16 +91,17 @@
         @if($order)
             @if($order->total != $order->total_paid)
                 <p class="alert alert-danger">
-                    Ooops, há discrepância no valor total do pedido e no valor pago. <br />
-                    Valor total do pedito: <strong>{{ config('cart.currency') }} {{ $order->total }}</strong> <br>
-                    Valor total pago <strong>{{ config('cart.currency') }} {{ $order->total_paid }}</strong>
+                    O vendedor lhe concedeu um desconto no valor total do pedido.<br />
+                    Valor Total do Pedido: <strong>{{ config('cart.currency') }} {{ $order->total }}</strong> <br>
+                    Valor total pago: <strong>{{ config('cart.currency') }} {{ $order->total_paid }}</strong>
                 </p>
 
             @endif
             <div class="box">
                 @if(!$items->isEmpty())
                     <div class="box-body">
-                        <h3> <i class="fa fa-gift"></i> Items</h3>
+                        <hr>
+                        <h3> <i class="fa fa-gift"></i> Lista de Produtos</h3>
                         <table class="table">
                             <thead>
                             <th class="col-md-2">Referencia</th>
@@ -133,10 +129,11 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
+                            <hr>
                             <h3> <i class="fa fa-truck"></i> Entrega</h3>
                             <table class="table">
                                 <thead>
-                                    <th class="col-md-3">Tipo de Entrega</th>
+                                    <th class="col-md-3">Tipe de Entrega</th>
                                     <th class="col-md-4">Descrição</th>
                                     <th class="col-md-5">Taxa</th>
                                 </thead>
@@ -150,14 +147,15 @@
                             </table>
                         </div>
                         <div class="col-md-6">
-                            <h4> <i class="fa fa-map-marker"></i> Endereço</h4>
+                            <hr>
+                            <h3> <i class="fa fa-map-marker"></i> Endereço</h3>
                             <table class="table">
                                 <thead>
                                     <th>Endereço</th>
                                     <th>Numero</th>
                                     <th>Cidade</th>
                                     <th>Telefone</th>
-                                    <th>CEP</th>
+                                    <th>Cep</th>
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -175,10 +173,9 @@
             </div>
             <!-- /.box -->
             <div class="box-footer">
-                <a href="{{ route('admin.orders.index') }}" class="btn btn-default">Voltar</a>
+                <a href="{{ route('accounts') }}" class="btn btn-default">Voltar</a>
             </div>
         @endif
-
     </section>
     <!-- /.content -->
 @endsection
