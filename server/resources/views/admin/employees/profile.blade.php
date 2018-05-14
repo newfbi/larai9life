@@ -13,7 +13,7 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="col-md-4">Name</td>
+                                <td class="col-md-4">Nome</td>
                                 <td class="col-md-4">Email</td>
                                 <td class="col-md-4">Password</td>
                             </tr>
@@ -42,8 +42,8 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-default btn-sm">Back</a>
-                        <button class="btn btn-success btn-sm" type="submit"> <i class="fa fa-save"></i> Save</button>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-default btn-sm">Voltar</a>
+                        <button class="btn btn-success btn-sm" type="submit"> <i class="fa fa-save"></i> Salvar</button>
                     </div>
                 </div>
             </div>

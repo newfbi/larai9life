@@ -10,8 +10,8 @@
                     <input type="hidden" name="_method" value="put">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
-                        <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{!! $country->name ?: old('name')  !!}">
+                        <label for="name">Nome <span class="text-danger">*</span></label>
+                        <input type="text" name="name" id="name" placeholder="Nome" class="form-control" value="{!! $country->name ?: old('name')  !!}">
                     </div>
                     <div class="form-group">
                         <label for="iso">ISO <span class="text-danger">*</span></label>
@@ -43,8 +43,8 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.countries.index') }}" class="btn btn-default">Back</a>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.countries.index') }}" class="btn btn-default">voltar</a>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
                     </div>
                 </div>
             </form>

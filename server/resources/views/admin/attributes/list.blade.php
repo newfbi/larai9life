@@ -7,12 +7,12 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-body">
-            <h2>Attributes</h2>
+            <h2>Atributos</h2>
             @if($attributes->total() > 0)
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Attribute name</td>
+                        <td>Nome do Atributo</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -27,9 +27,9 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="delete">
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.attributes.values.create', $attribute->id) }}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add values</a>
+                                    <a href="{{ route('admin.attributes.values.create', $attribute->id) }}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Adicionar valor</a>
                                     <a href="{{ route('admin.attributes.edit', $attribute->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
+                                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Deletar</button>
                                 </div>
                             </form>
                         </td>
@@ -44,11 +44,11 @@
             </div>
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a class="btn btn-sm btn-primary" href="{{ route('admin.attributes.create') }}"><i class="fa fa-plus"></i> Create attribute</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('admin.attributes.create') }}"><i class="fa fa-plus"></i> Criar Atributo</a>
                     </div>
                 </div>
             @else
-                <p class="alert alert-warning">No attribute yet. <a href="{{ route('admin.attributes.create') }}">Create one</a></p>
+                <p class="alert alert-warning">Não existem atributos. <a href="{{ route('admin.attributes.create') }}">Criar novo</a></p>
             @endif
         </div>
         <!-- /.box-body -->

@@ -10,12 +10,12 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="put">
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
+                        <label for="name">Nome <span class="text-danger">*</span></label>
                         <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{ $courier->name ?: old('name') }}">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description </label>
-                        <textarea name="description" id="description" rows="5" class="form-control" placeholder="Description">{{ $courier->description ?: old('description') }}</textarea>
+                        <label for="description">Descrição </label>
+                        <textarea name="description" id="description" rows="5" class="form-control" placeholder="Ensira uma Descrição">{{ $courier->description ?: old('description') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="URL">URL</label>
@@ -25,14 +25,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="is_free">Free Delivery? </label>
+                        <label for="is_free">É entrega Gratis? </label>
                         <select name="is_free" id="is_free" class="form-control">
-                            <option value="0" @if($courier->is_free == 0) selected="selected" @endif>No</option>
-                            <option value="1" @if($courier->is_free == 1) selected="selected" @endif>Yes</option>
+                            <option value="0" @if($courier->is_free == 0) selected="selected" @endif>Não</option>
+                            <option value="1" @if($courier->is_free == 1) selected="selected" @endif>Sim</option>
                         </select>
                     </div>
                     <div class="form-group" @if($courier->is_free == 1) style="display: none" @endif id="delivery_cost">
-                        <label for="cost">Delivery Cost <span class="text-danger">*</span></label>
+                        <label for="cost">Custo da Entrega <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-addon">{{config('cart.currency')}}</span>
                             <input class="form-control" type="text" id="cost" name="cost" placeholder="{{config('cart.currency')}}" value="{{$courier->cost}}">
@@ -45,8 +45,8 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.couriers.index') }}" class="btn btn-default">Back</a>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.couriers.index') }}" class="btn btn-default">Voltar</a>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
                     </div>
                 </div>
             </form>

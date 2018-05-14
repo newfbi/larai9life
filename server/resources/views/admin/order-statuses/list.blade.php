@@ -9,13 +9,13 @@
         @if($orderStatuses)
         <div class="box">
             <div class="box-body">
-                <h2>Order Status</h2>
+                <h2>Pedidos Status</h2>
                 <table class="table">
                     <thead>
                         <tr>
-                            <td class="col-md-4">Name</td>
-                            <td class="col-md-4">Color</td>
-                            <td class="col-md-4">Actions</td>
+                            <td class="col-md-4">Nome</td>
+                            <td class="col-md-4">Cor</td>
+                            <td class="col-md-4">Ações</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,8 +28,8 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="delete">
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.order-statuses.edit', $status->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                        <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
+                                        <a href="{{ route('admin.order-statuses.edit', $status->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                        <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Deletar</button>
                                     </div>
                                 </form>
                             </td>

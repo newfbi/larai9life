@@ -9,8 +9,8 @@
                 <div class="box-body">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
-                        <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{ old('name') }}">
+                        <label for="name">Nome <span class="text-danger">*</span></label>
+                        <input type="text" name="name" id="name" placeholder="Nome" class="form-control" value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email <span class="text-danger">*</span></label>
@@ -26,16 +26,16 @@
                     <div class="form-group">
                         <label for="status">Status </label>
                         <select name="status" id="status" class="form-control">
-                            <option value="0">Disable</option>
-                            <option value="1">Enable</option>
+                            <option value="0">Habilitar</option>
+                            <option value="1">Desabilitar</option>
                         </select>
                     </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-default">Back</a>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-default">Voltar</a>
+                        <button type="submit" class="btn btn-primary">Criar</button>
                     </div>
                 </div>
             </form>

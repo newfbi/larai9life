@@ -11,7 +11,7 @@
                 <table class="table">
                     <tbody>
                     <tr>
-                        <td class="col-md-2">Name</td>
+                        <td class="col-md-2">Nome</td>
                         <td class="col-md-2">ISO</td>
                         <td class="col-md-2">ISO-3</td>
                         <td class="col-md-2">Numcode</td>
@@ -37,7 +37,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <div class="btn-group">
-                    <a href="{{ route('admin.countries.index') }}" class="btn btn-default btn-sm">Back</a>
+                    <a href="{{ route('admin.countries.index') }}" class="btn btn-default btn-sm">Voltar</a>
                 </div>
             </div>
         </div>

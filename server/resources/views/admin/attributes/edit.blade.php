@@ -12,8 +12,8 @@
                         <input type="hidden" name="_method" value="put">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Attribute name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" placeholder="Attribute name" class="form-control" value="{!! $attribute->name  !!}">
+                                <label for="name">Valor do atributo <span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="name" placeholder="Nome do atributo" class="form-control" value="{!! $attribute->name  !!}">
                             </div>
                         </div>
                     </div>
@@ -21,8 +21,8 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.attributes.index') }}" class="btn btn-default">Back</a>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.attributes.index') }}" class="btn btn-default">Voltar</a>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
                     </div>
                 </div>
             </form>

@@ -11,7 +11,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-4">ID</td>
-                            <td class="col-md-4">Name</td>
+                            <td class="col-md-4">Nome</td>
                             <td class="col-md-4">Email</td>
                         </tr>
                     </tbody>
@@ -27,7 +27,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <div class="btn-group">
-                    <a href="{{ route('admin.employees.index') }}" class="btn btn-default btn-sm">Back</a>
+                    <a href="{{ route('admin.employees.index') }}" class="btn btn-default btn-sm">Voltar</a>
                 </div>
             </div>
         </div>

@@ -2828,7 +2828,8 @@
  .btn-warning{
  	color:#fff;
  	background-color:#f0ad4e;
- 	border-color:#eea236
+ 	border-color:#eea236;
+ 	margin-left:20%;
  	}
  .btn-warning.focus,.btn-warning:focus{
  	color:#fff;
@@ -5040,9 +5041,9 @@
 button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:none}
  .modal-open{overflow:hidden}
  .modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;display:none;overflow:hidden;outline:0}
- .modal-open .modal{overflow-x:hidden;overflow-y:auto}
+ .modal-open .modal{overflow-x:hidden;overflow-y:auto; margin-left:25%;}
  .modal-dialog{position:relative;width:auto;margin:.5rem;pointer-events:none}
- .modal.fade .modal-dialog{margin-left: 25%;transition:-webkit-transform .3s ease-out;transition:transform .3s ease-out;transition:transform .3s ease-out,-webkit-transform .3s ease-out;-webkit-transform:translate(0,-25%);transform:translate(0,-25%)}
+ .modal.fade .modal-dialog{transition:-webkit-transform .3s ease-out;transition:transform .3s ease-out;transition:transform .3s ease-out,-webkit-transform .3s ease-out;-webkit-transform:translate(0,-25%);transform:translate(0,-25%)}
  @media screen and (prefers-reduced-motion:reduce){.modal.fade .modal-dialog{transition:none}
 }
 .modal.show .modal-dialog{-webkit-transform:translate(0,0);transform:translate(0,0)}
@@ -8841,7 +8842,7 @@ button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:
  	margin:0
  	}
  .navbar-default .navbar-brand{
- 	color:#222;
+ 	color:#22222294;;
  	letter-spacing:5px;
  	font-size:22px;
  	font-weight:600;
@@ -9034,9 +9035,9 @@ button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:
  	box-shadow:inset 0 0 0 1000px rgba(4,17,34,.8)
  	}
  .logo{
- 	width: 200px;
-    height: 120px;
-    margin-top: -50px;
+ 	width: 80px;
+    height: 80px;
+    margin-top: -30px;
  }
  #brand-logo .item{
  	margin:0 10px
@@ -9247,7 +9248,6 @@ button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:
  .modal-dialog .modal-content{
  	padding: 15px;
     margin-top: 200px;
-    width: 110%;
  	}
  .modal-content .excerpt{
  	display:block;

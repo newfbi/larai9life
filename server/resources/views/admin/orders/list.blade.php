@@ -9,14 +9,14 @@
         @if($orders)
             <div class="box">
                 <div class="box-body">
-                    <h2>Orders</h2>
+                    <h2>Entregas</h2>
                     @include('layouts.search', ['route' => route('admin.orders.index')])
                     <table class="table">
                         <thead>
                             <tr>
-                                <td class="col-md-3">Date</td>
-                                <td class="col-md-3">Customer</td>
-                                <td class="col-md-2">Courier</td>
+                                <td class="col-md-3">Data</td>
+                                <td class="col-md-3">Cliente</td>
+                                <td class="col-md-2">Entrega</td>
                                 <td class="col-md-2">Total</td>
                                 <td class="col-md-2">Status</td>
                             </tr>

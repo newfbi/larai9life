@@ -7,11 +7,11 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-body">
-            <h2>Attributes</h2>
+            <h2>Atributos</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Attribute name</td>
+                        <td>Nome do Atributo</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -26,7 +26,7 @@
                 <table class="table table-striped" style="margin-left: 35px">
                     <thead>
                         <tr>
-                            <td>Attribute Values</td>
+                            <td>Valores dos Atributos</td>
                             <td></td>
                         </tr>
                     </thead>
@@ -39,7 +39,7 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="delete">
                                         <div class="btn-group">
-                                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</button>
+                                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remover</button>
                                         </div>
                                     </form>
                                 </td>
@@ -52,8 +52,8 @@
         <!-- /.box-body -->
         <div class="box-footer">
             <div class="btn-group">
-                <a href="{{ route('admin.attributes.values.create', $attribute->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add values</a>
-                <a href="{{ route('admin.attributes.index') }}" class="btn btn-default btn-sm">Back</a>
+                <a href="{{ route('admin.attributes.values.create', $attribute->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Adicionar valores</a>
+                <a href="{{ route('admin.attributes.index') }}" class="btn btn-default btn-sm">Voltar</a>
             </div>
         </div>
     </div>

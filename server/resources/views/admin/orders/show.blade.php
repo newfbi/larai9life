@@ -20,7 +20,7 @@
                     </div>
                 </div>                
                 <div class="col-md-2">
-                    <h2><a href="{{url('/admin/orders/update', $order['id'])}}" class="btn btn-primary btn-block">Editar pedido</a></h2>
+                    <h2><a href="{{route('admin.orderupdate', $order['id'])}}" class="btn btn-primary btn-block">Editar pedido</a></h2>
                 </div>
             </div>
         </div>

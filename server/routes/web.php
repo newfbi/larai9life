@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'as' => 'admin.' ]
             Route::namespace('Orders')->group(function () {
                 Route::resource('orders', 'OrderController');
                 Route::resource('order-statuses', 'OrderStatusController');
+    		Route::get('update/{id}', 'OrderController@OrderUpdateIndex')->name('orderupdate');
                 Route::get('orders/{id}/invoice', 'OrderController@generateInvoice')->name('orders.invoice.generate');
             });
             Route::resource('employees', 'EmployeeController');
@@ -63,8 +64,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'as' => 'admin.' ]
  */
 Auth::routes();
 $this->group(['middleware' => 'auth'], function() {
-    Route::get('/admin/orders/update/{id}', 'Admin\Orders\OrderController@OrderUpdateIndex')->name('orders.orderupdate');
-    Route::resource('orders', 'front\Orders\FrontOrderController');
+    Route::resource('orders', 'Front\Orders\FrontOrderController');
 });
 Route::namespace('Auth')->group(function () {
     Route::get('cart/login', 'CartLoginController@showLoginForm')->name('cart.login');

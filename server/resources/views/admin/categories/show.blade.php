@@ -9,13 +9,13 @@
         @if($category)
             <div class="box">
                 <div class="box-body">
-                    <h2>Category</h2>
+                    <h2>Categorias</h2>
                     <table class="table">
                         <thead>
                         <tr>
-                            <td class="col-md-4">Name</td>
-                            <td class="col-md-4">Description</td>
-                            <td class="col-md-4">Cover</td>
+                            <td class="col-md-4">Nome</td>
+                            <td class="col-md-4">Descrição</td>
+                            <td class="col-md-4">Imagem</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,14 +34,14 @@
                 @if(!$categories->isEmpty())
                 <hr>
                     <div class="box-body">
-                        <h2>Sub Categories</h2>
+                        <h2>Sub Categorias</h2>
                         <table class="table">
                             <thead>
                             <tr>
-                                <td class="col-md-3">Name</td>
-                                <td class="col-md-3">Description</td>
-                                <td class="col-md-3">Cover</td>
-                                <td class="col-md-3">Actions</td>
+                                <td class="col-md-3">Nome</td>
+                                <td class="col-md-3">Descrição</td>
+                                <td class="col-md-3">Imagem</td>
+                                <td class="col-md-3">Açoes</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,14 +59,14 @@
                 @endif
                 @if(!$products->isEmpty())
                     <div class="box-body">
-                        <h2>Products</h2>
+                        <h2>Produtos</h2>
                         @include('admin.shared.products', ['products' => $products])
                     </div>
                 @endif
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.categories.index') }}" class="btn btn-default btn-sm">Back</a>
+                        <a href="{{ route('admin.categories.index') }}" class="btn btn-default btn-sm">Voltar</a>
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="put">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input class="form-control" type="text" name="name" id="name" value="{{ $orderStatus->name ?: old('name') }}" placeholder="Name">
+                    <label for="name">Nome</label>
+                    <input class="form-control" type="text" name="name" id="name" value="{{ $orderStatus->name ?: old('name') }}" placeholder="Nome">
                 </div>
                 <div class="form-group">
                     <label for="color">Color</label>
@@ -23,8 +23,8 @@
             </div>
             <!-- /.box-body -->
                 <div class="box-footer btn-group">
-                    <a href="{{ route('admin.order-statuses.index') }}" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ route('admin.order-statuses.index') }}" class="btn btn-default">Voltar</a>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
             </form>
         </div>

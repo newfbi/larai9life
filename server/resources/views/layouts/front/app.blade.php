@@ -44,20 +44,19 @@
     <div class="row hidden-xs">
         <div class="container">
             <div class="clearfix"></div>
-            <div class="pull-right">
+            <div class="pull-right">                
                 <ul class="nav navbar-nav navbar-right">
-                    @if(auth()->check())
-                        <li><a href="{{ route('accounts') }}"><i class="fa fa-home"></i> Minha Conta</a></li>
-                        <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Sair</a></li>
-                    @else
-                        <li><a href="{{ route('login') }}"> <i class="fa fa-lock"></i> Login</a></li>
-                        <li><a href="{{ route('register') }}"> <i class="fa fa-sign-in"></i> Registrar</a></li>
-                    @endif
-                    <li id="cart" class="menubar-cart">
-                        <a href="{{ route('cart.index') }}" title="Ver Carrinho" class="awemenu-icon menu-shopping-cart">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="cart-number">{{ $cartCount }}</span>
-                        </a>
+                    <li>
+                        <!-- search form -->
+                        <form action="{{route('search.product')}}" method="GET" class="form-inline" style="margin: 15px 0 0;">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Pesquisar..." value="{!! request()->input('q') !!}">
+                                <span class="input-group-btn">
+                                    <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> Buscar</button>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- /.search form -->
                     </li>
                 </ul>
             </div>
@@ -74,7 +73,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('home') }}"><img class="logo" src="/img/logo.png"></a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img class="logo" src="/img/logo.png" width="40px" height="40px" align="left"/>INFINITY</a>
                 </div>
                 <div class="col-md-10">
                     @include('layouts.front.header-cart')

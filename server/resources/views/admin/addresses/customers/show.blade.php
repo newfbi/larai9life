@@ -7,16 +7,16 @@
     <!-- Default box -->
         <div class="box">
             <div class="box-body">
-                <h2>Addresses</h2>
+                <h2>Endereços</h2>
                 <table class="table">
                     <tbody>
                     <tr>
-                        <td class="col-md-1">Alias</td>
-                        <td class="col-md-2">Address 1</td>
-                        <td class="col-md-2">Address 2</td>
-                        <td class="col-md-2">City</td>
-                        <td class="col-md-2">Country</td>
-                        <td class="col-md-2">Zip</td>
+                        <td class="col-md-1">Endereço</td>
+                        <td class="col-md-2">Numero</td>
+                        <td class="col-md-2">Complemento</td>
+                        <td class="col-md-2">Cidade</td>
+                        <td class="col-md-2">Pais</td>
+                        <td class="col-md-2">CEP</td>
                         <td class="col-md-1">Status</td>
                     </tr>
                     </tbody>
@@ -40,7 +40,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <div class="btn-group">
-                    <a href="{{ route('admin.customers.show', $customerId) }}" class="btn btn-default btn-sm">Back</a>
+                    <a href="{{ route('admin.customers.show', $customerId) }}" class="btn btn-default btn-sm">Voltar</a>
                 </div>
             </div>
         </div>

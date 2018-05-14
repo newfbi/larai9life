@@ -1,5 +1,5 @@
 <ul class="list-unstyled list-inline nav navbar-nav">
-    @foreach($categories as $category)
+    @foreach($categories->slice(0, 5) as $category)
         <li>
             @if($category->children()->count() > 0)
                 @include('layouts.front.category-sub', ['subs' => $category->children])

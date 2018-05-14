@@ -12,8 +12,11 @@
 @section('content')
     <div class="container">
         <hr>
-        <div class="row"> 
-            <div class="category-top col-md-12">
+        <div class="row">
+            <div class="category-top col-md-4">
+                @include('front.categories.sidebar-category')
+            </div> 
+            <div class="category-top col-md-8">
                 <h2>{{ $category->name }}</h2>
                 {{$category->description }}
             </div>

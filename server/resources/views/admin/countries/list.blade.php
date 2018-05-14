@@ -9,17 +9,17 @@
         @if($countries)
             <div class="box">
                 <div class="box-body">
-                    <h2>Countries</h2>
+                    <h2>Paises</h2>
                     <table class="table">
                         <thead>
                             <tr>
-                                <td class="col-md-2">Name</td>
+                                <td class="col-md-2">Nome</td>
                                 <td class="col-md-1">ISO</td>
                                 <td class="col-md-2">ISO-3</td>
                                 <td class="col-md-1">Numcode</td>
                                 <td class="col-md-1">Phone Code</td>
                                 <td class="col-md-1">Status</td>
-                                <td class="col-md-4">Actions</td>
+                                <td class="col-md-4">Ações</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,8 +33,8 @@
                                 <td>@include('layouts.status', ['status' => $country->status])</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.countries.show', $country->id) }}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> Show</a>
-                                        <a href="{{ route('admin.countries.edit', $country->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="{{ route('admin.countries.show', $country->id) }}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> Mostrar</a>
+                                        <a href="{{ route('admin.countries.edit', $country->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Editar</a>
                                     </div>
                                 </td>
                             </tr>
