@@ -5,10 +5,10 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Attributes</th>
-                    <th>Remove</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Atributos</th>
+                    <th>Remover</th>
                 </tr>
                 </thead>
                 <tbody>

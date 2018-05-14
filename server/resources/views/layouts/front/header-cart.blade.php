@@ -3,21 +3,6 @@
     @include('layouts.front.category-nav')
     <ul class="nav navbar-nav navbar-right">
         @if(auth()->check())
-            <li class="visible-xs"><a href="{{ route('accounts') }}"><i class="fa fa-home"></i> Minha Conta</a></li>
-            <li class="visible-xs"><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Sair</a></li>
-        @else
-            <li class="visible-xs"><a href="{{ route('login') }}"> <i class="fa fa-lock"></i> Login</a></li>
-            <li class="visible-xs"><a href="{{ route('register') }}"> <i class="fa fa-sign-in"></i> Registrar</a></li>
-        @endif
-        <li id="cart" class="menubar-cart visible-xs">
-            <a href="{{ route('cart.index') }}" title="View Cart" class="awemenu-icon menu-shopping-cart">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span class="cart-number">{{ $cartCount }}</span>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        @if(auth()->check())
             <li><a href="{{ route('accounts') }}"><i class="fa fa-home"></i> Minha Conta</a></li>
             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Sair</a></li>
         @else
