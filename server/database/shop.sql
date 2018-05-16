@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 11-Maio-2018 às 20:19
+-- Generation Time: 16-Maio-2018 às 20:10
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   PRIMARY KEY (`id`),
   KEY `addresses_country_id_index` (`country_id`),
   KEY `addresses_customer_id_index` (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `addresses`
@@ -55,7 +55,8 @@ CREATE TABLE IF NOT EXISTS `addresses` (
 
 INSERT INTO `addresses` (`id`, `alias`, `address_1`, `address_2`, `zip`, `phone`, `city_id`, `province_id`, `country_id`, `customer_id`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'pç miguel braga', '139', 'casa 1', '02353050', '963612389', 1, 1, 1, 1, 0, NULL, '2018-05-07 03:00:00', '2018-05-09 21:06:43'),
-(23, 'pç miguel braga', '139', 'casa 1', '01101-080', '963612389', 1, 1, 1, 1, 1, NULL, '2018-05-11 17:44:44', '2018-05-11 17:59:57');
+(23, 'pç miguel braga', '139', 'casa 1', '01101-080', '963612389', 1, 1, 1, 1, 1, NULL, '2018-05-11 17:44:44', '2018-05-11 17:59:57'),
+(24, 'travessa sol brilhante', '1', NULL, '04194440', '963612389', 1, 1, 1, 1, 1, NULL, '2018-05-15 20:36:58', '2018-05-15 20:36:58');
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `categories_name_unique` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `categories`
@@ -134,12 +135,15 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `cover`, `status`
 (3, 'Perfumes', 'perfumes', NULL, 'mYjI7lRXAtiquD0UNV9Td9qmD.png', 1, 1, '2018-05-02 22:53:00', '2018-05-09 20:43:09'),
 (8, 'Masculino', 'masculino', NULL, '2cuAn5N9Z6tn8KPhnEzcE9GXz.png', 1, 3, '2018-05-03 15:52:19', '2018-05-09 22:16:08'),
 (9, 'Feminino', 'feminino', NULL, 'AHE5wUOWbQ9oAGbqZI6Y5sBA2.png', 1, 3, '2018-05-03 15:53:04', '2018-05-09 22:08:25'),
-(6, 'Cremes', 'cremes', NULL, 'BNI3z8IYCqtASXcZme7L2UUII.png', 1, 1, '2018-05-02 22:58:06', '2018-05-09 20:47:49'),
+(11, 'Cremes', 'cremes', NULL, 'BNI3z8IYCqtASXcZme7L2UUII.png', 1, 4, '2018-05-02 22:58:06', '2018-05-09 20:47:49'),
 (5, 'Make Up', 'make-up', NULL, '64rqoUg3HMnYCUaRlV9Mce4XD.png', 1, 1, '2018-05-02 23:00:04', '2018-05-09 21:54:31'),
 (7, 'Bem estar', 'bem-estar', NULL, 'RiR0AU4IJ3N8UH17kRUC3kdwI.png', 1, 1, '2018-05-02 23:03:47', '2018-05-09 22:13:28'),
 (2, 'Novidades', 'novidades', NULL, 'LDNMAVzUGcAIJNhFtt8LWVVfh.jpg', 1, 1, '2018-05-02 22:44:53', '2018-05-09 20:48:37'),
 (12, 'Lançamentos', 'lancamentos', NULL, 'oYlmy4lXMTYWJSj3q2FhK8w3a.png', 1, 2, '2018-05-10 22:37:05', '2018-05-10 23:20:44'),
-(10, 'Destaques', 'destaques', NULL, 'WkDFPPbbsgz1DwQ2XoivrkOsO.png', 1, 2, '2018-05-09 16:46:14', '2018-05-10 19:07:44');
+(10, 'Destaques', 'destaques', NULL, 'WkDFPPbbsgz1DwQ2XoivrkOsO.png', 1, 2, '2018-05-09 16:46:14', '2018-05-10 19:07:44'),
+(4, 'Beleza', 'beleza', NULL, '6N1V39wNmM9ZOA4pptphhgeY0.png', 1, 1, '2018-05-16 16:05:22', '2018-05-16 17:05:00'),
+(21, 'Cabelos', 'cabelos', NULL, '3MGx4ZW6envYRaASX9fqdMaxf.png', 1, 4, '2018-05-16 16:18:57', '2018-05-16 17:05:23'),
+(22, 'Corpo', 'corpo', NULL, '14rgkW7Bm3rdezIwUtlLlKTVH.png', 1, 4, '2018-05-16 18:06:56', '2018-05-16 18:07:11');
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `category_product` (
   PRIMARY KEY (`id`),
   KEY `category_product_category_id_index` (`category_id`),
   KEY `category_product_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=182 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=278 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `category_product`
@@ -266,13 +270,13 @@ INSERT INTO `category_product` (`id`, `category_id`, `product_id`) VALUES
 (107, 5, 54),
 (108, 5, 55),
 (109, 5, 56),
-(110, 6, 57),
-(111, 6, 58),
-(112, 6, 59),
-(113, 6, 60),
-(114, 6, 61),
-(115, 6, 62),
-(116, 6, 63),
+(110, 11, 57),
+(111, 11, 58),
+(112, 11, 59),
+(113, 11, 60),
+(114, 11, 61),
+(115, 11, 62),
+(116, 11, 63),
 (169, 12, 84),
 (134, 12, 72),
 (133, 2, 72),
@@ -290,7 +294,7 @@ INSERT INTO `category_product` (`id`, `category_id`, `product_id`) VALUES
 (180, 2, 89),
 (170, 2, 85),
 (179, 12, 88),
-(165, 6, 64),
+(165, 11, 64),
 (178, 2, 88),
 (168, 2, 84),
 (177, 12, 87),
@@ -301,7 +305,103 @@ INSERT INTO `category_product` (`id`, `category_id`, `product_id`) VALUES
 (172, 2, 86),
 (174, 2, 82),
 (173, 12, 86),
-(167, 12, 83);
+(167, 12, 83),
+(182, 2, 1),
+(183, 4, 90),
+(184, 21, 90),
+(185, 4, 91),
+(186, 21, 91),
+(187, 4, 92),
+(188, 21, 92),
+(189, 4, 93),
+(190, 21, 93),
+(191, 4, 94),
+(192, 21, 94),
+(193, 4, 95),
+(194, 21, 95),
+(195, 4, 96),
+(196, 21, 96),
+(197, 4, 97),
+(198, 21, 97),
+(199, 4, 98),
+(200, 21, 98),
+(201, 4, 99),
+(202, 21, 99),
+(203, 4, 100),
+(204, 21, 100),
+(205, 4, 101),
+(206, 21, 101),
+(207, 4, 102),
+(208, 21, 102),
+(209, 4, 103),
+(210, 21, 103),
+(211, 4, 104),
+(212, 21, 104),
+(213, 4, 105),
+(214, 21, 105),
+(215, 4, 106),
+(216, 21, 106),
+(217, 4, 107),
+(218, 21, 107),
+(219, 4, 108),
+(220, 21, 108),
+(221, 4, 109),
+(222, 21, 109),
+(223, 4, 57),
+(224, 4, 58),
+(225, 4, 60),
+(226, 4, 61),
+(227, 4, 62),
+(228, 4, 63),
+(229, 4, 64),
+(230, 4, 59),
+(231, 4, 110),
+(232, 22, 110),
+(233, 4, 111),
+(234, 22, 111),
+(235, 4, 112),
+(236, 22, 112),
+(237, 4, 113),
+(238, 22, 113),
+(239, 4, 114),
+(240, 22, 114),
+(241, 4, 115),
+(242, 22, 115),
+(243, 4, 116),
+(244, 22, 116),
+(245, 4, 117),
+(246, 22, 117),
+(247, 2, 118),
+(248, 12, 118),
+(249, 2, 119),
+(250, 12, 119),
+(251, 2, 120),
+(252, 12, 120),
+(253, 2, 121),
+(254, 12, 121),
+(255, 7, 122),
+(256, 7, 123),
+(257, 7, 124),
+(258, 7, 125),
+(259, 7, 126),
+(260, 7, 127),
+(261, 7, 128),
+(262, 7, 129),
+(263, 7, 130),
+(264, 7, 131),
+(265, 7, 132),
+(266, 7, 133),
+(267, 7, 134),
+(268, 7, 135),
+(269, 7, 136),
+(270, 7, 137),
+(271, 7, 138),
+(272, 7, 139),
+(273, 7, 140),
+(274, 7, 141),
+(275, 7, 142),
+(276, 7, 143),
+(277, 7, 144);
 
 -- --------------------------------------------------------
 
@@ -374,14 +474,15 @@ CREATE TABLE IF NOT EXISTS `couriers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `couriers`
 --
 
 INSERT INTO `couriers` (`id`, `name`, `description`, `url`, `is_free`, `cost`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Pronta entrega', 'Entrega direto com o cliente', 'https://i9infinity.com.br', 1, '0.00', 1, '2018-05-02 22:39:35', '2018-05-03 17:48:10');
+(1, 'Pronta entrega', 'Entrega direto com o cliente', 'https://i9infinity.com.br', 1, '0.00', 1, '2018-05-02 22:39:35', '2018-05-03 17:48:10'),
+(2, 'Entrega Via Correio', 'Este método pode demorar de 15 a 20 dias, pois o produto é adquirido via catalogo. Não possuímos produtos de pronta entrega.', NULL, 0, '15.00', 1, '2018-05-15 18:42:16', '2018-05-15 18:42:16');
 
 -- --------------------------------------------------------
 
@@ -519,23 +620,18 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `orders_customer_id_index` (`customer_id`),
   KEY `orders_address_id_index` (`address_id`),
   KEY `orders_order_status_id_index` (`order_status_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `orders`
 --
 
 INSERT INTO `orders` (`id`, `reference`, `courier_id`, `customer_id`, `address_id`, `order_status_id`, `payment`, `discounts`, `total_products`, `tax`, `total`, `total_paid`, `invoice`, `created_at`, `updated_at`) VALUES
-(1, 'e20fafbc-54ff-3b15-a622-facd9f559fa4', 1, 1, 1, 1, 'paypal', '482.79', '83.45', '9599.63', '5600.34', '1468.74', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(2, '14c4647a-512b-3f36-ac46-c51bf70a9f8c', 1, 1, 1, 2, 'paypal', '190.64', '2597.80', '9663.64', '3746.27', '3746.27', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(3, 'bc533c72-aa0c-3dc1-bb80-2614b1731a73', 1, 1, 1, 1, 'paypal', '525.94', '3781.93', '7038.58', '2934.20', '5926.07', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(4, '22a9fbf0-1fb9-3f24-82ba-cea00465df3f', 1, 1, 1, 1, 'paypal', '732.51', '1516.75', '6854.39', '318.65', '414.18', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(5, '396e084d-db53-3241-aeff-da3de364c89b', 1, 1, 1, 1, 'paypal', '982.29', '2132.73', '5434.49', '1810.62', '3163.81', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(6, '3938688c-4cf7-3909-8e1b-908bcf4ed325', 1, 1, 1, 1, 'paypal', '281.90', '5406.08', '5716.51', '9349.65', '2756.47', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(7, '227c64aa-d879-3a55-b1f5-83c37ee3eb97', 1, 1, 1, 1, 'paypal', '342.83', '739.74', '307.74', '9842.54', '1775.89', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(8, '2bb33dd7-0f7e-3be3-b210-3ca42c3d31d2', 1, 1, 1, 1, 'paypal', '218.66', '2026.12', '8977.30', '3704.46', '117.54', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(9, 'c838cd66-53d6-34c6-976b-57ddff589736', 1, 1, 1, 1, 'paypal', '293.27', '87.42', '391.43', '4207.52', '7018.00', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35'),
-(10, 'cfce0ff3-fed0-393b-81eb-40afdf8ac94b', 1, 1, 1, 1, 'paypal', '210.27', '1880.90', '4417.82', '1495.37', '6111.97', NULL, '2018-05-02 22:39:35', '2018-05-02 22:39:35');
+(25, '3a0fb98e-3221-41d7-b7e6-3259370c3904', 2, 1, 23, 2, 'stripe', '0.00', '94.90', '0.00', '109.90', '109.90', NULL, '2018-05-16 17:23:39', '2018-05-16 17:23:39'),
+(24, '24fa0995-3091-4443-b09d-99899c09fdb8', 2, 1, 23, 1, 'stripe', '0.00', '0.00', '0.00', '15.00', '15.00', NULL, '2018-05-15 23:48:19', '2018-05-15 23:48:19'),
+(23, '2c0e7234-6191-4210-a264-35414dc5cdd7', 2, 1, 23, 1, 'stripe', '0.00', '0.00', '0.00', '15.00', '15.00', NULL, '2018-05-15 23:47:43', '2018-05-15 23:47:43'),
+(22, '0547244e-a4f4-4098-ac28-2e2aef429ee6', 2, 1, 23, 1, 'stripe', '0.00', '120.00', '0.00', '135.00', '135.00', NULL, '2018-05-15 23:47:13', '2018-05-15 23:47:13'),
+(21, 'b98d4f6e-3498-4d2f-b697-da84d9771cee', 2, 1, 23, 1, 'stripe', '0.00', '280.00', '0.00', '295.00', '295.00', NULL, '2018-05-15 23:09:10', '2018-05-15 23:09:10');
 
 -- --------------------------------------------------------
 
@@ -552,14 +648,21 @@ CREATE TABLE IF NOT EXISTS `order_product` (
   PRIMARY KEY (`id`),
   KEY `order_product_order_id_index` (`order_id`),
   KEY `order_product_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `order_product`
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 2, 20, 2);
+(1, 2, 20, 2),
+(2, 11, 2, 1),
+(3, 12, 1, 1),
+(4, 21, 84, 1),
+(5, 21, 1, 1),
+(6, 22, 2, 1),
+(7, 25, 58, 1),
+(8, 25, 91, 1);
 
 -- --------------------------------------------------------
 
@@ -699,15 +802,15 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `products`
 --
 
 INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `quantity`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(1, '03', 'I9Vip-01 - Aerossol Fragance', 'i9vip-01-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>toranja, hortel&atilde;, rosa, canela, &acirc;mbar, patchouli e madeira branca</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;One Million</p>', 'products/otX0ZZfcSDja1AqDAO7ZM3alqGo6jkDLCN7I8pOm.jpeg', 14, '120.00', 1, '2018-05-03 16:06:49', '2018-05-09 21:13:37'),
-(2, '01', 'I9Vip-03 - Aerossol Fragance', 'i9vip-03-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>lim&atilde;o, ameixa, bergamota, ma&ccedil;&atilde;, almiscar e cedro.</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;Ferrari Black&nbsp;</p>', 'products/kBQGlW96NKLrTwo89S8F4oRHBIBSkDqa72iWHgpY.jpeg', 14, '120.00', 1, '2018-05-08 23:11:03', '2018-05-09 21:14:12'),
+(1, '03', 'I9Vip-01 - Aerossol Fragance', 'i9vip-01-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>toranja, hortel&atilde;, rosa, canela, &acirc;mbar, patchouli e madeira branca</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;One Million</p>', 'products/otX0ZZfcSDja1AqDAO7ZM3alqGo6jkDLCN7I8pOm.jpeg', 12, '120.00', 1, '2018-05-03 16:06:49', '2018-05-15 23:09:10'),
+(2, '01', 'I9Vip-03 - Aerossol Fragance', 'i9vip-03-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>lim&atilde;o, ameixa, bergamota, ma&ccedil;&atilde;, almiscar e cedro.</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;Ferrari Black&nbsp;</p>', 'products/kBQGlW96NKLrTwo89S8F4oRHBIBSkDqa72iWHgpY.jpeg', 12, '120.00', 1, '2018-05-08 23:11:03', '2018-05-15 23:47:13'),
 (3, '05', 'I9Vip-05 - Aerossol Fragance', 'i9vip-05-aerossol-fragance', '<p><strong>Notas Olfativas:</strong> fr&eacute;sia, lim&atilde;o, n&eacute;roli, bagas de zimbo, junipero, lavanda, ger&acirc;nio, couro, musgo de cavalho e vetiver.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Animale&nbsp;</p>', 'products/AY21GWYtYxt7n7L0PZYxyMXnkvVC4iIBTlrkzWqz.jpeg', 14, '120.00', 1, '2018-05-08 23:18:11', '2018-05-09 21:15:56'),
 (4, '07', 'I9Vip-07- Aerossol Fragance', 'i9vip-07-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Alcar&aacute;via, lavanda, anis, majeric&atilde;o, patchouli, s&aacute;lvia, s&acirc;ndalo, lim&atilde;o, bergamota, cedro, vetiver, cardamomo, couro, fava tonka, alm&iacute;scar, musgo de carvalho e &acirc;mbar.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Azzaro&nbsp;</p>', 'products/sET4OrGBeewTGxVGEnS2muIZiVRifaCtMcvfTBrM.jpeg', 14, '120.00', 1, '2018-05-09 15:28:14', '2018-05-09 21:17:33'),
 (5, '09', 'I9Vip-09 - Aerossol Fragance', 'i9vip-09-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Artem&iacute;sia, alcar&aacute;via, coentro, bagas de zimbro ou jun&iacute;pero, manjeric&atilde;o, bergamota, cravo, cominho, tomilho, coriandro, couro, camomila, pimenta, jasmim, rosa, agulhas de pinheiro, ger&acirc;nio, &acirc;mbar, patchouli ou oriza, alm&iacute;scar, musgo de carvalho, vetiver, cedro e tabaco.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Polo Ralph Louren&nbsp;</p>', 'products/mU4KVc8y9USaOH3F5jhNpvmAkvRKePbnpxpmFuEm.jpeg', 14, '120.00', 1, '2018-05-09 15:32:03', '2018-05-09 21:18:04'),
@@ -763,21 +866,77 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (55, '15', 'Bronzeador Em Pó', 'bronzeador-em-po', '<p><strong>O segredo da pele perfeita</strong></p>\r\n\r\n<p>Em duas op&ccedil;&otilde;es de cores, o bronzeador em p&oacute; compacto i9 Life vem para trazer um efeito bronze luminoso para a sua pele.</p>\r\n\r\n<ul>\r\n	<li>Textura fina;</li>\r\n	<li>Acabamento sofisticado;</li>\r\n	<li>Cont&eacute;m vitamina E;</li>\r\n	<li>Livre de &oacute;leo.</li>\r\n</ul>\r\n\r\n<p><strong>Tons de Cores:</strong>&nbsp;Golden Beach, Tropical</p>', 'products/bwR3B3HwchBOg3y4PM4k48t9Zvzrt99oCQSICf7A.png', 14, '49.00', 1, '2018-05-10 17:11:54', '2018-05-10 17:11:54'),
 (56, '16', 'Corretivos Liquidos', 'corretivos-liquidos', '<p><strong>O segredo da pele perfeita</strong></p>\r\n\r\n<ul>\r\n	<li>Toque seco;</li>\r\n	<li>Acabamento matte natural;</li>\r\n	<li>Suaviza olheiras, uniformizando a pele;</li>\r\n	<li>Livre de &oacute;leo.</li>\r\n</ul>\r\n\r\n<p><strong>Tons de Cores:</strong> Verde, Amarelo, Azul, Laranja, Bege Claro, bege Medio Claro, Bege Medio escuro, Bege Escuro,&nbsp;</p>', 'products/Lp3olues4xRl45ZOVH9NFkoY6H5e6nfyxRxSTQKO.png', 14, '42.00', 1, '2018-05-10 17:18:20', '2018-05-10 17:18:20'),
 (57, '01', 'Hidratante Corporal Rosé', 'hidratante-corporal-rose', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>212 Vip Ros&eacute; Carolina Herrera</p>', 'products/GYjkC9qlDm8hwVHguxCRM5yLYLIbUd0rtOIKKQV6.jpeg', 14, '45.00', 1, '2018-05-10 17:32:16', '2018-05-10 17:32:16'),
-(58, '02', 'Hidratante Corporal Candy', 'hidratante-corporal-candy', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Prada Candy</p>', 'products/cW1uhKnpSLnFVUsDoEh3crQKUTKqgDyj6hUjV31u.jpeg', 14, '45.00', 1, '2018-05-10 17:33:48', '2018-05-10 17:33:48'),
+(58, '02', 'Hidratante Corporal Candy', 'hidratante-corporal-candy', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Prada Candy</p>', 'products/cW1uhKnpSLnFVUsDoEh3crQKUTKqgDyj6hUjV31u.jpeg', 13, '45.00', 1, '2018-05-10 17:33:48', '2018-05-16 17:23:39'),
 (59, '03', 'Hidratante Corporal Fantasy', 'hidratante-corporal-fantasy', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Fantasy Britney</p>', 'products/HgJ7Hoo8uZX94M4PayUmxZjLfkAf6QjvsgyHmmIK.jpeg', 14, '45.00', 1, '2018-05-10 17:35:35', '2018-05-10 17:35:35'),
 (60, '04', 'Hidratante Corporal Ollympic', 'hidratante-corporal-ollympic', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Olympea Paco Rabanne</p>', 'products/Hs0ALgBrzxLdGJvnrqHqqWnvVjMjFTR5wkFih9w3.jpeg', 14, '45.00', 1, '2018-05-10 17:37:12', '2018-05-10 17:37:12'),
 (61, '05', 'Hidratante Corporal Belle', 'hidratante-corporal-belle', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>La Vie Est Belle Lanc&ocirc;me</p>', 'products/hUeN4YxJ7XwdKmoMdnolAYDdtLH4fRvUb2kBy2sB.jpeg', 14, '45.00', 1, '2018-05-10 17:41:42', '2018-05-10 17:41:42'),
 (62, '06', 'Hidratante Corporal Black', 'hidratante-corporal-black', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;Ferrari Black&nbsp;</p>', 'products/CPgkq8TdJnD9jeXMUdBDWaQXOwLGdUgp9xrC0T6W.jpeg', 14, '45.00', 1, '2018-05-10 17:43:39', '2018-05-10 17:43:39'),
 (63, '07', 'Hidratante Corporal Gold', 'hidratante-corporal-gold', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;One Million</p>', 'products/mCUfpN1mf6Ejsyei4Y20DeaxaJk45gqpaPXnfFsQ.jpeg', 14, '45.00', 1, '2018-05-10 17:44:52', '2018-05-10 17:44:52'),
 (64, '08', 'Hidratante Corporal Silver', 'hidratante-corporal-silver', '<p><strong>Fragr&acirc;ncia inspirada em grandes perfumes internacionais</strong></p>\r\n\r\n<ul>\r\n	<li>F&oacute;rmula com Aloe Vera;</li>\r\n	<li>Fragr&acirc;ncia importada da Fran&ccedil;a;</li>\r\n	<li>Pele aveludada e perfume duradouro.</li>\r\n</ul>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Silver Scent&nbsp;</p>', 'products/gGLxYKnMRqiPAFQasg7Ma2z7yk0yGamQy6e4ehOf.jpeg', 14, '45.00', 1, '2018-05-10 17:49:01', '2018-05-10 17:49:01'),
+(92, '03', 'Hidratação Absoluta - Serum', 'hidratacao-absoluta-serum', '<p><strong>Blindagem intensa para os seus cabelos</strong></p>\r\n\r\n<p>O S&eacute;rum Hidrata&ccedil;&atilde;o Absoluta DUX promove brilho, reduz o frizz, aumenta a elasticidade e a flexibilidade do cabelo. Forma um filme protetor e veda as escamas dos fios evitando a perda de &aacute;gua por evapora&ccedil;&atilde;o, o que mant&eacute;m os cabelos hidratados e lindos por muito mais tempo.</p>\r\n\r\n<p><strong>Peso: 60ML</strong></p>', 'products/rOj0MZU4tymMmzSx96KO04KPbUd3HEcUhsiSI1uj.png', 14, '39.90', 1, '2018-05-16 16:40:52', '2018-05-16 16:40:52'),
 (89, '07', 'Perfume Woman Orange', 'perfume-woman-orange', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Flor de Neroli, framboesa, tangerina verde, jasmim, flor de laranjeira, marshmallow, baunilha,&nbsp; heliotr&oacute;pio e s&acirc;ndalo</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/kf86FtHBwgVnlAQO9DKH8v9Pzj2CKP7aPSAzo6HS.png', 14, '160.00', 1, '2018-05-10 23:48:43', '2018-05-10 23:49:16'),
 (88, '06', 'Perfume Fabulous', 'perfume-fabulous', '<p>O mist&eacute;rio de ser fabulosa est&aacute; na ess&ecirc;ncia da mulher moderna. Independente e segura, sempre est&aacute; pronta para qualquer desafio. A fragr&acirc;ncia traduz poder e sensualidade em um bouquet Floral Especiado extremamente feminino, sua sa&iacute;da fica evidenciada pelas notas de bergamota, cardamomo e canela. As notas de cora&ccedil;&atilde;o trazem a delicadeza do jasmin, a do&ccedil;ura da pimenta rosa e o amadeirado do cedro. A fragr&acirc;ncia finaliza em um fundo de s&acirc;ndalo, chocolate e White musk.&nbsp;<strong>Fabulous &ndash; Desvende o&nbsp;</strong></p>\r\n\r\n<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Bergamota, cardamomo, canela, jasmin, pimenta, rosa, cedro, s&acirc;ndalo, chocolate e white musk.</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/mhWX1aEnp58khQXSWXbngxP4b5uPlx96K5EiltoU.jpeg', 14, '160.00', 1, '2018-05-10 23:47:10', '2018-05-10 23:47:10'),
 (86, '04', 'Perfume Imprint Black', 'perfume-imprint-black', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/1AgF8SIihusAshfEJYzhaixZsCzj6to31yYrQyGH.jpeg', 14, '160.00', 1, '2018-05-10 23:29:14', '2018-05-10 23:47:42'),
 (83, '01', 'Perfume Mode-On', 'perfume-mode-on', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Birch leaves, mandarina, bergamota, notas aquosas, alecrim, pimenta do reino, amberwood, baunilha&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/kdFq7CPyjY7IkwZBlh6VxeV8l0Rmfz8gRUKKkKTn.jpeg', 14, '160.00', 1, '2018-05-10 23:26:25', '2018-05-10 23:50:00'),
-(84, '02', 'Perfume Imprint', 'perfume-imprint', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/srdESMBVq76XxcUCInjNWEz3cTCke2QJxMSnu9iD.jpeg', 14, '160.00', 1, '2018-05-10 23:27:34', '2018-05-10 23:43:09'),
+(84, '02', 'Perfume Imprint', 'perfume-imprint', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/srdESMBVq76XxcUCInjNWEz3cTCke2QJxMSnu9iD.jpeg', 13, '160.00', 1, '2018-05-10 23:27:34', '2018-05-15 23:09:10'),
 (87, '05', 'Perfume Sunny', 'perfume-sunny', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Abacaxi, mel&atilde;o, ma&ccedil;&atilde;, flor de laranjeira, cedro, marine, amberwood, baunilha e powdery</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/Vk7Cnq2NUc3YsoyQRNg1yGf95jAHzeJVHSMudQGX.jpeg', 14, '160.00', 1, '2018-05-10 23:45:25', '2018-05-10 23:45:58'),
 (85, '03', 'Perfume Fragnace Blue', 'perfume-fragnace-blue', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Tangerina, Canela, Tabaco, Mirra, Patchouli e Fava Tonka, Fragr&acirc;ncia Oriental Amadeirada</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/28cYS0DbP6qaeWJct8HE2u8ShbKxsnj9a0uw1h68.jpeg', 14, '160.00', 1, '2018-05-10 23:28:26', '2018-05-10 23:43:01'),
-(82, '08', 'Kit Intense Liss Dux Pro', 'kit-intense-liss-dux-pro', '<p>- Shampoo Antirres&iacute;duos Dux Pro Intense Liss 200ml: Shampoo de limpeza profunda para os cabelos. Abre a cut&iacute;cula dos fios, elimina res&iacute;duos de cremes, polui&ccedil;&atilde;o, oleosidade, finalizadores e prepara o cabelo para receber o tratamento.<br />\r\n- Shampoo Liso Absoluto Dux Pro Intense Liss 200ml:&nbsp;Alinha gradualmente os fios de forma natural e sem danos. Elimina o frizz, confere maleabilidade, hidrata&ccedil;&atilde;o e brilho intenso.<br />\r\n-&nbsp;Creme Selante Termoativado Dux Pro Intense Liss 120ml:&nbsp;O Creme Selante Termoativado garante prote&ccedil;&atilde;o aos fios. Seus ativos formam um filme que distribui uniformemente o calor do secador e chapa nos fios. Al&eacute;m disso, ajuda a proporcionar brilho, maciez, redu&ccedil;&atilde;o do frizz e pontas duplas dos cabelos.</p>', 'products/xiQQmMic4IRYYEbIdDib9BLsMJRvysogXwjL4qIl.jpeg', 14, '198.00', 1, '2018-05-10 22:28:46', '2018-05-10 23:50:53');
+(82, '08', 'Kit Intense Liss Dux Pro', 'kit-intense-liss-dux-pro', '<p>- Shampoo Antirres&iacute;duos Dux Pro Intense Liss 200ml: Shampoo de limpeza profunda para os cabelos. Abre a cut&iacute;cula dos fios, elimina res&iacute;duos de cremes, polui&ccedil;&atilde;o, oleosidade, finalizadores e prepara o cabelo para receber o tratamento.<br />\r\n- Shampoo Liso Absoluto Dux Pro Intense Liss 200ml:&nbsp;Alinha gradualmente os fios de forma natural e sem danos. Elimina o frizz, confere maleabilidade, hidrata&ccedil;&atilde;o e brilho intenso.<br />\r\n-&nbsp;Creme Selante Termoativado Dux Pro Intense Liss 120ml:&nbsp;O Creme Selante Termoativado garante prote&ccedil;&atilde;o aos fios. Seus ativos formam um filme que distribui uniformemente o calor do secador e chapa nos fios. Al&eacute;m disso, ajuda a proporcionar brilho, maciez, redu&ccedil;&atilde;o do frizz e pontas duplas dos cabelos.</p>', 'products/xiQQmMic4IRYYEbIdDib9BLsMJRvysogXwjL4qIl.jpeg', 14, '198.00', 1, '2018-05-10 22:28:46', '2018-05-10 23:50:53'),
+(90, '01', 'Hidratação Absoluta - Condicionador', 'hidratacao-absoluta-condicionador', '<p><strong>Blindagem intensa para os seus cabelos</strong></p>\r\n\r\n<p>Com ativo Hydrovance, a linha HIDRATA&Ccedil;&Atilde;O ABSOLUTA repara e hidrata a fibra capilar, promove brilho, aumenta a elasticidade e flexibilidade do fio, ajudando a reduzir o frizz e facilitar o pentear das madeixas.</p>\r\n\r\n<p><strong>Peso: 230ML</strong></p>', 'products/xTNIYX8fXuVZzn76vUVlQy57t0fe2kKZsaXAYK00.png', 14, '49.90', 1, '2018-05-16 16:26:10', '2018-05-16 16:53:44'),
+(91, '02', 'Hidratação Absoluta - Shampoo', 'hidratacao-absoluta-shampoo', '<p>Produto desenvolvido com poderosos hidratantes de alto desempenho que promovem brilho, elasticidade e flexibilidade aos fios. O seu uso deixa os cabelos limpos, hidratados, com balan&ccedil;o e maleabilidade al&eacute;m de reduzir o frizz.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/PI1vZzqUdzqHGIGaq7UAtfoCMuZRRL9hexa8pqHM.png', 13, '49.90', 1, '2018-05-16 16:28:20', '2018-05-16 17:23:39'),
+(93, '04', 'Super Cachos - Condicionador', 'super-cachos-condicionador', '<p><strong>Cachos definidos e naturais</strong></p>\r\n\r\n<p>A f&oacute;rmula da linha SUPER CACHOS cont&eacute;m agentes condicionantes e pol&iacute;mero elast&ocirc;mero que hidratam, valorizam, modelam e definem os cachos na sua melhor forma.</p>\r\n\r\n<p><strong>Peso: 230ML</strong></p>', 'products/H1eUZIS61CdlWx4ahvbKbehcTs3qBJH7Hyo3h4A4.png', 14, '49.90', 1, '2018-05-16 16:44:12', '2018-05-16 16:53:14'),
+(94, '05', 'Super Cachos - Shampoo', 'super-cachos-shampoo', '<p><strong>Cachos definidos e naturais</strong></p>\r\n\r\n<p>A f&oacute;rmula da linha SUPER CACHOS cont&eacute;m agentes condicionantes e pol&iacute;mero elast&ocirc;mero que hidratam, valorizam, modelam e definem os cachos na sua melhor forma</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/h07IhfFNy8XSXhHqaVJx1witm3hhmZdNyCGTNHOw.png', 14, '49.90', 1, '2018-05-16 16:51:04', '2018-05-16 16:54:23'),
+(95, '06', 'Super Cachos - Serum', 'super-cachos-serum', '<p><strong>Cachos definidos e naturais</strong></p>\r\n\r\n<p>A f&oacute;rmula da linha SUPER CACHOS cont&eacute;m agentes condicionantes e pol&iacute;mero elast&ocirc;mero que hidratam, valorizam, modelam e definem os cachos na sua melhor forma.</p>\r\n\r\n<p><strong>Peso: 60ML</strong></p>', 'products/DQjxJyTiOl5uwPXa2bQfH5HwGCxjOtKxJXtDfhGc.png', 14, '39.90', 1, '2018-05-16 16:55:45', '2018-05-16 17:07:25'),
+(96, '07', 'Biofio Cauterização - Condicionador', 'biofio-cauterizacao-condicionador', '<p><strong>Cabelos fortes e saud&aacute;veis</strong></p>\r\n\r\n<p>A linha BIOFIO Cauteriza&ccedil;&atilde;o reconstr&oacute;i a fibra capilar danificada e fragilizada por processos qu&iacute;micos, t&eacute;rmicos e mec&acirc;nicos. Cont&eacute;m uma f&oacute;rmula rica em amino&aacute;cidos, arginina e queratina, e trata os fios de dentro para fora, devolvendo a maciez, brilho e vida aos cabelos.</p>\r\n\r\n<p><strong>Peso: 230ML</strong></p>', 'products/pfAdbHYwYueW3miS2DDj5zeg9u7StIT1PMYxDaGw.png', 14, '49.90', 1, '2018-05-16 16:59:37', '2018-05-16 16:59:37'),
+(97, '08', 'Biofio Cauterização - Shampoo', 'biofio-cauterizacao-shampoo', '<p><strong>Cabelos fortes e saud&aacute;veis</strong></p>\r\n\r\n<p>A linha BIOFIO Cauteriza&ccedil;&atilde;o reconstr&oacute;i a fibra capilar danificada e fragilizada por processos qu&iacute;micos, t&eacute;rmicos e mec&acirc;nicos. Cont&eacute;m uma f&oacute;rmula rica em amino&aacute;cidos, arginina e queratina, e trata os fios de dentro para fora, devolvendo a maciez, brilho e vida aos cabelos.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/z1GZS8pnSQ8jgWnhcIZtKetjPm6AwOh9KGIaXsHe.png', 14, '49.90', 1, '2018-05-16 17:01:01', '2018-05-16 17:01:01'),
+(98, '09', 'Biofio Cauterização - Serum', 'biofio-cauterizacao-serum', '<p><strong>Cabelos fortes e saud&aacute;veis</strong></p>\r\n\r\n<p>A linha BIOFIO Cauteriza&ccedil;&atilde;o reconstr&oacute;i a fibra capilar danificada e fragilizada por processos qu&iacute;micos, t&eacute;rmicos e mec&acirc;nicos. Cont&eacute;m uma f&oacute;rmula rica em amino&aacute;cidos, arginina e queratina, e trata os fios de dentro para fora, devolvendo a maciez, brilho e vida aos cabelos.</p>', 'products/0rfvBt8dD9mnjurB7A2pak3scNYqsudzS5fjUbaE.png', 14, '39.90', 1, '2018-05-16 17:07:07', '2018-05-16 17:07:07'),
+(99, '10', 'Biofio Cauterização - Mascara', 'biofio-cauterizacao-mascara', '<p><strong>Cabelos fortes e saud&aacute;veis</strong></p>\r\n\r\n<p>A linha BIOFIO Cauteriza&ccedil;&atilde;o reconstr&oacute;i a fibra capilar danificada e fragilizada por processos qu&iacute;micos, t&eacute;rmicos e mec&acirc;nicos. Cont&eacute;m uma f&oacute;rmula rica em amino&aacute;cidos, arginina e queratina, e trata os fios de dentro para fora, devolvendo a maciez, brilho e vida aos cabelos.</p>\r\n\r\n<p><strong>Peso: 300ML</strong></p>', 'products/fLrtiRQcfT5abyZaoLgawtjGvtGUhr8FjSIbq1Hm.png', 14, '64.00', 1, '2018-05-16 17:10:03', '2018-05-16 17:10:03'),
+(100, '12', 'Hidratação Absoluta - Mascara', 'hidratacao-absoluta-mascara', '<p><strong>Blindagem intensa para os seus cabelos</strong></p>\r\n\r\n<p>Com ativo Hydrovance, a linha HIDRATA&Ccedil;&Atilde;O ABSOLUTA repara e hidrata a fibra capilar, promove brilho, aumenta a elasticidade e flexibilidade do fio, ajudando a reduzir o frizz e facilitar o pentear das madeixas.</p>\r\n\r\n<p><strong>Peso: 300ML</strong></p>', 'products/DxfIBIX0bu1z8OPkvq0sVVDvmQdQlMoZQI8oBKLt.png', 14, '64.00', 1, '2018-05-16 17:19:40', '2018-05-16 17:19:40'),
+(101, '12', 'Super Cachos - Mascara', 'super-cachos-mascara', '<p><strong>Cachos definidos e naturais</strong></p>\r\n\r\n<p>A f&oacute;rmula da linha SUPER CACHOS cont&eacute;m agentes condicionantes e pol&iacute;mero elast&ocirc;mero que hidratam, valorizam, modelam e definem os cachos na sua melhor forma.</p>\r\n\r\n<p><strong>Peso: 300ML</strong></p>', 'products/fGcBXVKj8flyaI2n3xoycTeN9H5zn1pVAhPdsUOi.png', 14, '64.00', 1, '2018-05-16 17:21:44', '2018-05-16 17:26:43'),
+(102, '13', 'Ultra Cor - Mascara', 'ultra-cor-mascara', '<p><strong>Preserva a vivacidade das cores</strong></p>\r\n\r\n<p>A linha Ultra Cor DUX possui em sua formula&ccedil;&atilde;o o ativo Kerarice, composto desenvolvido para proteger a colora&ccedil;&atilde;o e a fibra capilar contra a agress&atilde;o ocasionada pela radia&ccedil;&atilde;o solar, al&eacute;m de compostos hidratantes. O seu uso valoriza a cor dos cabelos, evita o desbotamento por mais tempo e fortalece a cut&iacute;cula dos fios. A M&aacute;scara Ultra Cor possui um alto poder condicionante, nutre, hidrata e protege os fios. Sua f&oacute;rmula promove uma selagem da cut&iacute;cula do fio e como resultado, seus cabelos ficar&atilde;o macios, hidratados e com brilho intenso.</p>\r\n\r\n<p><strong>Peso: 300ML</strong></p>', 'products/4BtbBccHx6nRvh5n7KckxM9Y9O5INZgDYDsPHYpZ.png', 14, '64.00', 1, '2018-05-16 17:29:00', '2018-05-16 17:29:00'),
+(103, '14', 'Ultra Cor - Condicionador', 'ultra-cor-condicionador', '<p><strong>Preserva a vivacidade das cores</strong></p>\r\n\r\n<p>A linha Ultra Cor DUX possui em sua formula&ccedil;&atilde;o o ativo Kerarice, composto desenvolvido para proteger a colora&ccedil;&atilde;o e a fibra capilar. Seu uso valoriza a cor dos cabelos, evita o desbotamento por mais tempo e fortalece a cut&iacute;cula dos fios.</p>\r\n\r\n<p><strong>Peso: 230ML</strong></p>', 'products/HA195HahlOXFejVpkB50Xt27tPDdNroMCU88CYk8.jpeg', 14, '49.90', 1, '2018-05-16 17:30:52', '2018-05-16 17:32:45'),
+(104, '15', 'Ultra Cor - Shampoo', 'ultra-cor-shampoo', '<p><strong>Preserva a vivacidade das cores</strong></p>\r\n\r\n<p>A linha Ultra Cor DUX possui em sua formula&ccedil;&atilde;o o ativo Kerarice, composto desenvolvido para proteger a colora&ccedil;&atilde;o e a fibra capilar. O seu uso refor&ccedil;a o brilho e auxilia na manuten&ccedil;&atilde;o da colora&ccedil;&atilde;o pois forma um filme protetor sobre os cabelos e os deixa com apar&ecirc;ncia mais saud&aacute;vel e bonita.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/0Y6m7V6IZRobae4lBgzm98YoZNmCc02qrrDPCSnU.jpeg', 14, '49.90', 1, '2018-05-16 17:32:00', '2018-05-16 17:32:00'),
+(105, '16', 'Perfect Liss - Condicionador', 'perfect-liss-condicionador', '<p><strong>Lisos mais que perfeitos</strong></p>\r\n\r\n<p>A linha PERFECT LISS foi desenvolvida para manuten&ccedil;&atilde;o de cabelos com progressivas em geral, lisos e/ou com frizz. Seus ativos tratam o fio de dentro para fora deixando a fibra capilar alinhada e hidratada, potencializando assim o efeito liso de forma natural com styling.</p>\r\n\r\n<p><strong>Peso: 230ML</strong></p>', 'products/qZo5LCJ4SYnCm5vyYubcd2kHWbFPk3y5vynLAS1y.png', 14, '49.90', 1, '2018-05-16 17:45:23', '2018-05-16 17:56:55'),
+(106, '17', 'Perfect Liss - Shampoo', 'perfect-liss-shampoo', '<p><strong>Lisos mais que perfeitos</strong></p>\r\n\r\n<p>A linha PERFECT LISS foi desenvolvida para manuten&ccedil;&atilde;o de cabelos com progressivas em geral, lisos e/ou com frizz. Seus ativos tratam o fio de dentro para fora deixando a fibra capilar alinhada e hidratada, potencializando assim o efeito liso de forma natural com styling.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/7Un5GNfqKxwCdQUnSCUY6jOmWdV5xsAXOSIdhYis.png', 14, '49.90', 1, '2018-05-16 17:46:51', '2018-05-16 17:57:03'),
+(107, '18', 'Perfect Liss - Mascara', 'perfect-liss-mascara', '<p><strong>Lisos mais que perfeitos</strong></p>\r\n\r\n<p>A linha PERFECT LISS foi desenvolvida para manuten&ccedil;&atilde;o de cabelos com progressivas em geral, lisos e/ou com frizz. Seus ativos tratam o fio de dentro para fora deixando a fibra capilar alinhada e hidratada, potencializando assim o efeito liso de forma natural com styling.</p>\r\n\r\n<p><strong>Peso: 300ML</strong></p>', 'products/Obx4tqY4f8Qn3HqZd2jdmW1yUpZbnxZI4wmtt9EF.png', 14, '64.00', 1, '2018-05-16 17:50:16', '2018-05-16 17:57:10'),
+(108, '19', 'Clear Dux - Shampoo', 'clear-dux-shampoo', '<p>O Shampoo Anticaspa Clear Dux i9Life &eacute; indicado no tratamento da caspa, apresentando resultados surpreendentes desde as primeiras aplica&ccedil;&otilde;es. Possui elevado poder anti-&oacute;leo, que acalma e regenera o couro cabeludo. Controla o excesso de oleosidade, nutrindo e hidratando profundamente cada fio de cabelo, al&eacute;m de ser refrescante e promover uma &oacute;tima sensa&ccedil;&atilde;o de limpeza.</p>\r\n\r\n<p><strong>Peso: 200ML</strong></p>', 'products/PEQZsHcDHQ8zfZd8zl3qJH70jq3QEqzYKagElCUo.png', 14, '49.90', 1, '2018-05-16 17:55:44', '2018-05-16 17:57:16'),
+(109, '20', 'GEL Fixador', 'gel-fixador', '<p><strong>Cabelos modelados e fixos</strong></p>\r\n\r\n<p>O Gel Fixador Dux promove fixa&ccedil;&atilde;o de longa dura&ccedil;&atilde;o para voc&ecirc; criar os mais diversos penteados, com uma modelagem incr&iacute;vel.</p>\r\n\r\n<p><strong>Peso: 200ML</strong></p>', 'products/WYF72e98OmOcSGTAdXwm4PDdVE0CKR3cq82MsG87.png', 14, '39.90', 1, '2018-05-16 18:00:04', '2018-05-16 18:00:04'),
+(110, '01', 'Sabonete Liquido - Lichia Silvestre', 'sabonete-liquido-lichia-silvestre', '<p><strong>Um perfume incr&iacute;vel na pele</strong></p>\r\n\r\n<p>A linha de sabonetes l&iacute;quidos para m&atilde;os da DUX tem cheirinhos super agrad&aacute;veis e cont&eacute;m ativos capazes de limpar a pele de forma profunda e delicada, proporcionando sensa&ccedil;&atilde;o de maciez e hidrata&ccedil;&atilde;o.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/LFOWyey90OSUHZXkuvJGdPvSmUT1gWgYiGkglmwj.png', 14, '37.00', 1, '2018-05-16 18:09:20', '2018-05-16 18:09:20');
+INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `quantity`, `price`, `status`, `created_at`, `updated_at`) VALUES
+(111, '02', 'Sabonete Liquido - Orvalio de Alecrim', 'sabonete-liquido-orvalio-de-alecrim', '<p><strong>Um perfume incr&iacute;vel na pele</strong></p>\r\n\r\n<p>A linha de sabonetes l&iacute;quidos para m&atilde;os da DUX tem cheirinhos super agrad&aacute;veis e cont&eacute;m ativos capazes de limpar a pele de forma profunda e delicada, proporcionando sensa&ccedil;&atilde;o de maciez e hidrata&ccedil;&atilde;o.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/HmxF25nX8oqZdyjQ9qZUaSPxEr34oaPE209YXYYl.png', 14, '37.00', 1, '2018-05-16 18:10:22', '2018-05-16 18:12:02'),
+(112, '03', 'Sabonete Liquido - Erva Doce', 'sabonete-liquido-erva-doce', '<p><strong>Um perfume incr&iacute;vel na pele</strong></p>\r\n\r\n<p>A linha de sabonetes l&iacute;quidos para m&atilde;os da DUX tem cheirinhos super agrad&aacute;veis e cont&eacute;m ativos capazes de limpar a pele de forma profunda e delicada, proporcionando sensa&ccedil;&atilde;o de maciez e hidrata&ccedil;&atilde;o.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/o1S8XxC1KKba0pq8YitK0tkDW5CnEqYqPdlGqoBO.png', 14, '37.00', 1, '2018-05-16 18:14:34', '2018-05-16 18:14:34'),
+(113, '04', 'Sabonete Liquido - Cheiro de bebê', 'sabonete-liquido-cheiro-de-bebe', '<p><strong>Um perfume incr&iacute;vel na pele</strong></p>\r\n\r\n<p>A linha de sabonetes l&iacute;quidos para m&atilde;os da DUX tem cheirinhos super agrad&aacute;veis e cont&eacute;m ativos capazes de limpar a pele de forma profunda e delicada, proporcionando sensa&ccedil;&atilde;o de maciez e hidrata&ccedil;&atilde;o.</p>\r\n\r\n<p><strong>Peso: 250ML</strong></p>', 'products/8ek8ZLTx0nixnoN5FgOfS8zY0SfH7I4uEwf4OeVl.png', 14, '37.00', 1, '2018-05-16 18:15:55', '2018-05-16 18:15:55'),
+(114, '05', 'Spa - Creme Hidratante', 'spa-creme-hidratante', '<p>O creme hidratante antirressecamento SPA i9Life foi desenvolvido para uma hidrata&ccedil;&atilde;o profunda da pele e enriquecido com alta concentra&ccedil;&atilde;o de ureia e cacau. Seu uso cont&iacute;nuo deixa a pele suave e sedosa por muito mais tempo.</p>\r\n\r\n<p><strong>Peso: 200ML</strong></p>', 'products/jv0ZkmeG3P6i0UHTRaEYXuzVahLSbYP3FWWe40ph.jpeg', 14, '69.90', 1, '2018-05-16 18:33:39', '2018-05-16 18:33:39'),
+(115, '06', 'Spa - Creme Esfoliante', 'spa-creme-esfoliante', '<p>O Creme Esfoliante Antirressecamento i9 Skin Spa &eacute; um potente esfoliante e hidratante que estimula a renova&ccedil;&atilde;o celular, hidrata e limpa a pele profundamente, deixando-a macia e com toque acetinado &uacute;nico.</p>\r\n\r\n<p>Peso: 200ML</p>', 'products/Vh33lTILvN27kd0yJ3jHo7Uh1GGeXX312Ad9yUnq.jpeg', 14, '69.90', 1, '2018-05-16 18:35:49', '2018-05-16 18:35:49'),
+(116, '07', 'Solen Defense - 30 FPS', 'solen-defense-30-fps', '<p><strong>Ver&atilde;o sem preocupa&ccedil;&atilde;o com Solen Defense</strong></p>\r\n\r\n<ul>\r\n	<li>Protege contra a a&ccedil;&atilde;o dos raios UVA 10 e UVB;</li>\r\n	<li>Livre de &oacute;leo;</li>\r\n	<li>Pele bronzeada, hidratada e protegida.</li>\r\n</ul>\r\n\r\n<p><strong>Peso: 120G</strong></p>', 'products/CsT2IaBJ3N6kTh4RV27xa4GiAUsczdOvcdlFIEcx.png', 14, '59.90', 1, '2018-05-16 18:38:20', '2018-05-16 18:38:20'),
+(117, '08', 'Solen Defense - 50 FPS', 'solen-defense-50-fps', '<p><strong>Ver&atilde;o sem preocupa&ccedil;&atilde;o com Solen Defense</strong></p>\r\n\r\n<ul>\r\n	<li>Protege contra a a&ccedil;&atilde;o dos raios UVA 17 e UVB;</li>\r\n	<li>Livre de &oacute;leo;</li>\r\n	<li>Cont&eacute;m vitamina E;</li>\r\n	<li>Sem PABA.</li>\r\n</ul>\r\n\r\n<p><strong>Peso: 120G</strong></p>', 'products/HMOn7aVfIvnUtIHSn9ycZfVkKgFQKHbEyeOEnQuH.png', 14, '79.90', 1, '2018-05-16 18:43:35', '2018-05-16 18:43:35'),
+(118, '09', 'Lipo Reductor', 'lipo-reductor', '<p>O Lipo Reductor da i9Life &eacute; um mousse corporal redutor de medidas f&aacute;cil de aplicar.&nbsp;</p>\r\n\r\n<p>Resultados comprovados em at&eacute; 4 semanas; Com &oacute;leo de caf&eacute; verde; Anticelulite; Efeito crioter&aacute;pico; Reduz aspecto casca de laranja; Potencializa firmeza da pele; Deixa a pele mais hidratada; Silhueta mais fina.</p>\r\n\r\n<p>&nbsp;</p>', 'products/UfLy8U7FHBroxYPu0PjYQMPizGGwEpz0gBj00x0c.png', 14, '179.90', 1, '2018-05-16 18:52:09', '2018-05-16 19:03:59'),
+(119, '10', 'Gel Redutor de Medidas', 'gel-redutor-de-medidas', '<p>O Gel Reductor foi especialmente desenvolvido para ajudar na queima da gordura localizada e modelagem do corpo, produzindo a agrad&aacute;vel sensa&ccedil;&atilde;o de frescor e calor ao mesmo tempo, devido a sua formula&ccedil;&atilde;o com c&acirc;nfora e mentol.</p>', 'products/5z650MnvfxeoU6XaRlEPRvZqECJDcHZJYM5a7IPO.jpeg', 14, '58.00', 1, '2018-05-16 18:57:18', '2018-05-16 19:02:35'),
+(122, '01', 'Suplemento - Omega 3', 'suplemento-omega-3', '<p>Suplemento em c&aacute;psulas gelatinosas contendo &oacute;leo de peixe, rico em &ocirc;mega 3<br />\r\nEstimula o aumento do colesterol bom (HDL);<br />\r\nAjuda na redu&ccedil;&atilde;o do colesterol ruim (LDL);<br />\r\nAuxilia a reduzir o triglic&eacute;rides;<br />\r\nMelhora o sistema imunol&oacute;gico;<br />\r\nAumenta a fluidez do sangue;<br />\r\nAjudar a evitar o decl&iacute;nio mental;<br />\r\nC&aacute;psulas gelatinosas: ingest&atilde;o r&aacute;pida e f&aacute;cil de engolir;<br />\r\n<strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/CdIpX1ENK0URCeFmhFx3yISocvORQwq9CcphCP1L.png', 14, '110.00', 1, '2018-05-16 21:38:02', '2018-05-16 21:44:01'),
+(120, '11', 'Mascara Black', 'mascara-black', '<p><strong>Argila preta para uma pele renovada e purificada.</strong>&nbsp;</p>\r\n\r\n<p>Limpa os poros; Remove os cravos;</p>\r\n\r\n<p>&nbsp;</p>', 'products/Murm2oK1tpiJTEjjR9lVyeD5qG6nW7HMD6p9oG5q.png', 14, '39.90', 1, '2018-05-16 19:00:09', '2018-05-16 19:02:52'),
+(121, '12', 'Mascara Black - Caixa 4 Saches', 'mascara-black-caixa-4-saches', '<p><strong>Argila preta para uma pele renovada e purificada.</strong></p>\r\n\r\n<p>Limpa os poros; Remove os cravos;</p>\r\n\r\n<p>BLACK MASK M&Aacute;SCARA NEGRA - CAIXA COM 4 SACH&Ecirc;S</p>', 'products/DkLO5GcIu6KzjoEdcwN69i8oqzrHxZpIlcHvbRgM.jpeg', 14, '56.00', 1, '2018-05-16 19:01:33', '2018-05-16 19:03:23'),
+(125, '04', 'Suplemento - Fiber Caps', 'suplemento-fiber-caps', '<p><strong>Suplemento baseado em Chitosan, Psyllium e Vitamina C</strong></p>\r\n\r\n<p>&bull; Ajuda a melhorar o tr&aacute;fego intestinal;<br />\r\n&bull; Proporciona saciedade;<br />\r\n&bull; Ajuda a evitar a absor&ccedil;&atilde;o de gorduras e controla os n&iacute;veis de colesterol;<br />\r\n&bull; Ajuda a controlar a glicemia, colesterol e press&atilde;o sangu&iacute;nea;<br />\r\n&bull; Ajuda a regular o metabolismo;<br />\r\n&bull; Com propriedades antioxidantes.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas</p>', 'products/H6a81bmEdGDYZxMonZQIpd7652ZHSg8OnFk5TyTh.png', 14, '89.00', 1, '2018-05-16 21:46:46', '2018-05-16 21:51:47'),
+(123, '02', 'Suplemento - Goji Berry', 'suplemento-goji-berry', '<p><strong>Suplemento de extrato de Goji Berry</strong></p>\r\n\r\n<p>&bull; Ajuda a acelerar o metabolismo, auxiliando no emagrecimento;<br />\r\n&bull; Ajuda a reduzir a flacidez e combater a celulite;<br />\r\n&bull; Aumenta as defesas imunol&oacute;gicas do corpo;<br />\r\n&bull; A&ccedil;&atilde;o antioxidante &rarr; Combate o envelhecimento prematuro;<br />\r\n&bull; Auxilia na redu&ccedil;&atilde;o dos riscos de doen&ccedil;as cardiovasculares;<br />\r\n&bull; Regula os n&iacute;veis de colesterol e glicemia;<br />\r\n&bull; Melhora a fun&ccedil;&atilde;o gastrointestinal;<br />\r\n&bull; Favorece o desempenho neurol&oacute;gico e psicol&oacute;gico;<br />\r\n&bull; Contribui para uma boa sa&uacute;de dos olhos.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/YidLrGc8MQ9wpvnKTVqPkPHtnRFaeNfJaqkdMDtK.png', 14, '89.00', 1, '2018-05-16 21:42:02', '2018-05-16 21:42:02'),
+(124, '03', 'Suplemento - Detox', 'suplemento-detox', '<p><strong>Suplemento de desintoxica&ccedil;&atilde;o vitam&iacute;nica e mineral</strong></p>\r\n\r\n<p>&bull; Ajudar na elimina&ccedil;&atilde;o de toxinas do corpo;<br />\r\n&bull; Poderosa a&ccedil;&atilde;o antioxidante &rarr; evita o envelhecimento prematuro;<br />\r\n&bull; Ajuda no processo de desbaste;<br />\r\n&bull; Ajuda a fortalecer o sistema imunol&oacute;gico;<br />\r\n&bull; Ajuda a reduzir a fadiga.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/nC6DMULHQqo2gnpI3C71vUbzhMEgpjCVmkCLUUAn.png', 14, '89.00', 1, '2018-05-16 21:43:14', '2018-05-16 21:43:14'),
+(126, '05', 'Suplemento - Skin Flex', 'suplemento-skin-flex', '<p><strong>Para uma pele saud&aacute;vel e bonita</strong></p>\r\n\r\n<p>&bull; Fortalece cabelos e unhas;<br />\r\n&bull; Contribui para a sa&uacute;de dos ossos e articula&ccedil;&otilde;es;<br />\r\n&bull; Auxilia no aumento da massa magra;<br />\r\n&bull; Proporciona firmeza e elasticidade &agrave; pele, auxiliando a prevenir rugas;<br />\r\n&bull; Previne flacidez e celulite.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/QMT04Mg8mVMOPR7OaK7REF74sUQuc5RzMbMXUo4l.png', 14, '89.00', 1, '2018-05-16 22:09:05', '2018-05-16 22:09:05'),
+(127, '06', 'Suplemento - Polivitaminico', 'suplemento-polivitaminico', '<p><strong>Suplemento&nbsp;polivitam&iacute;nico e polimineral</strong></p>\r\n\r\n<p>Cont&eacute;m todas as vitaminas e minerais essenciais ao organismo em quantidades di&aacute;rias ideais para o bom funcionamento&nbsp;do organismo, do sistema imunol&oacute;gico e para o crescimento e desenvolvimento corporal.&nbsp;Pode ser usado para complementar a alimenta&ccedil;&atilde;o de crian&ccedil;as (se recomendado pelo m&eacute;dico), jovens, adultos e idosos.</p>\r\n\r\n<ul>\r\n	<li>Energia e resist&ecirc;ncia;</li>\r\n	<li>Sa&uacute;de e longevidade;</li>\r\n	<li>Sa&uacute;de da mente;</li>\r\n	<li>N&atilde;o engorda.</li>\r\n</ul>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/RMv1oQFAVCRyyNHei5xVQBvrAc9Nz2SG2bAKb9lZ.png', 14, '89.00', 1, '2018-05-16 22:11:22', '2018-05-16 22:11:22'),
+(128, '07', 'Suplemento - Osteo Defense', 'suplemento-osteo-defense', '<p>Suplemento em c&aacute;psulas para reposi&ccedil;&atilde;o de c&aacute;lcio 4 em 1: cont&eacute;m&nbsp;c&aacute;lcio, magn&eacute;sio, vitamina D3 e vitamina K2.<br />\r\nAjuda a melhorar a sa&uacute;de &oacute;ssea, card&iacute;aca, dental, vascular e sangu&iacute;nea.&nbsp;Auxilia na preven&ccedil;&atilde;o de doen&ccedil;as como osteoporose, osteopenia, trombose, fibromialgia, Parkinson, Alzheimer e outras.<br />\r\nO consumo do c&aacute;lcio &eacute; essencial em todas as faixas et&aacute;rias e sua defici&ecirc;ncia &eacute; muito comum. Apesar de vir de variadas fontes alimentares como leite e derivados, carnes, verduras e legumes, muitas pessoas n&atilde;o conseguem ingerir a quantidade di&aacute;ria necess&aacute;ria.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/Nld1oVuOAWwy9rh9kMYeDg4rb8ritARHmdmj4qis.png', 14, '118.00', 1, '2018-05-16 22:12:23', '2018-05-16 22:18:52'),
+(129, '08', 'Chá -Detox', 'cha-detox', '<p>P&oacute; para preparar bebidas arom&aacute;ticas com ch&aacute; verde e ch&aacute; branco<br />\r\nHidratante, antioxidante, desintoxicante e hepatoprotetor;<br />\r\nReduz a reten&ccedil;&atilde;o de l&iacute;quidos;<br />\r\nElimina subst&acirc;ncias inflamat&oacute;rias;<br />\r\nAjuda a acelerar o metabolismo;<br />\r\nMelhora a sa&uacute;de celular.</p>', 'products/t6tUi3YxuCSYIq631jQngdzwVC1DeuBdh02plCrH.jpeg', 14, '89.00', 1, '2018-05-16 22:15:49', '2018-05-16 22:17:52'),
+(130, '09', 'Chá - Energi', 'cha-energi', '<p>P&oacute; para preparo de bebidas de ervas Arom&aacute;ticas e Guaran&aacute; Natural<br />\r\nEfeito ergog&ecirc;nico &rarr; aumenta a capacidade para o trabalho corporal e mental, especialmente pela elimina&ccedil;&atilde;o dos sintomas de fadiga, visando melhora da performance;<br />\r\nRefrescante e revigorante;<br />\r\nCont&eacute;m Guaran&aacute; &rarr; fonte natural de cafe&iacute;na;<br />\r\nSem gl&uacute;ten.</p>', 'products/ew1KJtzlIqsY2gByGw1UT7Qdn8emFmY51p8sWuhP.png', 14, '89.00', 1, '2018-05-16 22:17:17', '2018-05-16 22:18:23'),
+(131, '09', 'Energy Drink - Pack C/ 6 Unidates', 'energy-drink-pack-c-6-unidates', '<p>Bebida energ&eacute;tica de baixa caloria &agrave; base de taurina e cafe&iacute;na pronta para consumo.<br />\r\nExtrato de A&ccedil;a&iacute; + Extrato de Guaran&aacute;<br />\r\nZero a&ccedil;&uacute;car;<br />\r\nZero calorias;<br />\r\nZero carboidratos;<br />\r\nZero gorduras;<br />\r\nBaixo teor de s&oacute;dio.<br />\r\n<strong>PACK C/ 6 UNIDADES</strong></p>', 'products/Y5uTDM5qsH3XxUGUST3geGyeEc8PsxhsVNOctv57.png', 14, '90.00', 1, '2018-05-16 22:24:26', '2018-05-16 22:37:26'),
+(134, '13', 'Shake - Baunilha', 'shake-baunilha', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/PKoOjjRiNhnsZ6BCcG8M6YZFNFFn5U8MWN2NY5rL.jpeg', 14, '177.90', 1, '2018-05-16 22:38:10', '2018-05-16 22:38:10'),
+(132, '11', 'Shake - Açai', 'shake-acai', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/vkaFuUsqhSjOgIIlQyEG4k9tBPhJeQY94YRzKuSt.jpeg', 14, '177.90', 1, '2018-05-16 22:35:58', '2018-05-16 22:36:27'),
+(133, '12', 'Shake - Banana', 'shake-banana', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/7pXU0hw077pqHm2c3s64uVG4xZfkJqup5LFp4Egr.jpeg', 14, '177.90', 1, '2018-05-16 22:36:57', '2018-05-16 22:36:57'),
+(135, '14', 'Shake - Café', 'shake-cafe', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/VC6GWWIqpEnZ5Jcp8QgqFhvSJZyHsflOzqD3KrTH.jpeg', 14, '177.90', 1, '2018-05-16 22:40:26', '2018-05-16 22:40:26'),
+(136, '15', 'Shale - Doce de Leite', 'shale-doce-de-leite', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/IPA8i7dDkFMIVDZeCyqXfWihUVaRVFGoYbIWuBYo.jpeg', 14, '177.90', 1, '2018-05-16 22:41:04', '2018-05-16 22:44:36'),
+(137, '16', 'Shake - Graviola', 'shake-graviola', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/6UjmyhmxelK62A3EFjoAUAe269Qr4Y1l9kukQZlw.jpeg', 14, '177.90', 1, '2018-05-16 22:41:42', '2018-05-16 22:41:42'),
+(138, '17', 'Shake - Milho', 'shake-milho', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/7cckIFlcz6Nknw8VnDNA5H913u7NeK3lx8P7DcWK.jpeg', 14, '177.90', 1, '2018-05-16 22:42:47', '2018-05-16 22:42:47'),
+(139, '18', 'Shake - Morango', 'shake-morango', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/4gHRXUIfaOpNmvGc2aePWmpy9KEYXZlAIyaSRjyE.jpeg', 14, '177.90', 1, '2018-05-16 22:43:16', '2018-05-16 22:43:16'),
+(140, '19', 'Shake - Paçoca', 'shake-pacoca', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/9VPRYyFS4Aix2LPgZ2KnDfS61lnMuD3qGYD3v3yb.jpeg', 14, '177.90', 1, '2018-05-16 22:44:01', '2018-05-16 22:44:01'),
+(141, '20', 'Shake -  Chocolate', 'shake-chocolate', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/YrBma64ohRljt633svoRpKvOMK9ko5qIjFFiMOOs.jpeg', 14, '130.00', 1, '2018-05-16 22:57:45', '2018-05-16 22:59:31'),
+(142, '21', 'Shake - Milho Verde', 'shake-milho-verde', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/UrA8mN0mnrRBFKMhpeZKnWQ54R45Cwh8i1qlpPHL.jpeg', 14, '130.00', 1, '2018-05-16 22:58:27', '2018-05-16 22:59:24'),
+(143, '22', 'Shake - Paçoca+', 'shake-pacoca', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/Zcb3AQ7Su4oN6Th3hxE2xmWq4rVt8L27nf8mWSmS.jpeg', 14, '130.00', 1, '2018-05-16 22:59:14', '2018-05-16 22:59:14'),
+(144, '23', 'Proteina isolada da soja e soro do Leite', 'proteina-isolada-da-soja-e-soro-do-leite', '<p><strong>Prote&iacute;na de soja e de soro de leite</strong><br />\r\npara a prepara&ccedil;&atilde;o de bebidas para controle de peso, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Ele fornece amino&aacute;cidos essenciais que o corpo n&atilde;o produz e que s&oacute; pode ser absorvido atrav&eacute;s de uma nutri&ccedil;&atilde;o adequada.<br />\r\n&Eacute; um alimento rico em prote&iacute;nas isoladas de soja e soro de leite que ajudam a controlar a fome, aumentam a sensa&ccedil;&atilde;o de plenitude e preservam a massa muscular.</p>', 'products/1adPqgeB8lzofE1mf35vUNXMmkvLuGGwMSgkVF6i.png', 14, '199.90', 1, '2018-05-16 23:06:24', '2018-05-16 23:06:24');
 
 -- --------------------------------------------------------
 
@@ -810,7 +969,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `src` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_images_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `product_images`
@@ -905,7 +1064,62 @@ INSERT INTO `product_images` (`id`, `product_id`, `src`) VALUES
 (96, 86, 'products/5zRoTuzPqnScZHaAIQkTd8WMnEmBb8wwTXz9nLeR.jpeg'),
 (94, 87, 'products/hEA1znGTZDFkwrxrjrbur37y1SzfyMsMCxKvTcsO.jpeg'),
 (95, 88, 'products/TMVEbuWXXkhYIPiq9Db5ui3tPHXfWXrgWtK7GW95.jpeg'),
-(98, 89, 'products/sk9S1JNrrm2xJdNQvvuFMWhkXxkjEKT9FowXjcKi.png');
+(98, 89, 'products/sk9S1JNrrm2xJdNQvvuFMWhkXxkjEKT9FowXjcKi.png'),
+(105, 90, 'products/F8JYNVtBP9kO0wVGEhOqFuUOjyUKTg0px9P1oaAQ.png'),
+(100, 91, 'products/UvmqnXpXt0kPzod7jlsoxrLH0vm8S5Jj5LxUcqnP.png'),
+(101, 92, 'products/p7QbLHiX2dJyY4mcP10IjRYkpMraRd7UMNFNS4Nn.png'),
+(104, 93, 'products/TlGgcRZLc6M53jNZf3JoDrNnUk1Gse9igdawvlOX.png'),
+(106, 94, 'products/I2b5BZpNQE22ajGudiOQK32AfnwPvlSmXoJEECII.png'),
+(107, 95, 'products/d377jCOks9be9xr9VEgE68FW7KePZhYnEye6SfNj.png'),
+(108, 96, 'products/IWXIFTjAFQ1dkS1TZDx2wnTCNXbxQtywr8RsQXNY.png'),
+(109, 97, 'products/8Dq280LoNSu74H0k3jRd6crwB0tFxp8vCKqBKSX0.png'),
+(110, 98, 'products/ln7XWmzTPQU2EfITIPTy4GRGh0e2B10VRUCR6CoK.png'),
+(111, 99, 'products/7dwheBprzvevnMeFUiXFC9pA1P1cwb3lQwTWHgba.png'),
+(112, 100, 'products/fWDoZeUaEwGD0QNLb1D5LkTm6gGmsuJgWJAsLHw9.png'),
+(113, 101, 'products/2z1yJpsl9Z6HJbBaLLThKdLqTNOcQDRBKHr1sykM.png'),
+(114, 102, 'products/mgJ8WPBdNGIQIF9GsV42AdpN914z3LiOHXRDMAkp.png'),
+(117, 103, 'products/u479pOsNsvSNfpJg4GJwzczTbtLcy2zbMtrZSW1i.jpeg'),
+(116, 104, 'products/k3P5PUprSOjCdrFUjwH8XITnpbSsxDV3THAEmL0G.jpeg'),
+(118, 105, 'products/dzo3U8MgztqZ0DzcKVEdWtzZqPM4jF80TNJ48Luj.png'),
+(120, 106, 'products/tNcr6g7CV1xJGe8QTH6A29SOL5AnEySiWAj950GF.png'),
+(121, 107, 'products/f7hEFUg7p3fMgMQNmyqYhGaEdTMQ7hiuVwp3GPZ4.png'),
+(122, 108, 'products/DRvmKwf3v221V4i0iPeaDiK0EAy66XgTlydyOmZu.png'),
+(123, 109, 'products/GX77lXv1J7HcVLR9SdqgfjueTfuLUUVQj7my6Cz7.png'),
+(124, 110, 'products/ecftJP3XZfFKKK8mQ66qYBN1LPPlJuq3rhwnR1Ep.png'),
+(125, 111, 'products/Szb69u6lZ7EEe7iLfUMB5mEbLmY06gH4O0GjxJQe.png'),
+(126, 112, 'products/J5CVjTHtxNeHIcpafwL1Qsi6vtViKkIDDmIjQSLj.png'),
+(127, 113, 'products/6Z1bJeqJVtJfy6Qtds2YnwExvQY3mfCBVnkFhCQX.png'),
+(128, 114, 'products/eR8jH8fcHkSksd7kFVJqL9zV82VnDvx7F4ZpgTKF.jpeg'),
+(129, 115, 'products/VSYqe7jj4wp57PPPPuwg5EcWGLnLlLAMyAW678ZD.jpeg'),
+(130, 116, 'products/OclTmY7xNh17LWiut3wYeM9512ZWC8zthhT3BDnR.png'),
+(131, 117, 'products/dxfstUxf9PmdjnY4cTfzmF8EPZt1ega64vVoY7RK.png'),
+(132, 118, 'products/yKZMCAnuk3TznPv0qKSUNoXP2UqJlxLoJP06wFvh.png'),
+(133, 119, 'products/ULTfbL919cOGt9SwzEwbo0gX8NQh3KvjVk4t0X9o.jpeg'),
+(134, 120, 'products/UJH6qvcq9vQyinUqeYVPIjBJQ6hfBmXcoLI0ydGz.png'),
+(135, 121, 'products/CmTd5WtFIzasD2UJ5QR41a1Uflb4pSgaTGjt3asD.jpeg'),
+(136, 122, 'products/5XeAcuSZYEkF4veQBiw3Vrib413NmKsUdJ4QfbEl.png'),
+(137, 123, 'products/HO3FMXOfM2TtFfT0sCjkog1foZmz9lvO93eMXKVr.png'),
+(138, 124, 'products/QxxbHasRik7UxBrn7fWIfk4Eu2iRdR8yi5OmM3jk.png'),
+(140, 125, 'products/7mnIPxdWFv7GLpUuXBA6j1rxDcZtUgllJI08LunT.png'),
+(141, 126, 'products/fAwcxInSbP3rE4jvMYuC4Nbmz6c9Gnfh5eIdkwin.png'),
+(142, 127, 'products/ljdeaXQzMssB9VZ50SXnxwImP4km0TreEUOdJOjD.png'),
+(143, 128, 'products/YGVfdVOTx9sv4EwQLU89px1WBNCgGZgglWxjdoCt.png'),
+(144, 129, 'products/9eAxIYlJAeSHwd0LLnr6z5epyTnyTebYkSf6WznZ.jpeg'),
+(145, 130, 'products/n8VWZ9VGO8q0oHirlyZNK7xLqfiE1CsogqJXw1Yz.png'),
+(146, 131, 'products/TpjW6CCBzJ8l3Frk3qXJmwQIjcMzOJbGzw4QDj2H.png'),
+(147, 132, 'products/opzWEnXibgGnN8DYiYk6hJLhcsKWXeODnU8wKPjS.jpeg'),
+(148, 133, 'products/yrejokkcLE4OMOPg0RAOzKRcBq4bizQUrSEH10kv.jpeg'),
+(149, 134, 'products/zsSVScOXrErOIj3lNvZvQp9IFI5F9r1mqS54DAJw.jpeg'),
+(150, 135, 'products/UJM1lyTpOoRPOioLStuEgHtUKUpFxcEkcWYnt1DW.jpeg'),
+(156, 136, 'products/63KssDe6amwwtp9oXcOcxIiYGOy5903dCT8AB4z9.jpeg'),
+(152, 137, 'products/DwMIY5CwZaCGl893nDYHtcy5GhADIhJw0uvrXaO5.jpeg'),
+(153, 138, 'products/LxS8We7tv3wu1AFg1LcSvg1xf5WIdHETlwOm8L53.jpeg'),
+(154, 139, 'products/KBYSqzjNxlp48WVrkOGlerpglhPR1Q0hSsG7a9JK.jpeg'),
+(155, 140, 'products/qYaIcuVHoy49TwW8qXSmnG9OPRSAaC2SmL88Wbs2.jpeg'),
+(157, 141, 'products/tE9Po1Ia8bX9FFEO6qqR5Mb3hZeEtL47rmRotlrn.jpeg'),
+(158, 142, 'products/sQ0CpTmjGMa4eWmjnGp3IisaEEAUipjsad3EWQbS.jpeg'),
+(159, 143, 'products/kqjym1McKHv7xONOXmVJLL7WH63EMTsZx12Ouz0U.jpeg'),
+(160, 144, 'products/nzH9MLaDKQXdHXRa9DsKhsZ83lC0REGEUpW76cKl.png');
 
 -- --------------------------------------------------------
 
