@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_br">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9325492-23"></script>
@@ -15,10 +15,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }}</title>
     <title>Infinit Sense</title>
-    <meta name="description" content="Modern open-source e-commerce framework for free">
-    <meta name="tags" content="modern, opensource, open-source, e-commerce, framework, free, laravel, php, php7, symfony, shop, shopping, responsive, fast, software, blade, cart, test driven, adminlte, storefront">
-    <meta name="author" content="Jeff Simons Decena">
-    <meta name="author" content="Jeff Simons Decena">
+    
+    <meta property="og:locale" content="pt_br">
+    <meta property="og:url" content="http://i9infinity.com.br">
+    <meta property="og:title" content="Intinity">
+    <meta property="og:site_name" content="I9Infinity">
+    <meta property="og:description" content="I9-Infinity - Inovando o Sentido, Infinito da vida...">
+    <meta property="og:image" content="http://i9infinity.com.br/images/slider1.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="576">
+    <meta property="og:type" content="website">
+
+    <meta name="description" content="Infinity - Inovando o Sentido, Infinito da vida...">
+    <meta name="tags" content="I9life, Cosmeticos, Sense, Infinit, Inove, Life, Perfumes, Exencias, I9Infinity, Bem-Estar, shop, shopping, fast, Compras, cart">
+    <meta name="author" content="NewDevelopper">
+    <meta name="author" content="NewDevelopper">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

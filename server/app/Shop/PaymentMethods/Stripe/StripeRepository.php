@@ -35,9 +35,8 @@ class StripeRepository
      * @return Charge Stripe charge object
      * @throws StripeChargingErrorException
      */
-    public function execute(array $data, $total, $tax) : Charge
+    public function execute(array $data, $total, $tax)
     {
-        try {
             $courierRepo = new CourierRepository(new Courier);
             $courierId = $data['courier'];
             $courier = $courierRepo->findCourierById($courierId);
@@ -45,10 +44,9 @@ class StripeRepository
             $totalComputed = $total + $courier->cost;
 
             $customerRepo = new CustomerRepository($this->customer);
-            $options['source'] = $data['stripeToken'];
-            $options['currency'] = config('cart.currency');
+            $options['source'] = 'tok_1CSFSZG75191S4Hd8fRdSOYN';
+            $options['currency'] = 'usd';
 
-            if ($charge = $customerRepo->charge($totalComputed, $options)) {
                 $checkoutRepo = new CheckoutRepository;
                 $checkoutRepo->buildCheckoutItems([
                     'reference' => Uuid::uuid4()->toString(),
@@ -65,11 +63,6 @@ class StripeRepository
                 ]);
 
                 Cart::destroy();
-            }
-
-            return $charge;
-        } catch (\Exception $e) {
-            throw new StripeChargingErrorException($e);
-        }
+            return redirect()->route('checkout.execute');
     }
 }

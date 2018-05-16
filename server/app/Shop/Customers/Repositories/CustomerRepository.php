@@ -149,10 +149,6 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
      */
     public function charge(int $amount, array $options)
     {
-        try {
-            return $this->model->charge($amount * 100, $options);
-        } catch (\Exception $e) {
-            throw new CustomerPaymentChargingErrorException($e);
-        }
+        return $this->model->charge($amount * 100, $options);
     }
 }

@@ -14,7 +14,6 @@ class StripeExecutionRequest extends BaseFormRequest implements CheckoutInterfac
     public function rules()
     {
         return [
-            'stripeToken' => ['required'],
             'courier' => ['required'],
             'billing_address' => ['required'],
         ];
