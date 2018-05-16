@@ -53,7 +53,7 @@ class StripeRepository
                     'courier_id' => $courierId,
                     'customer_id' => $this->customer->id,
                     'address_id' => $data['billing_address'],
-                    'order_status_id' => 1,
+                    'order_status_id' => 2,
                     'payment' => strtolower(config('stripe.name')),
                     'discounts' => 0,
                     'total_products' => $total,

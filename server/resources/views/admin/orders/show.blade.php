@@ -110,7 +110,6 @@
                             <thead>
                             <th class="col-md-2">Referencia</th>
                             <th class="col-md-2">Nome</th>
-                            <th class="col-md-2">Descrição</th>
                             <th class="col-md-2">Quantidade</th>
                             <th class="col-md-2">Preço</th>
                             <th class="col-md-2">Status</th>
@@ -120,7 +119,6 @@
                                 <tr>
                                     <td>{{ $item->sku }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{!! $item->description !!}</td>
                                     <td>{{ $item->pivot->quantity }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>@include('layouts.status', ['status' => $item->status])</td>
