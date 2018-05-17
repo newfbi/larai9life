@@ -23,6 +23,7 @@ class Order extends Model
         'reference',
         'courier_id',
         'customer_id',
+        'adm_id',
         'address_id',
         'order_status_id',
         'payment',

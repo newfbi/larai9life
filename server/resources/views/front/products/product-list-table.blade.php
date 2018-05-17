@@ -1,11 +1,11 @@
 @if(!$products->isEmpty())
     <table class="table table-striped">
         <thead>
-        <th class="col-md-2 col-lg-2">Cover</th>
-        <th class="col-md-2 col-lg-5">Name</th>
-        <th class="col-md-2 col-lg-2">Quantity</th>
+        <th class="col-md-2 col-lg-2">Imagem</th>
+        <th class="col-md-2 col-lg-5">Nome</th>
+        <th class="col-md-2 col-lg-2">Quantidade</th>
         <th class="col-md-2 col-lg-1"></th>
-        <th class="col-md-2 col-lg-2">Price</th>
+        <th class="col-md-2 col-lg-2">Preço</th>
         </thead>
         <tfoot>
         <tr>
@@ -16,14 +16,14 @@
             <td class="bg-warning">{{config('cart.currency')}} {{ $subtotal }}</td>
         </tr>
         <tr>
-            <td class="bg-warning">Shipping</td>
+            <td class="bg-warning">Entrega</td>
             <td class="bg-warning"></td>
             <td class="bg-warning"></td>
             <td class="bg-warning"></td>
             <td class="bg-warning">{{config('cart.currency')}} <span id="shippingFee">{{ $shippingFee }}</span></td>
         </tr>
         <tr>
-            <td class="bg-warning">Tax</td>
+            <td class="bg-warning">Taxa</td>
             <td class="bg-warning"></td>
             <td class="bg-warning"></td>
             <td class="bg-warning"></td>
@@ -66,7 +66,7 @@
                         <input type="hidden" name="_method" value="put">
                         <div class="input-group">
                             <input type="text" name="quantity" value="{{ $cartItem->qty }}" class="form-control" />
-                            <span class="input-group-btn"><button class="btn btn-default">Update</button></span>
+                            <span class="input-group-btn"><button class="btn btn-default">Atualizar</button></span>
                         </div>
                     </form>
                 </td>

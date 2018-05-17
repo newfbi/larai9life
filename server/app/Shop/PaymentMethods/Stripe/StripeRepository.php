@@ -11,6 +11,7 @@ use App\Shop\PaymentMethods\Stripe\Exceptions\StripeChargingErrorException;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Ramsey\Uuid\Uuid;
 use Stripe\Charge;
+use DB;
 
 class StripeRepository
 {
@@ -44,23 +45,41 @@ class StripeRepository
             $totalComputed = $total + $courier->cost;
 
             $customerRepo = new CustomerRepository($this->customer);
-            $options['source'] = 'tok_1CSFSZG75191S4Hd8fRdSOYN';
-            $options['currency'] = 'usd';
 
-                $checkoutRepo = new CheckoutRepository;
-                $checkoutRepo->buildCheckoutItems([
-                    'reference' => Uuid::uuid4()->toString(),
-                    'courier_id' => $courierId,
-                    'customer_id' => $this->customer->id,
-                    'address_id' => $data['billing_address'],
-                    'order_status_id' => 2,
-                    'payment' => strtolower(config('stripe.name')),
-                    'discounts' => 0,
-                    'total_products' => $total,
-                    'total' => $totalComputed,
-                    'total_paid' => $totalComputed,
-                    'tax' => $tax
-                ]);
+            $checkoutRepo = new CheckoutRepository;
+            $checkoutRepo->buildCheckoutItems([
+                'reference' => Uuid::uuid4()->toString(),
+                'courier_id' => $courierId,
+                'customer_id' => $this->customer->id,
+                'adm_id' => '1',
+                'address_id' => $data['billing_address'],
+                'order_status_id' => 2,
+                'payment' => strtolower(config('stripe.name')),
+                'discounts' => 0,
+                'total_products' => $total,
+                'total' => $totalComputed,
+                'total_paid' => $totalComputed,
+                'tax' => $tax
+            ]);
+
+            //tras as informações da pagina pendente e acrescenta nos input
+            $id_user = $this->customer->id;
+            $valor = $totalComputed;
+            $quantidade = 1;
+            $refer = Uuid::uuid4()->toString();
+            $status = "pendente";
+            $tipo = "Cash";
+            $data = date("Y-m-d H:i:s");
+            //acrescenta as informações no banco de dados
+            DB::table('pagseguro')->insert([
+                'user_id' => $id_user,
+                'data_compra' => $data,
+                'valor' => $valor,
+                'tipo' => $tipo,
+                'status' => $status,
+                'quantidade' => $quantidade,
+                'reference' => $refer,
+            ]);
 
                 Cart::destroy();
             return redirect()->route('checkout.execute');

@@ -11,15 +11,16 @@
         "fideloper/proxy": "~4.0",
         "gloudemans/shoppingcart": "^2.5",
         "guzzlehttp/guzzle": "^6.3",
+        "intervention/image": "^2.4",
         "jsdecena/mailchimp": "~7.0",
         "jsdecena/mcpro": "1.1.*",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
+        "michael/laravelpagseguro": "master",
         "paypal/rest-api-sdk-php": "*",
         "santigarcor/laratrust": "5.0.*",
-        "intervention/image": "^2.4",
         "sofa/eloquence": "^5.5"
     },
     "require-dev": {

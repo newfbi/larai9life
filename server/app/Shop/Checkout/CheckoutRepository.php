@@ -20,11 +20,12 @@ class CheckoutRepository
         $orderRepo = new OrderRepository(new Order);
         $cartRepo = new CartRepository(new ShoppingCart);
         $orderProductRepo = new OrderProductRepository(new OrderProduct);
-
+        
         $order = $orderRepo->create([
             'reference' => $data['reference'],
             'courier_id' => $data['courier_id'],
             'customer_id' => $data['customer_id'],
+            'adm_id' => 1,
             'address_id' => $data['address_id'],
             'order_status_id' => $data['order_status_id'],
             'payment' => $data['payment'],

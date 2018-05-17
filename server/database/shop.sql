@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 16-Maio-2018 às 20:10
+-- Generation Time: 17-Maio-2018 às 20:35
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `category_product` (
   PRIMARY KEY (`id`),
   KEY `category_product_category_id_index` (`category_id`),
   KEY `category_product_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=278 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `category_product`
@@ -401,7 +401,11 @@ INSERT INTO `category_product` (`id`, `category_id`, `product_id`) VALUES
 (274, 7, 141),
 (275, 7, 142),
 (276, 7, 143),
-(277, 7, 144);
+(277, 7, 144),
+(278, 5, 121),
+(279, 5, 120),
+(280, 5, 145),
+(281, 5, 146);
 
 -- --------------------------------------------------------
 
@@ -447,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `countries_name_unique` (`name`),
   UNIQUE KEY `countries_iso_unique` (`iso`)
-) ENGINE=MyISAM AUTO_INCREMENT=240 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `countries`
@@ -497,10 +501,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
-  `stripe_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `card_brand` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `card_last_four` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trial_ends_at` timestamp NULL DEFAULT NULL,
+  `adm_id` int(10) UNSIGNED NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -513,9 +514,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Extraindo dados da tabela `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `email`, `password`, `status`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$fWRlwTSBix3JnMncGKhGquK2Bp61u0RoeHgG86QJipeKCqBLGNmxO', 1, NULL, NULL, NULL, NULL, NULL, 'dyCmKR5meZFGo56dEJDvZv5tjHSrHZUD3LbZxgLCCVQGhd956p7dsVzjAnfq', '2018-05-03 15:23:48', '2018-05-03 15:23:48'),
-(2, 'teste', 'teste@teste.com', '$2y$10$3JUVoa8KaRSuuxQjamWmQOooHDc1MnBaZg9iPpQzcLskOnCB11nxi', 1, NULL, NULL, NULL, NULL, NULL, '84d42ydIDXzFI4PYQheUNLIWu8yuVqIa2T6uvYdiI9YSUtKPkUnROow5pMfs', '2018-05-08 21:31:42', '2018-05-08 21:31:42');
+INSERT INTO `customers` (`id`, `name`, `email`, `password`, `status`, `adm_id`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$fWRlwTSBix3JnMncGKhGquK2Bp61u0RoeHgG86QJipeKCqBLGNmxO', 1, 0, NULL, 'dyCmKR5meZFGo56dEJDvZv5tjHSrHZUD3LbZxgLCCVQGhd956p7dsVzjAnfq', '2018-05-03 15:23:48', '2018-05-03 15:23:48'),
+(2, 'teste', 'teste@teste.com', '$2y$10$3JUVoa8KaRSuuxQjamWmQOooHDc1MnBaZg9iPpQzcLskOnCB11nxi', 1, 0, NULL, '84d42ydIDXzFI4PYQheUNLIWu8yuVqIa2T6uvYdiI9YSUtKPkUnROow5pMfs', '2018-05-08 21:31:42', '2018-05-08 21:31:42');
 
 -- --------------------------------------------------------
 
@@ -600,9 +601,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `reference` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `courier_id` int(10) UNSIGNED NOT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
+  `adm_id` int(10) UNSIGNED NOT NULL,
   `address_id` int(10) UNSIGNED NOT NULL,
   `order_status_id` int(10) UNSIGNED NOT NULL,
   `payment` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -620,18 +622,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `orders_customer_id_index` (`customer_id`),
   KEY `orders_address_id_index` (`address_id`),
   KEY `orders_order_status_id_index` (`order_status_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Extraindo dados da tabela `orders`
---
-
-INSERT INTO `orders` (`id`, `reference`, `courier_id`, `customer_id`, `address_id`, `order_status_id`, `payment`, `discounts`, `total_products`, `tax`, `total`, `total_paid`, `invoice`, `created_at`, `updated_at`) VALUES
-(25, '3a0fb98e-3221-41d7-b7e6-3259370c3904', 2, 1, 23, 2, 'stripe', '0.00', '94.90', '0.00', '109.90', '109.90', NULL, '2018-05-16 17:23:39', '2018-05-16 17:23:39'),
-(24, '24fa0995-3091-4443-b09d-99899c09fdb8', 2, 1, 23, 1, 'stripe', '0.00', '0.00', '0.00', '15.00', '15.00', NULL, '2018-05-15 23:48:19', '2018-05-15 23:48:19'),
-(23, '2c0e7234-6191-4210-a264-35414dc5cdd7', 2, 1, 23, 1, 'stripe', '0.00', '0.00', '0.00', '15.00', '15.00', NULL, '2018-05-15 23:47:43', '2018-05-15 23:47:43'),
-(22, '0547244e-a4f4-4098-ac28-2e2aef429ee6', 2, 1, 23, 1, 'stripe', '0.00', '120.00', '0.00', '135.00', '135.00', NULL, '2018-05-15 23:47:13', '2018-05-15 23:47:13'),
-(21, 'b98d4f6e-3498-4d2f-b697-da84d9771cee', 2, 1, 23, 1, 'stripe', '0.00', '280.00', '0.00', '295.00', '295.00', NULL, '2018-05-15 23:09:10', '2018-05-15 23:09:10');
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -648,21 +639,23 @@ CREATE TABLE IF NOT EXISTS `order_product` (
   PRIMARY KEY (`id`),
   KEY `order_product_order_id_index` (`order_id`),
   KEY `order_product_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `order_product`
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 2, 20, 2),
-(2, 11, 2, 1),
-(3, 12, 1, 1),
-(4, 21, 84, 1),
-(5, 21, 1, 1),
-(6, 22, 2, 1),
-(7, 25, 58, 1),
-(8, 25, 91, 1);
+(1, 1, 1, 1),
+(2, 2, 124, 1),
+(3, 3, 84, 1),
+(4, 4, 122, 1),
+(5, 4, 18, 1),
+(6, 4, 43, 1),
+(7, 5, 124, 1),
+(8, 6, 124, 1),
+(9, 6, 18, 1),
+(10, 6, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -685,10 +678,31 @@ CREATE TABLE IF NOT EXISTS `order_statuses` (
 --
 
 INSERT INTO `order_statuses` (`id`, `name`, `color`, `created_at`, `updated_at`) VALUES
-(1, 'Pago', 'green', '2018-05-02 22:39:35', '2018-05-03 18:27:06'),
 (2, 'Pendente', 'yellow', '2018-05-02 22:39:35', '2018-05-03 18:27:17'),
-(3, 'Felhou', 'red', '2018-05-02 22:39:35', '2018-05-03 18:27:33'),
 (4, 'Entregue', 'blue', '2018-05-02 22:39:35', '2018-05-03 18:27:43');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pagseguro`
+--
+
+DROP TABLE IF EXISTS `pagseguro`;
+CREATE TABLE IF NOT EXISTS `pagseguro` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `data_compra` datetime NOT NULL,
+  `tipo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `quantidade` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reference` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `valor` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` enum('pendente','creditado','resgatado','cancelado') COLLATE utf8_unicode_ci NOT NULL,
+  `codigo` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `codigo` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -802,14 +816,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `products`
 --
 
 INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `quantity`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(1, '03', 'I9Vip-01 - Aerossol Fragance', 'i9vip-01-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>toranja, hortel&atilde;, rosa, canela, &acirc;mbar, patchouli e madeira branca</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;One Million</p>', 'products/otX0ZZfcSDja1AqDAO7ZM3alqGo6jkDLCN7I8pOm.jpeg', 12, '120.00', 1, '2018-05-03 16:06:49', '2018-05-15 23:09:10'),
+(1, '03', 'I9Vip-01 - Aerossol Fragance', 'i9vip-01-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>toranja, hortel&atilde;, rosa, canela, &acirc;mbar, patchouli e madeira branca</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;One Million</p>', 'products/otX0ZZfcSDja1AqDAO7ZM3alqGo6jkDLCN7I8pOm.jpeg', 10, '120.00', 1, '2018-05-03 16:06:49', '2018-05-17 23:33:46'),
 (2, '01', 'I9Vip-03 - Aerossol Fragance', 'i9vip-03-aerossol-fragance', '<p><strong>Notas Olfativas:&nbsp;</strong>lim&atilde;o, ameixa, bergamota, ma&ccedil;&atilde;, almiscar e cedro.</p>\r\n\r\n<p><strong>Inspirado na fragancia:</strong>&nbsp;Ferrari Black&nbsp;</p>', 'products/kBQGlW96NKLrTwo89S8F4oRHBIBSkDqa72iWHgpY.jpeg', 12, '120.00', 1, '2018-05-08 23:11:03', '2018-05-15 23:47:13'),
 (3, '05', 'I9Vip-05 - Aerossol Fragance', 'i9vip-05-aerossol-fragance', '<p><strong>Notas Olfativas:</strong> fr&eacute;sia, lim&atilde;o, n&eacute;roli, bagas de zimbo, junipero, lavanda, ger&acirc;nio, couro, musgo de cavalho e vetiver.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Animale&nbsp;</p>', 'products/AY21GWYtYxt7n7L0PZYxyMXnkvVC4iIBTlrkzWqz.jpeg', 14, '120.00', 1, '2018-05-08 23:18:11', '2018-05-09 21:15:56'),
 (4, '07', 'I9Vip-07- Aerossol Fragance', 'i9vip-07-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Alcar&aacute;via, lavanda, anis, majeric&atilde;o, patchouli, s&aacute;lvia, s&acirc;ndalo, lim&atilde;o, bergamota, cedro, vetiver, cardamomo, couro, fava tonka, alm&iacute;scar, musgo de carvalho e &acirc;mbar.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Azzaro&nbsp;</p>', 'products/sET4OrGBeewTGxVGEnS2muIZiVRifaCtMcvfTBrM.jpeg', 14, '120.00', 1, '2018-05-09 15:28:14', '2018-05-09 21:17:33'),
@@ -826,7 +840,7 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (15, '29', 'I9Vip-29 - Aerossol Fragance', 'i9vip-29-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Ameixa, musgo de carvalho, ma&ccedil;&atilde;, lim&atilde;o siciliano, bergamota, ger&acirc;nio, mogno, cravo, canela, s&acirc;ndalo, oliveira, baunilha, vetiver e cedro.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Hugo Boss</p>', 'products/OqHO465vRBOqZnO95G4SbYTFkc08JbXgolIZMaHU.jpeg', 14, '120.00', 1, '2018-05-09 16:28:50', '2018-05-09 21:46:24'),
 (16, '31', 'I9Vip-31 - Aerossol Fragance', 'i9vip-31-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Toranja, lim&atilde;o siciliano, oxicoco, a&ccedil;afr&atilde;o, s&aacute;lvia, &acirc;mbar, caf&eacute; e notas amadeiradas.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Ferrari Red&nbsp;</p>', 'products/nzihOtgeSxoNLs7VOJvJpmzVmGOXCSjiV8QoAVvQ.jpeg', 14, '120.00', 1, '2018-05-09 16:35:08', '2018-05-09 21:49:06'),
 (17, '33', 'I9Vip-33 - Aerossol Fragance', 'i9vip-33-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Flor de laranjeira, lim&atilde;o siciliano, alecrim, noz-moscada, coentro, lavanda, ger&acirc;nio, cardamomo, lichia, fava tonka, madeira e vetiver.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Silver Scent&nbsp;</p>', 'products/U6muGLFrGltKDC9aAs2L2IM6eottkRWSZRi7QVgo.jpeg', 14, '120.00', 1, '2018-05-09 16:52:38', '2018-05-09 21:50:38'),
-(18, '35', 'I9Vip35 - Aerossol Fragance', 'i9vip35-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Alde&iacute;dos, laranja, tangerina, notas aqu&aacute;ticas, pimenta, n&eacute;roli, cedro, fava tonka, &acirc;mbar, baunilha, vetiver, alm&iacute;scar branco e resina de elemi.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Alure Sport Chanel&nbsp;</p>', 'products/NDNmvBYtTqz6slAsAdqFtLgep9xrlJLT9yRc5DTv.jpeg', 14, '120.00', 1, '2018-05-09 16:55:03', '2018-05-09 21:49:50'),
+(18, '35', 'I9Vip35 - Aerossol Fragance', 'i9vip35-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Alde&iacute;dos, laranja, tangerina, notas aqu&aacute;ticas, pimenta, n&eacute;roli, cedro, fava tonka, &acirc;mbar, baunilha, vetiver, alm&iacute;scar branco e resina de elemi.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Alure Sport Chanel&nbsp;</p>', 'products/NDNmvBYtTqz6slAsAdqFtLgep9xrlJLT9yRc5DTv.jpeg', 12, '120.00', 1, '2018-05-09 16:55:03', '2018-05-17 23:33:46'),
 (19, '37', 'I9Vip37 - Aerossol Fragance', 'i9vip37-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Pimenta, bergamota da cal&aacute;bria, ger&acirc;nio, lavanda, pimenta de Szechuan, elemi, pimenta rosa, vetiver, patchouli, cedro, l&aacute;dano e ambroxan.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Sauvage Dior&nbsp;</p>', 'products/q4e59FtoUErCZ2cubLzzllsyY6HDAz1czQtZN5Rb.jpeg', 14, '120.00', 1, '2018-05-09 17:01:13', '2018-05-09 21:50:24'),
 (20, '39', 'I9Vip-39 - Aerossol Fragance', 'i9vip-39-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Cardamomo, Bergamota, Cedro da Virg&iacute;nia, Lavanda, Vetiver e Alcar&aacute;via.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>La Nuit de L&#39;Homme&nbsp;</p>', 'products/BIRyjcAiQR7HsNIvdiz6cBCnoR7epmQiQ87OfjUA.png', 14, '120.00', 1, '2018-05-09 18:12:46', '2018-05-09 21:52:39'),
 (21, '02', 'I9Vip-02 - Aerossol Fragance', 'i9vip-02-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Kiwi, lichia, marmelo, chocolate branco, jasmim, orqu&iacute;dea, alm&iacute;scar e l&iacute;rio.</p>\r\n\r\n<p><strong>Inspirado na fragancia:&nbsp;</strong>Fantasy Britney</p>', 'products/Xl2j1ETdow8Yu8Q0D5fz7zYnW2XCGrGr4U82kJ9N.jpeg', 14, '120.00', 1, '2018-05-09 18:35:59', '2018-05-09 21:53:06'),
@@ -851,7 +865,7 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (40, '42', 'I9Vip-42 - Aerossol Fragance', 'i9vip-42-aerossol-fragance', '<p><strong>Notas olfativas:&nbsp;</strong>Am&ecirc;ndoa, caf&eacute;, jasmin sabac, tuberosa, fava tonka e cacau</p>\r\n\r\n<p><strong>Inspirado na fragancia: </strong>Good Girl Carolina Herrera</p>', 'products/Cd8ntEQMQ5E4laV7jxRf8uAYWQLM6boGRFOJyWMh.png', 14, '120.00', 1, '2018-05-09 23:24:15', '2018-05-09 23:24:15'),
 (41, '01', 'Base Matte Liquida', 'base-matte-liquida', '<p><strong>NOVA BASE &ndash; O segredo para uma pele perfeita!</strong></p>\r\n\r\n<ul>\r\n	<li>Toque seco;</li>\r\n	<li>Alta cobertura;</li>\r\n	<li>Acabamento matte natural;</li>\r\n	<li>Livre de &oacute;leo;</li>\r\n	<li>F&oacute;rmula hidratante.</li>\r\n	<li>6 tonalidades.</li>\r\n</ul>', 'products/vJUYxeWh6QTxu1vtsrCrcYVlMGlELzrEPiNkYR19.png', 14, '75.00', 1, '2018-05-10 15:07:29', '2018-05-10 15:07:29'),
 (42, '02', 'Makeup Premier', 'makeup-premier', '<p><strong>O segredo da pele perfeita</strong></p>\r\n\r\n<ul>\r\n	<li>Toque seco;</li>\r\n	<li>Minimiza a apar&ecirc;ncia dos poros;</li>\r\n	<li>Disfar&ccedil;a imperfei&ccedil;&otilde;es;</li>\r\n	<li>Melhora a fixa&ccedil;&atilde;o da maquiagem.</li>\r\n</ul>', 'products/xNidXye4TQjR2fGrnS9vsuibL15Po0bbT9TBp1n1.png', 14, '84.00', 1, '2018-05-10 15:12:17', '2018-05-10 15:12:17'),
-(43, '03', 'Battom Efeito Matte', 'battom-efeito-matte', '<p>Os batons com efeito matte da i9Life cont&eacute;m col&aacute;geno, vitamina E e aloe vera dando o efeito desejado sem ressecar os l&aacute;bios.</p>\r\n\r\n<ul>\r\n	<li>Toque Aveludado</li>\r\n	<li>Alta Cobertura</li>\r\n	<li>A&ccedil;&atilde;o Antioxidante</li>\r\n</ul>\r\n\r\n<p><strong>Tons de cores:&nbsp;</strong>Pink Candy, Chilli, Trendy Nude, Blueberry, Blackberry, Mocha Nede, Red Berry, Summer Brown, Terracota</p>', 'products/n8qJz1aBLi3rvSsyMIER5CUEdmoYApNE9KfQKlYw.png', 14, '49.00', 1, '2018-05-10 15:21:22', '2018-05-10 15:21:22'),
+(43, '03', 'Battom Efeito Matte', 'battom-efeito-matte', '<p>Os batons com efeito matte da i9Life cont&eacute;m col&aacute;geno, vitamina E e aloe vera dando o efeito desejado sem ressecar os l&aacute;bios.</p>\r\n\r\n<ul>\r\n	<li>Toque Aveludado</li>\r\n	<li>Alta Cobertura</li>\r\n	<li>A&ccedil;&atilde;o Antioxidante</li>\r\n</ul>\r\n\r\n<p><strong>Tons de cores:&nbsp;</strong>Pink Candy, Chilli, Trendy Nude, Blueberry, Blackberry, Mocha Nede, Red Berry, Summer Brown, Terracota</p>', 'products/n8qJz1aBLi3rvSsyMIER5CUEdmoYApNE9KfQKlYw.png', 13, '49.00', 1, '2018-05-10 15:21:22', '2018-05-17 23:11:26'),
 (44, '04', 'Battom Efeito Cremoso', 'battom-efeito-cremoso', '<p><strong>Novos batons, novas formas de ficar linda!</strong></p>\r\n\r\n<p>S&atilde;o 9 op&ccedil;&otilde;es de cores para inovar a make e o seu dia a dia.</p>\r\n\r\n<ul>\r\n	<li>Efeito cremoso;</li>\r\n	<li>Alta cobertura;</li>\r\n	<li>A&ccedil;&atilde;o antioxidante;</li>\r\n	<li>Cont&eacute;m col&aacute;geno, Aloe Vera e vitamina E.</li>\r\n</ul>\r\n\r\n<p><strong>Tons de Cores:&nbsp;</strong>Queen, Violet, Cooke, Sweet Pink, Pink Buble, Love, Sand Storm, Chic Nude, Wine.</p>', 'products/kOPJTqQAweBvnJ4Xz7hUMKu9Uz4ahwVa07mCiRg7.png', 14, '49.00', 1, '2018-05-10 15:40:06', '2018-05-10 15:40:06'),
 (45, '05', 'Battom Liquido Matte Verniz', 'battom-liquido-matte-verniz', '<p><strong>Uma cobertura perfeita para voc&ecirc; arrasar</strong></p>\r\n\r\n<ul>\r\n	<li>Brilho intenso;</li>\r\n	<li>Alta cobertura;</li>\r\n	<li>L&aacute;bios hidratados por at&eacute; 8h;</li>\r\n	<li>Textura cremosa;</li>\r\n	<li>N&atilde;o escorre;</li>\r\n	<li>Acabamento luxuoso.</li>\r\n</ul>\r\n\r\n<p><strong>Tons de Cores: </strong>Flor de Liz, Ma&ccedil;&atilde; do Amor, Nude Glamour</p>', 'products/rQK6UTf4atHdiLsdgjBxbQsML8Gv4E0in3VVeVdS.jpeg', 14, '45.00', 1, '2018-05-10 15:47:17', '2018-05-10 15:47:17'),
 (46, '06', 'Battom Efeito Matte Metalizado', 'battom-efeito-matte-metalizado', '<p><strong>EFEITO METALIZADO &ndash; Uma cobertura perfeita e cores incr&iacute;veis!</strong></p>\r\n\r\n<p>✓ N&atilde;o mancha;<br />\r\n✓ Alta cobertura;<br />\r\n✓ N&atilde;o transfere;<br />\r\n✓ Ultra fixa&ccedil;&atilde;o;<br />\r\n✓ F&aacute;cil de aplicar;<br />\r\n✓ N&atilde;o escorre;<br />\r\n✓ Acabamento luxuoso;<br />\r\n✓ N&atilde;o cont&eacute;m chumbo na composi&ccedil;&atilde;o.</p>\r\n\r\n<p><strong>Tons de Cores:</strong>&nbsp;Pink, Roxo, Rubystar</p>', 'products/s41PQX2AlelixeTeotP20TalSluVzRqXXfr1RrA1.jpeg', 14, '45.00', 1, '2018-05-10 15:56:44', '2018-05-10 15:56:44'),
@@ -878,7 +892,7 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (88, '06', 'Perfume Fabulous', 'perfume-fabulous', '<p>O mist&eacute;rio de ser fabulosa est&aacute; na ess&ecirc;ncia da mulher moderna. Independente e segura, sempre est&aacute; pronta para qualquer desafio. A fragr&acirc;ncia traduz poder e sensualidade em um bouquet Floral Especiado extremamente feminino, sua sa&iacute;da fica evidenciada pelas notas de bergamota, cardamomo e canela. As notas de cora&ccedil;&atilde;o trazem a delicadeza do jasmin, a do&ccedil;ura da pimenta rosa e o amadeirado do cedro. A fragr&acirc;ncia finaliza em um fundo de s&acirc;ndalo, chocolate e White musk.&nbsp;<strong>Fabulous &ndash; Desvende o&nbsp;</strong></p>\r\n\r\n<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Bergamota, cardamomo, canela, jasmin, pimenta, rosa, cedro, s&acirc;ndalo, chocolate e white musk.</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/mhWX1aEnp58khQXSWXbngxP4b5uPlx96K5EiltoU.jpeg', 14, '160.00', 1, '2018-05-10 23:47:10', '2018-05-10 23:47:10'),
 (86, '04', 'Perfume Imprint Black', 'perfume-imprint-black', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/1AgF8SIihusAshfEJYzhaixZsCzj6to31yYrQyGH.jpeg', 14, '160.00', 1, '2018-05-10 23:29:14', '2018-05-10 23:47:42'),
 (83, '01', 'Perfume Mode-On', 'perfume-mode-on', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Birch leaves, mandarina, bergamota, notas aquosas, alecrim, pimenta do reino, amberwood, baunilha&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/kdFq7CPyjY7IkwZBlh6VxeV8l0Rmfz8gRUKKkKTn.jpeg', 14, '160.00', 1, '2018-05-10 23:26:25', '2018-05-10 23:50:00'),
-(84, '02', 'Perfume Imprint', 'perfume-imprint', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/srdESMBVq76XxcUCInjNWEz3cTCke2QJxMSnu9iD.jpeg', 13, '160.00', 1, '2018-05-10 23:27:34', '2018-05-15 23:09:10'),
+(84, '02', 'Perfume Imprint', 'perfume-imprint', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Lim&atilde;o, gengibre, abacaxi, lavanda, cardamomo, musgo, s&acirc;ndalo e orcanox,&nbsp;Amadeirada Frutal</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/srdESMBVq76XxcUCInjNWEz3cTCke2QJxMSnu9iD.jpeg', 12, '160.00', 1, '2018-05-10 23:27:34', '2018-05-17 22:51:29'),
 (87, '05', 'Perfume Sunny', 'perfume-sunny', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Abacaxi, mel&atilde;o, ma&ccedil;&atilde;, flor de laranjeira, cedro, marine, amberwood, baunilha e powdery</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/Vk7Cnq2NUc3YsoyQRNg1yGf95jAHzeJVHSMudQGX.jpeg', 14, '160.00', 1, '2018-05-10 23:45:25', '2018-05-10 23:45:58'),
 (85, '03', 'Perfume Fragnace Blue', 'perfume-fragnace-blue', '<ul>\r\n	<li><strong>Notas olfativas</strong><br />\r\n	Tangerina, Canela, Tabaco, Mirra, Patchouli e Fava Tonka, Fragr&acirc;ncia Oriental Amadeirada</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', 'products/28cYS0DbP6qaeWJct8HE2u8ShbKxsnj9a0uw1h68.jpeg', 14, '160.00', 1, '2018-05-10 23:28:26', '2018-05-10 23:43:01'),
 (82, '08', 'Kit Intense Liss Dux Pro', 'kit-intense-liss-dux-pro', '<p>- Shampoo Antirres&iacute;duos Dux Pro Intense Liss 200ml: Shampoo de limpeza profunda para os cabelos. Abre a cut&iacute;cula dos fios, elimina res&iacute;duos de cremes, polui&ccedil;&atilde;o, oleosidade, finalizadores e prepara o cabelo para receber o tratamento.<br />\r\n- Shampoo Liso Absoluto Dux Pro Intense Liss 200ml:&nbsp;Alinha gradualmente os fios de forma natural e sem danos. Elimina o frizz, confere maleabilidade, hidrata&ccedil;&atilde;o e brilho intenso.<br />\r\n-&nbsp;Creme Selante Termoativado Dux Pro Intense Liss 120ml:&nbsp;O Creme Selante Termoativado garante prote&ccedil;&atilde;o aos fios. Seus ativos formam um filme que distribui uniformemente o calor do secador e chapa nos fios. Al&eacute;m disso, ajuda a proporcionar brilho, maciez, redu&ccedil;&atilde;o do frizz e pontas duplas dos cabelos.</p>', 'products/xiQQmMic4IRYYEbIdDib9BLsMJRvysogXwjL4qIl.jpeg', 14, '198.00', 1, '2018-05-10 22:28:46', '2018-05-10 23:50:53'),
@@ -912,15 +926,15 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (117, '08', 'Solen Defense - 50 FPS', 'solen-defense-50-fps', '<p><strong>Ver&atilde;o sem preocupa&ccedil;&atilde;o com Solen Defense</strong></p>\r\n\r\n<ul>\r\n	<li>Protege contra a a&ccedil;&atilde;o dos raios UVA 17 e UVB;</li>\r\n	<li>Livre de &oacute;leo;</li>\r\n	<li>Cont&eacute;m vitamina E;</li>\r\n	<li>Sem PABA.</li>\r\n</ul>\r\n\r\n<p><strong>Peso: 120G</strong></p>', 'products/HMOn7aVfIvnUtIHSn9ycZfVkKgFQKHbEyeOEnQuH.png', 14, '79.90', 1, '2018-05-16 18:43:35', '2018-05-16 18:43:35'),
 (118, '09', 'Lipo Reductor', 'lipo-reductor', '<p>O Lipo Reductor da i9Life &eacute; um mousse corporal redutor de medidas f&aacute;cil de aplicar.&nbsp;</p>\r\n\r\n<p>Resultados comprovados em at&eacute; 4 semanas; Com &oacute;leo de caf&eacute; verde; Anticelulite; Efeito crioter&aacute;pico; Reduz aspecto casca de laranja; Potencializa firmeza da pele; Deixa a pele mais hidratada; Silhueta mais fina.</p>\r\n\r\n<p>&nbsp;</p>', 'products/UfLy8U7FHBroxYPu0PjYQMPizGGwEpz0gBj00x0c.png', 14, '179.90', 1, '2018-05-16 18:52:09', '2018-05-16 19:03:59'),
 (119, '10', 'Gel Redutor de Medidas', 'gel-redutor-de-medidas', '<p>O Gel Reductor foi especialmente desenvolvido para ajudar na queima da gordura localizada e modelagem do corpo, produzindo a agrad&aacute;vel sensa&ccedil;&atilde;o de frescor e calor ao mesmo tempo, devido a sua formula&ccedil;&atilde;o com c&acirc;nfora e mentol.</p>', 'products/5z650MnvfxeoU6XaRlEPRvZqECJDcHZJYM5a7IPO.jpeg', 14, '58.00', 1, '2018-05-16 18:57:18', '2018-05-16 19:02:35'),
-(122, '01', 'Suplemento - Omega 3', 'suplemento-omega-3', '<p>Suplemento em c&aacute;psulas gelatinosas contendo &oacute;leo de peixe, rico em &ocirc;mega 3<br />\r\nEstimula o aumento do colesterol bom (HDL);<br />\r\nAjuda na redu&ccedil;&atilde;o do colesterol ruim (LDL);<br />\r\nAuxilia a reduzir o triglic&eacute;rides;<br />\r\nMelhora o sistema imunol&oacute;gico;<br />\r\nAumenta a fluidez do sangue;<br />\r\nAjudar a evitar o decl&iacute;nio mental;<br />\r\nC&aacute;psulas gelatinosas: ingest&atilde;o r&aacute;pida e f&aacute;cil de engolir;<br />\r\n<strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/CdIpX1ENK0URCeFmhFx3yISocvORQwq9CcphCP1L.png', 14, '110.00', 1, '2018-05-16 21:38:02', '2018-05-16 21:44:01'),
+(122, '01', 'Suplemento - Omega 3', 'suplemento-omega-3', '<p>Suplemento em c&aacute;psulas gelatinosas contendo &oacute;leo de peixe, rico em &ocirc;mega 3<br />\r\nEstimula o aumento do colesterol bom (HDL);<br />\r\nAjuda na redu&ccedil;&atilde;o do colesterol ruim (LDL);<br />\r\nAuxilia a reduzir o triglic&eacute;rides;<br />\r\nMelhora o sistema imunol&oacute;gico;<br />\r\nAumenta a fluidez do sangue;<br />\r\nAjudar a evitar o decl&iacute;nio mental;<br />\r\nC&aacute;psulas gelatinosas: ingest&atilde;o r&aacute;pida e f&aacute;cil de engolir;<br />\r\n<strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/CdIpX1ENK0URCeFmhFx3yISocvORQwq9CcphCP1L.png', 12, '110.00', 1, '2018-05-16 21:38:02', '2018-05-17 23:11:26'),
 (120, '11', 'Mascara Black', 'mascara-black', '<p><strong>Argila preta para uma pele renovada e purificada.</strong>&nbsp;</p>\r\n\r\n<p>Limpa os poros; Remove os cravos;</p>\r\n\r\n<p>&nbsp;</p>', 'products/Murm2oK1tpiJTEjjR9lVyeD5qG6nW7HMD6p9oG5q.png', 14, '39.90', 1, '2018-05-16 19:00:09', '2018-05-16 19:02:52'),
 (121, '12', 'Mascara Black - Caixa 4 Saches', 'mascara-black-caixa-4-saches', '<p><strong>Argila preta para uma pele renovada e purificada.</strong></p>\r\n\r\n<p>Limpa os poros; Remove os cravos;</p>\r\n\r\n<p>BLACK MASK M&Aacute;SCARA NEGRA - CAIXA COM 4 SACH&Ecirc;S</p>', 'products/DkLO5GcIu6KzjoEdcwN69i8oqzrHxZpIlcHvbRgM.jpeg', 14, '56.00', 1, '2018-05-16 19:01:33', '2018-05-16 19:03:23'),
 (125, '04', 'Suplemento - Fiber Caps', 'suplemento-fiber-caps', '<p><strong>Suplemento baseado em Chitosan, Psyllium e Vitamina C</strong></p>\r\n\r\n<p>&bull; Ajuda a melhorar o tr&aacute;fego intestinal;<br />\r\n&bull; Proporciona saciedade;<br />\r\n&bull; Ajuda a evitar a absor&ccedil;&atilde;o de gorduras e controla os n&iacute;veis de colesterol;<br />\r\n&bull; Ajuda a controlar a glicemia, colesterol e press&atilde;o sangu&iacute;nea;<br />\r\n&bull; Ajuda a regular o metabolismo;<br />\r\n&bull; Com propriedades antioxidantes.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas</p>', 'products/H6a81bmEdGDYZxMonZQIpd7652ZHSg8OnFk5TyTh.png', 14, '89.00', 1, '2018-05-16 21:46:46', '2018-05-16 21:51:47'),
 (123, '02', 'Suplemento - Goji Berry', 'suplemento-goji-berry', '<p><strong>Suplemento de extrato de Goji Berry</strong></p>\r\n\r\n<p>&bull; Ajuda a acelerar o metabolismo, auxiliando no emagrecimento;<br />\r\n&bull; Ajuda a reduzir a flacidez e combater a celulite;<br />\r\n&bull; Aumenta as defesas imunol&oacute;gicas do corpo;<br />\r\n&bull; A&ccedil;&atilde;o antioxidante &rarr; Combate o envelhecimento prematuro;<br />\r\n&bull; Auxilia na redu&ccedil;&atilde;o dos riscos de doen&ccedil;as cardiovasculares;<br />\r\n&bull; Regula os n&iacute;veis de colesterol e glicemia;<br />\r\n&bull; Melhora a fun&ccedil;&atilde;o gastrointestinal;<br />\r\n&bull; Favorece o desempenho neurol&oacute;gico e psicol&oacute;gico;<br />\r\n&bull; Contribui para uma boa sa&uacute;de dos olhos.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/YidLrGc8MQ9wpvnKTVqPkPHtnRFaeNfJaqkdMDtK.png', 14, '89.00', 1, '2018-05-16 21:42:02', '2018-05-16 21:42:02'),
-(124, '03', 'Suplemento - Detox', 'suplemento-detox', '<p><strong>Suplemento de desintoxica&ccedil;&atilde;o vitam&iacute;nica e mineral</strong></p>\r\n\r\n<p>&bull; Ajudar na elimina&ccedil;&atilde;o de toxinas do corpo;<br />\r\n&bull; Poderosa a&ccedil;&atilde;o antioxidante &rarr; evita o envelhecimento prematuro;<br />\r\n&bull; Ajuda no processo de desbaste;<br />\r\n&bull; Ajuda a fortalecer o sistema imunol&oacute;gico;<br />\r\n&bull; Ajuda a reduzir a fadiga.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/nC6DMULHQqo2gnpI3C71vUbzhMEgpjCVmkCLUUAn.png', 14, '89.00', 1, '2018-05-16 21:43:14', '2018-05-16 21:43:14'),
+(124, '03', 'Suplemento - Detox', 'suplemento-detox', '<p><strong>Suplemento de desintoxica&ccedil;&atilde;o vitam&iacute;nica e mineral</strong></p>\r\n\r\n<p>&bull; Ajudar na elimina&ccedil;&atilde;o de toxinas do corpo;<br />\r\n&bull; Poderosa a&ccedil;&atilde;o antioxidante &rarr; evita o envelhecimento prematuro;<br />\r\n&bull; Ajuda no processo de desbaste;<br />\r\n&bull; Ajuda a fortalecer o sistema imunol&oacute;gico;<br />\r\n&bull; Ajuda a reduzir a fadiga.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/nC6DMULHQqo2gnpI3C71vUbzhMEgpjCVmkCLUUAn.png', 9, '89.00', 1, '2018-05-16 21:43:14', '2018-05-17 23:33:46'),
 (126, '05', 'Suplemento - Skin Flex', 'suplemento-skin-flex', '<p><strong>Para uma pele saud&aacute;vel e bonita</strong></p>\r\n\r\n<p>&bull; Fortalece cabelos e unhas;<br />\r\n&bull; Contribui para a sa&uacute;de dos ossos e articula&ccedil;&otilde;es;<br />\r\n&bull; Auxilia no aumento da massa magra;<br />\r\n&bull; Proporciona firmeza e elasticidade &agrave; pele, auxiliando a prevenir rugas;<br />\r\n&bull; Previne flacidez e celulite.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/QMT04Mg8mVMOPR7OaK7REF74sUQuc5RzMbMXUo4l.png', 14, '89.00', 1, '2018-05-16 22:09:05', '2018-05-16 22:09:05'),
 (127, '06', 'Suplemento - Polivitaminico', 'suplemento-polivitaminico', '<p><strong>Suplemento&nbsp;polivitam&iacute;nico e polimineral</strong></p>\r\n\r\n<p>Cont&eacute;m todas as vitaminas e minerais essenciais ao organismo em quantidades di&aacute;rias ideais para o bom funcionamento&nbsp;do organismo, do sistema imunol&oacute;gico e para o crescimento e desenvolvimento corporal.&nbsp;Pode ser usado para complementar a alimenta&ccedil;&atilde;o de crian&ccedil;as (se recomendado pelo m&eacute;dico), jovens, adultos e idosos.</p>\r\n\r\n<ul>\r\n	<li>Energia e resist&ecirc;ncia;</li>\r\n	<li>Sa&uacute;de e longevidade;</li>\r\n	<li>Sa&uacute;de da mente;</li>\r\n	<li>N&atilde;o engorda.</li>\r\n</ul>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/RMv1oQFAVCRyyNHei5xVQBvrAc9Nz2SG2bAKb9lZ.png', 14, '89.00', 1, '2018-05-16 22:11:22', '2018-05-16 22:11:22'),
-(128, '07', 'Suplemento - Osteo Defense', 'suplemento-osteo-defense', '<p>Suplemento em c&aacute;psulas para reposi&ccedil;&atilde;o de c&aacute;lcio 4 em 1: cont&eacute;m&nbsp;c&aacute;lcio, magn&eacute;sio, vitamina D3 e vitamina K2.<br />\r\nAjuda a melhorar a sa&uacute;de &oacute;ssea, card&iacute;aca, dental, vascular e sangu&iacute;nea.&nbsp;Auxilia na preven&ccedil;&atilde;o de doen&ccedil;as como osteoporose, osteopenia, trombose, fibromialgia, Parkinson, Alzheimer e outras.<br />\r\nO consumo do c&aacute;lcio &eacute; essencial em todas as faixas et&aacute;rias e sua defici&ecirc;ncia &eacute; muito comum. Apesar de vir de variadas fontes alimentares como leite e derivados, carnes, verduras e legumes, muitas pessoas n&atilde;o conseguem ingerir a quantidade di&aacute;ria necess&aacute;ria.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/Nld1oVuOAWwy9rh9kMYeDg4rb8ritARHmdmj4qis.png', 14, '118.00', 1, '2018-05-16 22:12:23', '2018-05-16 22:18:52'),
+(128, '07', 'Suplemento - Osteo Defense', 'suplemento-osteo-defense', '<p>Suplemento em c&aacute;psulas para reposi&ccedil;&atilde;o de c&aacute;lcio 4 em 1: cont&eacute;m&nbsp;c&aacute;lcio, magn&eacute;sio, vitamina D3 e vitamina K2.<br />\r\nAjuda a melhorar a sa&uacute;de &oacute;ssea, card&iacute;aca, dental, vascular e sangu&iacute;nea.&nbsp;Auxilia na preven&ccedil;&atilde;o de doen&ccedil;as como osteoporose, osteopenia, trombose, fibromialgia, Parkinson, Alzheimer e outras.<br />\r\nO consumo do c&aacute;lcio &eacute; essencial em todas as faixas et&aacute;rias e sua defici&ecirc;ncia &eacute; muito comum. Apesar de vir de variadas fontes alimentares como leite e derivados, carnes, verduras e legumes, muitas pessoas n&atilde;o conseguem ingerir a quantidade di&aacute;ria necess&aacute;ria.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;90 c&aacute;psulas.</p>', 'products/Nld1oVuOAWwy9rh9kMYeDg4rb8ritARHmdmj4qis.png', 10, '118.00', 1, '2018-05-16 22:12:23', '2018-05-17 20:43:45'),
 (129, '08', 'Chá -Detox', 'cha-detox', '<p>P&oacute; para preparar bebidas arom&aacute;ticas com ch&aacute; verde e ch&aacute; branco<br />\r\nHidratante, antioxidante, desintoxicante e hepatoprotetor;<br />\r\nReduz a reten&ccedil;&atilde;o de l&iacute;quidos;<br />\r\nElimina subst&acirc;ncias inflamat&oacute;rias;<br />\r\nAjuda a acelerar o metabolismo;<br />\r\nMelhora a sa&uacute;de celular.</p>', 'products/t6tUi3YxuCSYIq631jQngdzwVC1DeuBdh02plCrH.jpeg', 14, '89.00', 1, '2018-05-16 22:15:49', '2018-05-16 22:17:52'),
 (130, '09', 'Chá - Energi', 'cha-energi', '<p>P&oacute; para preparo de bebidas de ervas Arom&aacute;ticas e Guaran&aacute; Natural<br />\r\nEfeito ergog&ecirc;nico &rarr; aumenta a capacidade para o trabalho corporal e mental, especialmente pela elimina&ccedil;&atilde;o dos sintomas de fadiga, visando melhora da performance;<br />\r\nRefrescante e revigorante;<br />\r\nCont&eacute;m Guaran&aacute; &rarr; fonte natural de cafe&iacute;na;<br />\r\nSem gl&uacute;ten.</p>', 'products/ew1KJtzlIqsY2gByGw1UT7Qdn8emFmY51p8sWuhP.png', 14, '89.00', 1, '2018-05-16 22:17:17', '2018-05-16 22:18:23'),
 (131, '09', 'Energy Drink - Pack C/ 6 Unidates', 'energy-drink-pack-c-6-unidates', '<p>Bebida energ&eacute;tica de baixa caloria &agrave; base de taurina e cafe&iacute;na pronta para consumo.<br />\r\nExtrato de A&ccedil;a&iacute; + Extrato de Guaran&aacute;<br />\r\nZero a&ccedil;&uacute;car;<br />\r\nZero calorias;<br />\r\nZero carboidratos;<br />\r\nZero gorduras;<br />\r\nBaixo teor de s&oacute;dio.<br />\r\n<strong>PACK C/ 6 UNIDADES</strong></p>', 'products/Y5uTDM5qsH3XxUGUST3geGyeEc8PsxhsVNOctv57.png', 14, '90.00', 1, '2018-05-16 22:24:26', '2018-05-16 22:37:26'),
@@ -936,7 +950,9 @@ INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `cover`, `qu
 (141, '20', 'Shake -  Chocolate', 'shake-chocolate', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/YrBma64ohRljt633svoRpKvOMK9ko5qIjFFiMOOs.jpeg', 14, '130.00', 1, '2018-05-16 22:57:45', '2018-05-16 22:59:31'),
 (142, '21', 'Shake - Milho Verde', 'shake-milho-verde', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/UrA8mN0mnrRBFKMhpeZKnWQ54R45Cwh8i1qlpPHL.jpeg', 14, '130.00', 1, '2018-05-16 22:58:27', '2018-05-16 22:59:24'),
 (143, '22', 'Shake - Paçoca+', 'shake-pacoca', '<p><strong>Bebida nutritiva preparada para controle de peso</strong></p>\r\n\r\n<p>Suplemento alimentar com alto teor de prote&iacute;na e baixo conte&uacute;do de s&oacute;dio, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Saborosa e com nutrientes equilibrados, esta substitui&ccedil;&atilde;o parcial da refei&ccedil;&atilde;o &eacute; uma aliada daqueles que querem perder, manter ou ganhar peso de maneira saud&aacute;vel.</p>\r\n\r\n<p><strong>Cont&eacute;m:</strong>&nbsp;750 gramas (30 por&ccedil;&otilde;es)</p>', 'products/Zcb3AQ7Su4oN6Th3hxE2xmWq4rVt8L27nf8mWSmS.jpeg', 14, '130.00', 1, '2018-05-16 22:59:14', '2018-05-16 22:59:14'),
-(144, '23', 'Proteina isolada da soja e soro do Leite', 'proteina-isolada-da-soja-e-soro-do-leite', '<p><strong>Prote&iacute;na de soja e de soro de leite</strong><br />\r\npara a prepara&ccedil;&atilde;o de bebidas para controle de peso, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Ele fornece amino&aacute;cidos essenciais que o corpo n&atilde;o produz e que s&oacute; pode ser absorvido atrav&eacute;s de uma nutri&ccedil;&atilde;o adequada.<br />\r\n&Eacute; um alimento rico em prote&iacute;nas isoladas de soja e soro de leite que ajudam a controlar a fome, aumentam a sensa&ccedil;&atilde;o de plenitude e preservam a massa muscular.</p>', 'products/1adPqgeB8lzofE1mf35vUNXMmkvLuGGwMSgkVF6i.png', 14, '199.90', 1, '2018-05-16 23:06:24', '2018-05-16 23:06:24');
+(144, '23', 'Proteina isolada da soja e soro do Leite', 'proteina-isolada-da-soja-e-soro-do-leite', '<p><strong>Prote&iacute;na de soja e de soro de leite</strong><br />\r\npara a prepara&ccedil;&atilde;o de bebidas para controle de peso, especialmente formulado para melhorar a nutri&ccedil;&atilde;o. Ele fornece amino&aacute;cidos essenciais que o corpo n&atilde;o produz e que s&oacute; pode ser absorvido atrav&eacute;s de uma nutri&ccedil;&atilde;o adequada.<br />\r\n&Eacute; um alimento rico em prote&iacute;nas isoladas de soja e soro de leite que ajudam a controlar a fome, aumentam a sensa&ccedil;&atilde;o de plenitude e preservam a massa muscular.</p>', 'products/1adPqgeB8lzofE1mf35vUNXMmkvLuGGwMSgkVF6i.png', 14, '199.90', 1, '2018-05-16 23:06:24', '2018-05-16 23:06:24'),
+(145, '17', 'Demaquilante em Creme', 'demaquilante-em-creme', '<p>&nbsp;Desenvolvido para remover todo tipo de maquiagem, inclusive aquelas &agrave; prova d&acute;&aacute;gua. Limpa a pele de maneira suave e eficaz, eliminando as impurezas e deixando-a sedosa e hidratada.</p>\r\n\r\n<p><strong>Peso: 200ML</strong></p>', 'products/2DcNpb4qmNbbRkzuUFChQ5OM6KxIzc5fUVLc4wHp.jpeg', 14, '58.00', 1, '2018-05-17 16:05:59', '2018-05-17 16:08:03'),
+(146, '18', 'Gold Mask - Máscara facial de Ouro', 'gold-mask-mascara-facial-de-ouro', '<p><strong>Indicada para nutrir e trazer vitalidade para a pele, a M&aacute;scara Facial Ouro i9 Life deixar&aacute; seu rosto hidratado e bonito. Sua a&ccedil;&atilde;o previne e reduz a perda de &aacute;gua e da luminosidade a pele. Al&eacute;m de eliminar as c&eacute;lulas mortas e reduzir a oleosidade.</strong></p>\r\n\r\n<p><strong>Peso: 20ML</strong></p>', 'products/RC5PBCy1SpIALQDhqIrCAAfsf6UPoYWLxPlhIRUe.jpeg', 14, '39.90', 1, '2018-05-17 16:07:42', '2018-05-17 16:07:42');
 
 -- --------------------------------------------------------
 
@@ -969,7 +985,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `src` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_images_product_id_index` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `product_images`
@@ -1119,7 +1135,9 @@ INSERT INTO `product_images` (`id`, `product_id`, `src`) VALUES
 (157, 141, 'products/tE9Po1Ia8bX9FFEO6qqR5Mb3hZeEtL47rmRotlrn.jpeg'),
 (158, 142, 'products/sQ0CpTmjGMa4eWmjnGp3IisaEEAUipjsad3EWQbS.jpeg'),
 (159, 143, 'products/kqjym1McKHv7xONOXmVJLL7WH63EMTsZx12Ouz0U.jpeg'),
-(160, 144, 'products/nzH9MLaDKQXdHXRa9DsKhsZ83lC0REGEUpW76cKl.png');
+(160, 144, 'products/nzH9MLaDKQXdHXRa9DsKhsZ83lC0REGEUpW76cKl.png'),
+(161, 145, 'products/yzZtCnCTJRadQRvUqBpMuuFXohXPBLcVeocF2z6s.jpeg'),
+(162, 146, 'products/9Ic0YtvC1pw8pLmbd9KoaRuTjurOrYQv4hoCa2vW.jpeg');
 
 -- --------------------------------------------------------
 

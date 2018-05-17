@@ -91,7 +91,7 @@
                                         <thead>
                                         <th>Nome</th>
                                         <th>Valor</th>
-                                        <th>Retirar com o Vendedor</th>
+                                        <th>Tipo de Entrega</th>
                                         </thead>
                                         <tbody>
                                         @foreach($couriers as $courier)
@@ -122,9 +122,9 @@
                                 @if(isset($payments) && !empty($payments))
                                     <table class="table table-striped">
                                         <thead>
-                                        <th class="col-md-4">Name</th>
-                                        <th class="col-md-4">Description</th>
-                                        <th class="col-md-4 text-right">Choose payment</th>
+                                        <th class="col-md-4">Nome</th>
+                                        <th class="col-md-4">Descrição</th>
+                                        <th class="col-md-4 text-right">Tipo de Pagamento</th>
                                         </thead>
                                         <tbody>
                                         @foreach($payments as $payment)

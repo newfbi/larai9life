@@ -164,12 +164,12 @@ class CheckoutController extends Controller
     {
             $customer = auth()->user();
             $stripeRepo = new StripeRepository($customer);
-
-            return $stripeRepo->execute(
+            $stripeRepo->execute(
                 $request->all(),
                 Cart::total(),
                 Cart::tax()
             );
+            return redirect()->route('checkout.success');
     }
 
     /**

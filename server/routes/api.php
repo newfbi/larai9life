@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//rota de retorno pagseguro
+$this->post('/dash/pagseguro/notification', 'PagueSegNotifcController@Postnotification')->name('pagseguro.notification');

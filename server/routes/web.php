@@ -64,7 +64,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'as' => 'admin.' ]
  */
 Auth::routes();
 $this->group(['middleware' => 'auth'], function() {
+    //rotas de entrega
     Route::resource('orders', 'Front\Orders\FrontOrderController');
+    $this->post('orders/delete/{id}', 'Front\Orders\FrontOrderController@DeletOrder')->name('deletOrder');
+
+    //rotas pagseguro
+    $this->get('/checkout/pagseguro','front\Pagseg\PagueSeguroController@Index')->name('pagseguro.redirect');
+    $this->post('/checkout/pagseguro/comprar', 'front\Pagseg\PagSegController@PostComprar')->name('pagseguro.comprar');
+    $this->get('/checkout/pagseguro/pendente/{id}', 'front\Pagseg\PagueSeguroController@GetPague')->name('pagseguro');
+    $this->get('/checkout/pagseguro/cancelar/{id}', 'front\Pagseg\PagueSeguroController@Cancelar')->name('pagseguro.cancelar');
+    $this->get('/checkout/pagseguro/confirme/{id}', 'front\Pagseg\PagueSeguroController@ConfirmPg')->name('pagseguro.confirme');
+    $this->post('/checkout/pagseguro/consulta', 'front\Pagseg\PagueSeguroController@Retorno')->name('pagseguro.consulta');
 });
 Route::namespace('Auth')->group(function () {
     Route::get('cart/login', 'CartLoginController@showLoginForm')->name('cart.login');
