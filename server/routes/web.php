@@ -14,6 +14,23 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// rota para pegar o vendedor
+$this->get('ref/{user}', function($id)
+{
+    $results = DB::table('customers')->where('adm_id', $id)->first();
+    if($results) {
+        $adm = $results->adm_id;
+        $user_id = $results->id;
+        Session::put('adm_id', $adm);
+        Session::put('id', $user_id);
+        return Redirect::to('/register');
+    }
+    else{
+        Session::forget('adm_id');
+        return Redirect::to('/');
+    }
+});
+
 /**
  * Admin routes 
  */
@@ -47,7 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'as' => 'admin.' ]
             });
             Route::resource('employees', 'EmployeeController');
             Route::get('employees/{id}/profile', 'EmployeeController@getProfile')->name('employee.profile');
-            Route::put('employees/{id}/profile', 'EmployeeController@updateProfile')->name('employee.profile.update');
+            Route::put('employees/{id}/profile', 'EmployeeController@updateProfile')->name('employee.profile.update');            
+            Route::post('employees/profile/edtfoto', 'EmployeeController@postAlterarFoto')->name('employee.profile.foto');
             Route::resource('addresses', 'Addresses\AddressController');
             Route::resource('countries', 'Countries\CountryController');
             Route::resource('countries.provinces', 'Provinces\ProvinceController');

@@ -9,6 +9,8 @@ use App\Shop\Customers\Requests\CreateCustomerRequest;
 use App\Shop\Customers\Requests\UpdateCustomerRequest;
 use App\Shop\Customers\Transformations\CustomerTransformable;
 use App\Http\Controllers\Controller;
+use DB;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -35,19 +37,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $list = $this->customerRepo->listCustomers('created_at', 'desc');
+        $adm = Auth::guard('admin')->user()->id;
 
-        if (request()->has('q')) {
-            $list = $this->customerRepo->searchCustomer(request()->input('q'));
-        }
-
-        $customers = $list->map(function (Customer $customer) {
-            return $this->transformCustomer($customer);
-        })->all();
+        $customers = DB::table('customers')->where('adm_id', $adm)->get();
 
 
         return view('admin.customers.list', [
-            'customers' => $this->customerRepo->paginateArrayResults($customers)
+            'customers' => $customers
         ]);
     }
 

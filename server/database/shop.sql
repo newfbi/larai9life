@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 17-Maio-2018 às 20:35
+-- Generation Time: 18-Maio-2018 às 20:08
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -508,15 +508,15 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `customers_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `customers`
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `password`, `status`, `adm_id`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$fWRlwTSBix3JnMncGKhGquK2Bp61u0RoeHgG86QJipeKCqBLGNmxO', 1, 0, NULL, 'dyCmKR5meZFGo56dEJDvZv5tjHSrHZUD3LbZxgLCCVQGhd956p7dsVzjAnfq', '2018-05-03 15:23:48', '2018-05-03 15:23:48'),
-(2, 'teste', 'teste@teste.com', '$2y$10$3JUVoa8KaRSuuxQjamWmQOooHDc1MnBaZg9iPpQzcLskOnCB11nxi', 1, 0, NULL, '84d42ydIDXzFI4PYQheUNLIWu8yuVqIa2T6uvYdiI9YSUtKPkUnROow5pMfs', '2018-05-08 21:31:42', '2018-05-08 21:31:42');
+(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$fWRlwTSBix3JnMncGKhGquK2Bp61u0RoeHgG86QJipeKCqBLGNmxO', 1, 1, NULL, 'dyCmKR5meZFGo56dEJDvZv5tjHSrHZUD3LbZxgLCCVQGhd956p7dsVzjAnfq', '2018-05-03 15:23:48', '2018-05-03 15:23:48'),
+(3, 'Patricia Santana', 'teste@teste.com', '$2y$10$3QcQhsKbFdD36fE0iwChs.SQM4YSKBbFkfjIa7dRY9X2HdJXKyqIy', 1, 1, NULL, NULL, '2018-05-18 22:55:20', '2018-05-18 22:55:20');
 
 -- --------------------------------------------------------
 
@@ -530,6 +530,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` int(11) NOT NULL DEFAULT '1',
   `status` int(11) NOT NULL DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -544,8 +545,8 @@ CREATE TABLE IF NOT EXISTS `employees` (
 -- Extraindo dados da tabela `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `email`, `password`, `admin`, `status`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$fWRlwTSBix3JnMncGKhGquK2Bp61u0RoeHgG86QJipeKCqBLGNmxO', 1, 1, NULL, 'QOAsCYPMQV', '2018-05-02 22:39:33', '2018-05-02 22:39:33');
+INSERT INTO `employees` (`id`, `name`, `email`, `password`, `foto`, `admin`, `status`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Danilo Candido', 'new_dan08@hotmail.com', '$2y$10$JFd8f5OnJ6tcxYGvJPAsE.1kwaZUGz3nCF/KsWVz1XZvg2Wi1Ztcm', '', 1, 1, NULL, 'QOAsCYPMQV', '2018-05-02 22:39:33', '2018-05-18 22:36:38');
 
 -- --------------------------------------------------------
 
@@ -702,7 +703,7 @@ CREATE TABLE IF NOT EXISTS `pagseguro` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 

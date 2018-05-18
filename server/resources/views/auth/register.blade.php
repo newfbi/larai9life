@@ -9,7 +9,18 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
+                        @if(Session::has('adm_id'))
+                            <p class="">
+                                <div class="success" style="width: 72%; margin-top: 120px;">
+                                    <div class="message-box-wrap">
+                                    Você está sendo Convidado por: <span style='color:#990000'>{{ Session::get('adm_id') }}</span>
+                                    </div>
+                                </div>
+                            </p>
+                            {{ Form::hidden('adm_id', Session::get('adm_id')) }}
+                        @else
+                            {{ Form::hidden('adm_id', '1') }}
+                        @endif
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 

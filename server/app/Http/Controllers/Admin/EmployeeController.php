@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Shop\Admins\Requests\CreateEmployeeRequest;
 use App\Shop\Admins\Requests\UpdateEmployeeRequest;
 use App\Shop\Employees\Repositories\EmployeeRepository;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Shop\Employees\Repositories\Interfaces\EmployeeRepositoryInterface;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use Validator;
+use Redirect;
+use Auth;
+use DB;
 
 class EmployeeController extends Controller
 {
@@ -147,5 +153,55 @@ class EmployeeController extends Controller
 
         $update = new EmployeeRepository($employee);
         $update->updateEmployee($request->except('_token', '_method'));
+    }
+
+    public function postAlterarFoto(){
+
+        $id_user = Auth::guard('admin')->user()->id;
+
+        $file=Input::file('foto');
+
+        $rules=array(
+            'foto'=>'required'
+        );
+
+        $validar = Validator::make(Input::All(), $rules);
+
+        if($validar->fails()){
+
+            return redirect()->route('admin.employee.profile', $id_user)
+                ->withErrors($validar);
+        }else{
+
+            $extensaoFoto = $file->getClientOriginalExtension();
+
+            $extensoesAceitas = array('jpeg','jpg','png');
+
+            if(!in_array($extensaoFoto, $extensoesAceitas)){
+
+                return Redirect::back()->with('mensagem','Arquivo selecionado não é imagem, somente jpeg, jpg e png');
+
+            }else{
+
+                $image = Image::make($file)->resize(300,200);
+
+                $nomeArquivo = md5(uniqid());
+
+                @unlink(base_path('img/'.Auth::user()->foto));
+
+                $image->save('img/'.$nomeArquivo.'.'.$extensaoFoto);
+
+                $atualizado = DB::table('employees')
+                    ->where('id', $id_user)
+                    ->update(array('foto' => $nomeArquivo.'.'.$extensaoFoto));
+
+
+                if($atualizado){
+                    return Redirect::back()->with('mensagem','Imagem Alterada com sucesso');
+                }else{
+                    echo "nao cadastrado";
+                }
+            }
+        }
     }
 }
