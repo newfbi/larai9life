@@ -38,7 +38,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ date('M d, Y h:i a', strtotime($order['created_at'])) }}</td>
+                        <td>{{ date('m-d-y', strtotime($order['created_at'])) }}</td>
                         <td><a href="{{ route('admin.customers.show', $customer->id) }}">{{ $customer->name }}</a></td>
                         <td><strong>{{ $order['payment'] }}</strong></td>
                         @if($order->order_status_id == 1)

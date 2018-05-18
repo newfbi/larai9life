@@ -38,12 +38,17 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>
+<<<<<<< HEAD
                                             {{ date('m-d-y', strtotime($order['created_at'])) }}
+=======
+                                            <a href="{{route('orders.show', $order['id'])}}">{{ date('m-d-y', strtotime($order['created_at'])) }}</a>
+>>>>>>> 187c8dbad9f00c15f3605b530b1974e5ac6a7657
                                             <!-- Button trigger modal -->
                                         </td>
                                         <td>{{ $order['courier']->name }}</td>
                                         <td><span class="label @if($order['total'] != $order['total_paid']) label-danger @else label-success @endif">{{ config('cart.currency') }} {{ $order['total'] }}</span></td>
                                         @if($order['order_status_id'] == 1)
+<<<<<<< HEAD
                                         <td><a href="{{route('orders.show', $order['id'])}}" class="btn btn-primary btn-block">{{ $order['status']->name }}</a></td>
                                         @endif
                                         @if($order['order_status_id'] == 2)
@@ -54,6 +59,18 @@
                                         @endif
                                         @if($order['order_status_id'] == 4)
                                         <td><a href="{{route('orders.show', $order['id'])}}" class="btn btn-success btn-block">{{ $order['status']->name }}</a></td>
+=======
+                                        <td><button type="button" class="btn btn-primary btn-block">{{ $order['status']->name }}</button></td>
+                                        @endif
+                                        @if($order['order_status_id'] == 2)
+                                        <td><button type="button" class="btn btn-info btn-block">{{ $order['status']->name }}</button></td>
+                                        @endif
+                                        @if($order['order_status_id'] == 3)
+                                        <td><button type="button" class="btn btn-danger btn-block">{{ $order['status']->name }}</button></td>
+                                        @endif
+                                        @if($order['order_status_id'] == 4)
+                                        <td><button type="button" class="btn btn-success btn-block">{{ $order['status']->name }}</button></td>
+>>>>>>> 187c8dbad9f00c15f3605b530b1974e5ac6a7657
                                         @endif
                                     </tr>
                                 @endforeach

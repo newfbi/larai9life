@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="box">
+<<<<<<< HEAD
             <div class="box-body">                
                 <div class="row">
                     <div class="col-md-6">
@@ -92,6 +93,74 @@
                     <!-- /.box-body -->
                     </div>
                 </div>
+=======
+            <div class="box-body">
+                <hr>
+                <h3> <i class="fa fa-shopping-bag"></i> Informações do pedido</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td class="col-md-3">Data</td>
+                            <td class="col-md-3">Cliente</td>
+                            <td class="col-md-3">Pagamento</td>
+                            <td class="col-md-3">Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ date('m-d-y', strtotime($order['created_at'])) }}</td>
+                        <td><a>{{ $customer->name }}</a></td>
+                        <td><strong>{{ $order['payment'] }}</strong></td>
+                        @if($order->order_status_id == 1)
+                        <td><button type="button" class="btn btn-primary btn-block">{{ $currentStatus->name }}</button></td>
+                        @endif
+                        @if($order->order_status_id == 2)
+                        <td><button type="button" class="btn btn-info btn-block">{{ $currentStatus->name }}</button></td>
+                        @endif
+                        @if($order->order_status_id == 3)
+                        <td><button type="button" class="btn btn-danger btn-block">{{ $currentStatus->name }}</button></td>
+                        @endif
+                        @if($order->order_status_id == 4)
+                        <td><button type="button" class="btn btn-success btn-block">{{ $currentStatus->name }}</button></td>
+                        @endif
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-warning">Subtotal</td>
+                        <td class="bg-warning">{{ $order['total_products'] }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-warning">Taxa</td>
+                        <td class="bg-warning">{{ $order['tax'] }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-warning">Disconto</td>
+                        <td class="bg-warning">{{ $order['discounts'] }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-success text-bold">Total do Pedido</td>
+                        <td class="bg-success text-bold">{{ $order['total'] }}</td>
+                    </tr>
+                    @if($order['total_paid'] != $order['total'])
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="bg-danger text-bold">Total pago</td>
+                            <td class="bg-danger text-bold">{{ $order['total_paid'] }}</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+>>>>>>> 187c8dbad9f00c15f3605b530b1974e5ac6a7657
             </div>
         </div>
         @if($order)
